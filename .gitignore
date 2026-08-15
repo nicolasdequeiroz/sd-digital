@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Servidores/scripts locais de apoio
+__pycache__/
+*.pyc
+*.log
+
+# Segredos / config local
+.env
+.env.local

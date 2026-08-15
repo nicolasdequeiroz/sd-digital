@@ -33,6 +33,31 @@ python3 -m http.server 8788 --directory .
 
 Depois acesse http://localhost:8788/
 
+## Publicar no GitHub Pages
+
+O repo está pronto para ser servido como está — não há build step, é HTML/CSS/JS
+estático puro.
+
+1. No GitHub: **Settings → Pages → Source** = `Deploy from a branch`,
+   branch `main`, pasta `/ (root)`.
+2. **Domínio próprio**: em Settings → Pages → Custom domain, informe o domínio
+   (ex.: `www.saiddiazdigital.com`). O GitHub cria/atualiza um arquivo `CNAME`
+   na raiz automaticamente — não é preciso criar esse arquivo manualmente.
+   No provedor de DNS, aponte:
+   - `www` (ou o subdomínio escolhido) → `CNAME` para `<usuario>.github.io`
+   - domínio raiz (apex), se for usar sem `www` → registros `A` para os IPs do
+     GitHub Pages (ver [docs oficiais](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site)).
+   Ative "Enforce HTTPS" depois que o certificado for emitido (leva alguns minutos).
+3. O arquivo `.nojekyll` na raiz já está commitado — ele desliga o processamento
+   Jekyll que o Pages roda por padrão. Sem ele, o GitHub ignora pastas/arquivos
+   começando com `_` (como `assets/_manifest.json`) e pode tentar interpretar
+   `{{ }}` / `{% %}` dentro dos bundles JS do Webflow como sintaxe Liquid.
+4. Como os caminhos dos assets são absolutos (`/assets/...`), o site só funciona
+   corretamente servido na raiz do domínio — é o caso normal com domínio
+   próprio. Se em algum momento for publicado sem domínio próprio (URL padrão
+   `usuario.github.io/repo`), os caminhos absolutos vão quebrar e precisam ser
+   reescritos para relativos.
+
 ## O que continua remoto (de propósito)
 
 Essas chamadas dependem de serviço externo e não fazem sentido baixar:

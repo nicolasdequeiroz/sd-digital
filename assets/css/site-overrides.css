@@ -10,3 +10,19 @@
 
 /* Copyright do rodapé: menor em todas as páginas (era 14px/.875rem). */
 .footer .text-14._60 { font-size: 12px; }
+
+/* Logos de marketplace na home (seção #marketplace): agora linkam pra LP de
+   cada canal (/lp/mercado-livre, /lp/amazon, /lp/shopee). O grid-area e o
+   place-self continuam vindo do CSS do Webflow (seletor por #id, que ficou
+   nesses <a> no lugar dos <img>). */
+.marketplace-logo-link {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.marketplace-logo-link:hover,
+.marketplace-logo-link:focus-visible {
+  opacity: .8;
+  transform: translateY(-2px);
+}

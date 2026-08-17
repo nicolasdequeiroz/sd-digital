@@ -26,3 +26,27 @@
   opacity: .8;
   transform: translateY(-2px);
 }
+
+/* Ícone do menu mobile (index.html): a fonte de ícones do Webflow
+   (webflow-icons, embutida em base64 no CSS) não renderiza de forma
+   confiável em todo navegador — em alguns aparece como glifo/caractere
+   quebrado no lugar do hambúrguer. Troca por um ícone desenhado em SVG via
+   mask, sem depender de font em nenhuma situação.
+   Sem o glifo, a div não tem mais tamanho intrínseco nenhum (era o glifo
+   que dava a ela 24x24px via font-size) — por isso width/height explícitos
+   abaixo. */
+.w-icon-nav-menu:before { content: none; }
+.w-icon-nav-menu {
+  background-color: currentColor;
+  width: 24px;
+  height: 24px;
+  display: block;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect y='4' width='24' height='2.4' rx='1.2'/%3E%3Crect y='10.8' width='24' height='2.4' rx='1.2'/%3E%3Crect y='17.6' width='24' height='2.4' rx='1.2'/%3E%3C/svg%3E") center / 22px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect y='4' width='24' height='2.4' rx='1.2'/%3E%3Crect y='10.8' width='24' height='2.4' rx='1.2'/%3E%3Crect y='17.6' width='24' height='2.4' rx='1.2'/%3E%3C/svg%3E") center / 22px no-repeat;
+  transition: transform .25s ease;
+}
+/* quando o menu abre, o botão vira um "x" pra indicar fechar */
+.w--open .w-icon-nav-menu {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(45 12 12)'/%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(-45 12 12)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(45 12 12)'/%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(-45 12 12)'/%3E%3C/svg%3E");
+}

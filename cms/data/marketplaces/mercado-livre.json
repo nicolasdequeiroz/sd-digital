@@ -1,0 +1,260 @@
+{
+  "slug": "mercado-livre",
+  "status": "published",
+  "order": 2,
+
+  "marketplace": {
+    "name": "Mercado Livre",
+    "displayName": "Mercado Livre",
+    "preposition": "no Mercado Livre",
+    "logo": "/assets/images/64318d0ae9cbf0c0a5260e46_image-6.png",
+    "logoAlt": "Logo do Mercado Livre",
+    "accent": "#3483FA",
+    "accentSoft": "#E9F2FF",
+    "adsName": "Mercado Ads",
+    "sellerCenterName": "Mercado Livre",
+    "keywords": [
+      "consultoria mercado livre",
+      "assessoria mercado livre",
+      "agência mercado livre",
+      "como vender no mercado livre",
+      "gestão de anúncios mercado livre",
+      "mercado ads",
+      "loja oficial mercado livre"
+    ]
+  },
+
+  "seo": {
+    "title": "Consultoria e Assessoria Mercado Livre | SD Digital",
+    "description": "Consultoria ou assessoria completa para vender mais no Mercado Livre: Mercado Ads, catálogo, Buy Box, reputação, Full e Flex, integração de ERP e gestão diária. Peça uma análise gratuita.",
+    "ogImage": "/assets/images/68f58af3e5fc6b91920796fc_Imagem-comprimida-1-.png"
+  },
+
+  "hero": {
+    "eyebrow": "Especialistas em Mercado Livre",
+    "h1": "Sua operação <span class=\"lp-em\">no Mercado Livre</span> rodando com margem, sem depender de você.",
+    "sub": "A SD Digital assume (ou ensina você a assumir) a conta inteira: ficha técnica, catálogo, Buy Box, Mercado Ads, reputação, Full e Flex e integração de ERP. Você cuida do produto e da logística. O resto é com a gente.",
+    "ctaPrimary": { "label": "Quero uma análise gratuita da minha conta", "href": "#form" },
+    "ctaSecondary": { "label": "Falar no WhatsApp agora", "href": "whatsapp", "icon": "whatsapp" },
+    "trust": [
+      "Análise gratuita da sua conta",
+      "Sem fidelidade contratual",
+      "Resposta em até 1 dia útil"
+    ],
+    "shots": [
+      { "image": "", "badge": "Vendas / mês", "mock": { "title": "Vendas do mês", "value": "R$ 396.140", "delta": "+74% vs. mês anterior", "caption": "Painel de vendas do seller", "chart": [24, 28, 33, 40, 44, 57, 66, 78, 92], "footLeft": { "label": "Pedidos", "value": "2.108" }, "footRight": { "label": "Ticket médio", "value": "R$ 187,90" } } },
+      { "image": "", "badge": "Mercado Ads", "mock": { "title": "Mercado Ads: ACOS", "value": "6,8%", "delta": "-9,4 p.p. em 60 dias", "caption": "Product Ads com lance por anúncio", "chart": [88, 79, 74, 66, 58, 47, 40, 33, 28], "footLeft": { "label": "Investimento", "value": "R$ 18.400" }, "footRight": { "label": "Receita Ads", "value": "R$ 270.588" } } },
+      { "image": "", "badge": "Reputação", "mock": { "title": "Termômetro da conta", "value": "Verde", "delta": "MercadoLíder Platinum", "caption": "Reclamações abaixo de 1% nos últimos 60 dias", "chart": [40, 46, 50, 55, 61, 68, 76, 84, 95], "footLeft": { "label": "Envio no prazo", "value": "98,7%" }, "footRight": { "label": "Cancelamento", "value": "0,3%" } } }
+    ],
+    "ticker": [
+      "Mercado Ads",
+      "Ficha técnica",
+      "Catálogo e Buy Box",
+      "Full e Flex",
+      "Loja Oficial",
+      "Curva ABC",
+      "Integração de ERP",
+      "Reputação",
+      "Clássico x Premium",
+      "Gestão diária"
+    ]
+  },
+
+  "kpis": [
+    { "prefix": "+", "value": 10, "suffix": " anos", "label": "de operação em marketplaces no Brasil" },
+    { "prefix": "+", "value": 150, "suffix": "", "label": "sellers e e-commerces atendidos" },
+    { "prefix": "até ", "value": 10, "suffix": "x", "label": "de crescimento em 12 meses de acompanhamento" },
+    { "prefix": "", "value": 4.9, "decimals": 1, "suffix": "/5", "label": "satisfação média dos nossos clientes" }
+  ],
+
+  "intro": {
+    "caption": "Por que sua conta trava",
+    "title": "No Mercado Livre, quem erra a estrutura paga caro todo mês.",
+    "paragraphs": [
+      "Anúncio fora do catálogo, ficha técnica incompleta, Buy Box perdida por centavos, Full mal dimensionado, Mercado Ads rodando no automático e reputação escorregando: é essa combinação que segura a maioria das contas que chega até nós.",
+      "O resultado é conhecido: a conta fatura, mas a margem some entre comissão, frete grátis e verba de mídia mal aplicada.",
+      "A SD Digital entra exatamente aí: reorganiza o catálogo, corrige as fichas, disputa a Buy Box com dado, estrutura o Ads e passa a acompanhar os indicadores todo dia. Sem mágica: é o básico, extraordinariamente bem feito."
+    ]
+  },
+
+  "services": {
+    "caption": "Dois jeitos de trabalhar com a gente",
+    "title": "Consultoria ou assessoria: você escolhe quem executa.",
+    "subtitle": "O método é o mesmo. O que muda é quem coloca a mão na operação: sua equipe, com a gente ensinando, ou a nossa equipe, fazendo tudo.",
+    "items": [
+      {
+        "featured": false,
+        "tag": "Consultoria / Mentoria",
+        "tagStyle": "default",
+        "name": "A gente ensina. Sua equipe executa.",
+        "description": "Reuniões semanais ou quinzenais (a periodicidade é sua escolha) com você ou com quem você designar. Saímos de cada encontro com um plano de ação claro, e acompanhamos o que foi executado no encontro seguinte.",
+        "items": [
+          "Diagnóstico completo da conta no Mercado Livre",
+          "Reuniões semanais ou quinzenais, no seu ritmo",
+          "Plano de ação por escrito a cada encontro",
+          "Treinamento do seu time na plataforma",
+          "Estratégia de catálogo, ficha técnica e Mercado Ads",
+          "Definição de preço, margem, Clássico x Premium e curva ABC",
+          "Acompanhamento dos indicadores entre as reuniões",
+          "Canal direto com o consultor para dúvidas"
+        ],
+        "cta": { "label": "Quero a consultoria", "href": "#form", "style": "ghost" },
+        "note": "Ideal para quem já tem equipe e quer autonomia."
+      },
+      {
+        "featured": true,
+        "tag": "Assessoria: nosso serviço premium",
+        "tagStyle": "light",
+        "name": "A gente faz absolutamente tudo.",
+        "description": "Nossa equipe assume a conta do Mercado Livre de ponta a ponta. Você não abre a plataforma: acompanha os resultados e cuida do que é seu: compra, estoque, embalagem e nota fiscal.",
+        "items": [
+          "Criação e otimização de todos os anúncios",
+          "Ficha técnica, títulos e descrição completos",
+          "Criação das imagens e fotos de produto",
+          "Gestão completa de Mercado Ads (verba, lances e ACOS)",
+          "Disputa de catálogo e Buy Box com monitoramento diário",
+          "Precificação, Clássico x Premium e margem por SKU",
+          "Gestão de Full e Flex: envio, reposição e cobertura de estoque",
+          "Integração e configuração do ERP, quando necessário",
+          "Reputação, perguntas, pós-venda e mediações",
+          "Relatório de performance e reunião de resultados"
+        ],
+        "cta": { "label": "Quero a assessoria completa", "href": "#form", "style": "mk" },
+        "note": "Ideal para quem quer escalar sem montar time interno."
+      }
+    ]
+  },
+
+  "deliverables": {
+    "caption": "O que entra na assessoria",
+    "title": "Tudo o que a sua conta precisa, feito pelo nosso time.",
+    "subtitle": "Cada item abaixo é executado por quem faz isso todo dia, não por um generalista dividindo atenção entre dez canais.",
+    "items": [
+      { "icon": "megaphone", "title": "Mercado Ads sob controle", "text": "Product Ads estruturado por curva de produto, lance por anúncio e meta de ACOS. Verba sai do que não converte e vai para o que sustenta a Buy Box." },
+      { "icon": "search", "title": "Ficha técnica e SEO de anúncio", "text": "Título no padrão do canal e ficha técnica 100% preenchida: é ela que faz o Mercado Livre entender, ranquear e associar seu produto ao catálogo certo." },
+      { "icon": "image", "title": "Imagens e fotos de produto", "text": "Imagens dentro das regras do canal: fundo branco na capa, sequência que explica o produto e reduz a pergunta que atrasa a compra." },
+      { "icon": "tag", "title": "Catálogo, Buy Box e preço", "text": "Monitoramento da disputa de catálogo e precificação considerando comissão, frete grátis e Clássico x Premium. Você sabe quanto sobra antes de baixar o preço." },
+      { "icon": "truck", "title": "Full e Flex", "text": "Dimensionamento do que vai para o Full, cobertura de estoque, reposição e uso do Flex, sem ruptura e sem estoque parado pagando armazenagem." },
+      { "icon": "plug", "title": "Integração de ERP", "text": "Configuramos e integramos o ERP ou hub (Bling, Omie, Ideris, Magis5, Anymarket e outros) para estoque, preço e pedido rodarem sozinhos." },
+      { "icon": "shield", "title": "Reputação e termômetro", "text": "Perguntas, pós-venda, mediações e cancelamentos monitorados de perto. Termômetro verde não é sorte: é rotina." },
+      { "icon": "chart", "title": "Relatórios e reunião de resultados", "text": "Relatório periódico com faturamento, ACOS, ticket médio e margem, e uma reunião para decidir o próximo passo com base em número, não em opinião." },
+      { "icon": "users", "title": "Um time, não um freelancer", "text": "Você fala com quem executa: gestor de conta, especialista em ads e designer. Sem intermediário e sem ficar esperando resposta." }
+    ]
+  },
+
+  "split": {
+    "caption": "Divisão de responsabilidades",
+    "title": "Deixa claro desde o primeiro dia quem faz o quê.",
+    "subtitle": "Essa é a principal diferença da assessoria: a operação do dia a dia sai da sua mesa por completo.",
+    "you": {
+      "title": "Você cuida de",
+      "sub": "O que só faz sentido dentro da sua empresa.",
+      "items": [
+        "Compra e reposição de estoque",
+        "Separação, embalagem e expedição",
+        "Envio para o Full e postagem",
+        "Emissão de nota fiscal",
+        "Decisões de investimento e verba"
+      ]
+    },
+    "us": {
+      "title": "A SD Digital cuida de",
+      "sub": "100% da operação digital, todos os dias.",
+      "items": [
+        "Criação e otimização dos anúncios",
+        "Ficha técnica, títulos e descrição",
+        "Imagens e fotos de produto",
+        "Mercado Ads e verba de mídia",
+        "Catálogo, Buy Box e precificação",
+        "Planejamento de Full e Flex",
+        "Integração e configuração do ERP",
+        "Reputação, perguntas e pós-venda",
+        "Relatórios e estratégia de crescimento"
+      ]
+    }
+  },
+
+  "proof": {
+    "caption": "Prova de operação",
+    "title": "Painéis de contas que operamos.",
+    "subtitle": "Recortes reais de painel de seller, com dados de identificação omitidos por acordo de confidencialidade com cada cliente.",
+    "panels": [
+      { "image": "", "badge": "Suplementos", "mock": { "title": "Faturamento: 12 meses", "value": "R$ 4,1 mi", "delta": "+920% no período", "caption": "Loja Oficial estruturada do zero", "chart": [8, 14, 19, 27, 33, 41, 52, 60, 71, 80, 90, 100], "footLeft": { "label": "Pedidos", "value": "22.480" }, "footRight": { "label": "Ticket médio", "value": "R$ 182,40" } } },
+      { "image": "", "badge": "Auto peças", "mock": { "title": "Participação na Buy Box", "value": "78%", "delta": "+41 p.p. em 90 dias", "caption": "Após reestruturação de catálogo e preço", "chart": [30, 33, 38, 44, 51, 58, 66, 72, 78], "footLeft": { "label": "SKUs no catálogo", "value": "1.240" }, "footRight": { "label": "Margem média", "value": "22,4%" } } },
+      { "image": "", "badge": "Casa e cozinha", "mock": { "title": "Mercado Ads: ACOS", "value": "5,9%", "delta": "-11 p.p. após reestruturação", "caption": "Verba realocada para curva A", "chart": [92, 84, 76, 68, 59, 50, 42, 34, 27], "footLeft": { "label": "Investido", "value": "R$ 21.700" }, "footRight": { "label": "Receita", "value": "R$ 367.796" } } }
+    ]
+  },
+
+  "band": {
+    "title": "A sua concorrência no Mercado Livre não está esperando você aprender.",
+    "text": "Peça uma análise gratuita da sua conta. Em até 1 dia útil devolvemos um diagnóstico do que está travando as suas vendas, com ou sem contrato.",
+    "ctaPrimary": { "label": "Solicitar análise gratuita", "href": "#form" },
+    "ctaSecondary": { "label": "Prefiro falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" }
+  },
+
+  "testimonials": {
+    "_status": "PLACEHOLDER: substituir por depoimentos reais antes de publicar (ver cms/README.md).",
+    "caption": "Depoimentos",
+    "title": "O que os sellers falam da operação.",
+    "items": [
+      { "_placeholder": true, "quote": "[SUBSTITUIR POR DEPOIMENTO REAL] Espaço reservado para o relato do cliente sobre a reestruturação do catálogo e a disputa de Buy Box.", "name": "Nome do cliente", "role": "Cargo, Empresa", "initials": "SD" },
+      { "_placeholder": true, "quote": "[SUBSTITUIR POR DEPOIMENTO REAL] Espaço reservado para o relato do cliente sobre a gestão de Mercado Ads e a queda do ACOS.", "name": "Nome do cliente", "role": "Cargo, Empresa", "initials": "SD" },
+      { "_placeholder": true, "quote": "[SUBSTITUIR POR DEPOIMENTO REAL] Espaço reservado para o relato do cliente sobre Full, reputação e a rotina depois da assessoria.", "name": "Nome do cliente", "role": "Cargo, Empresa", "initials": "SD" }
+    ]
+  },
+
+  "process": {
+    "caption": "Como começa",
+    "title": "Do primeiro contato à conta rodando: 4 passos.",
+    "subtitle": "Sem proposta genérica. O escopo sai depois que olhamos a sua conta.",
+    "steps": [
+      { "title": "Análise gratuita", "text": "Você preenche o formulário ou chama no WhatsApp. Olhamos a sua conta e devolvemos um diagnóstico do que está travando as vendas." },
+      { "title": "Reunião de diagnóstico", "text": "Apresentamos o diagnóstico, entendemos margem, estoque e logística, e definimos junto se o caminho é consultoria ou assessoria." },
+      { "title": "Plano e escopo", "text": "Você recebe o plano de trabalho com prioridades, prazos e responsáveis. Nada de contrato antes de você saber exatamente o que vai acontecer." },
+      { "title": "Execução e acompanhamento", "text": "A operação começa a rodar. Relatórios periódicos e reunião de resultados para ajustar a rota com base em número." }
+    ]
+  },
+
+  "faq": {
+    "caption": "Perguntas frequentes",
+    "title": "O que os sellers costumam perguntar antes de fechar.",
+    "items": [
+      { "q": "Qual a diferença prática entre consultoria e assessoria?", "a": "Na consultoria nós ensinamos e a sua equipe executa: são reuniões semanais ou quinzenais, com plano de ação e acompanhamento. Na assessoria a nossa equipe executa tudo: anúncios, ficha técnica, imagens, Mercado Ads, catálogo, Full, integração de ERP e gestão do dia a dia. Você só cuida de compra, estoque, embalagem, logística e nota fiscal." },
+      { "q": "Vocês cuidam da logística e do envio dos pedidos?", "a": "Não. Logística, embalagem, envio para o Full e emissão de nota continuam com você: é a parte que precisa estar dentro da sua empresa. Nós planejamos o que vai para o Full e para o Flex; a execução física é sua." },
+      { "q": "Vocês conseguem abrir uma Loja Oficial?", "a": "Sim. Já estruturamos Lojas Oficiais do zero, incluindo a documentação, a curadoria do catálogo e o padrão visual da vitrine." },
+      { "q": "Vocês trabalham com qual ERP ou hub?", "a": "Trabalhamos com os principais do mercado: Bling, Omie, Tiny, Ideris, Magis5, Anymarket, entre outros. Se você ainda não tem um, ajudamos a escolher o que faz sentido para o seu volume e integramos." },
+      { "q": "A verba de Mercado Ads está incluída?", "a": "Não. A verba de mídia é investida direto na sua conta do Mercado Livre e é sua. Nós fazemos a gestão: definição de verba, estrutura de campanha, lances e meta de ACOS." },
+      { "q": "Existe fidelidade ou multa por cancelamento?", "a": "Não trabalhamos com fidelidade. Trabalhamos com resultado: a relação se mantém porque faz sentido para os dois lados." },
+      { "q": "E se eu vender em mais de um marketplace?", "a": "A gente atende a operação inteira. Esta página é focada em Mercado Livre, mas também estruturamos Shopee, Amazon e outros canais, além do e-commerce próprio. Fale com a gente que montamos o escopo do conjunto." },
+      { "q": "Quanto tempo até aparecer resultado?", "a": "Depende do estado da conta. Correções de ficha técnica e catálogo costumam mexer no ranqueamento nas primeiras semanas. Reestruturação de Ads, Buy Box e ganho consistente de margem são um trabalho de 60 a 90 dias." }
+    ]
+  },
+
+  "form": {
+    "caption": "Análise gratuita",
+    "title": "Vamos olhar a sua conta no Mercado Livre.",
+    "text": "Preencha o formulário e nossa equipe entra em contato em até 1 dia útil.",
+    "submitLabel": "Solicitar análise gratuita",
+    "subject": "[LP Mercado Livre] Nova solicitação de análise gratuita",
+    "revenueOptions": [
+      "Ainda não vendo no Mercado Livre",
+      "Até R$ 20 mil / mês",
+      "R$ 20 mil a R$ 100 mil / mês",
+      "R$ 100 mil a R$ 500 mil / mês",
+      "Acima de R$ 500 mil / mês"
+    ],
+    "interestOptions": [
+      "Assessoria (vocês fazem tudo)",
+      "Consultoria / mentoria (minha equipe executa)",
+      "Ainda não sei, quero entender"
+    ]
+  },
+
+  "whatsapp": {
+    "nav": "Olá! Vim pela página de Mercado Livre da SD Digital e quero falar com um especialista.",
+    "hero": "Olá! Vim pela página de Mercado Livre da SD Digital e quero uma análise gratuita da minha conta no Mercado Livre.",
+    "band": "Olá! Vim pela página de Mercado Livre da SD Digital e quero entender melhor a assessoria de Mercado Livre.",
+    "form": "Olá! Vim pela página de Mercado Livre da SD Digital, prefiro falar por aqui.",
+    "float": "Olá! Vim pela página de Mercado Livre da SD Digital e quero saber mais."
+  }
+}

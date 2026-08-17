@@ -1,0 +1,79 @@
+{
+  "_comment": "SINGLETON de configuração global. Vale para TODAS as landing pages de marketplace. Editar aqui muda todas as LPs de uma vez.",
+
+  "brand": {
+    "name": "SD Digital",
+    "legalName": "Said Diaz Digital Commerce",
+    "site": "https://www.saiddiazdigital.com",
+    "tagline": "Consultoria e assessoria especializada em e-commerce e marketplace"
+  },
+
+  "contact": {
+    "whatsappPhone": "5519999540707",
+    "instagram": "https://www.instagram.com/saiddiazdigital/",
+    "linkedin": "https://www.linkedin.com/company/sd-digital-commerce/"
+  },
+
+  "form": {
+    "endpoint": "https://formspree.io/f/mojrgnra",
+    "successMessage": "Recebemos seus dados! Nossa equipe entra em contato em até 1 dia útil.",
+    "legal": "Ao enviar, você concorda em receber contato da SD Digital. Não compartilhamos seus dados com terceiros."
+  },
+
+  "analytics": {
+    "gtmId": "GTM-544MR6GZ",
+    "ga4Id": "G-4YQKZQLQL6"
+  },
+
+  "cases": {
+    "_comment": "Cases REAIS, já publicados em saiddiazdigital.com. Compartilhados por todas as LPs.",
+    "caption": "Resultados reais",
+    "title": "Alguns sucessos que podemos chamar de nossos",
+    "subtitle": "Operações que estruturamos do zero ou reerguemos, de suplementos a peças automotivas.",
+    "items": [
+      {
+        "client": "Atlhetica Nutrition",
+        "result": "+10x faturamento",
+        "period": "em 12 meses de consultoria",
+        "description": "Migramos de plataforma, conquistamos a loja oficial no Mercado Livre e, com isso e outras estratégias, o faturamento cresceu 10x em um ano."
+      },
+      {
+        "client": "Loja do Suplemento",
+        "result": "R$ 2 mi/mês",
+        "period": "e mais de 10 mil vendas por mês",
+        "description": "Criamos e desenvolvemos marcas próprias e alcançamos números excepcionais, com presença e relevância em nível nacional."
+      },
+      {
+        "client": "FTW (Fitoway Labs)",
+        "result": "+6x faturamento",
+        "period": "em 12 meses de consultoria",
+        "description": "Breakeven em apenas 4 meses, redesign do site e integração sistêmica. Aumento de 6x no faturamento em um único ano."
+      },
+      {
+        "client": "Bikeparts",
+        "result": "3x crescimento",
+        "period": "em 1 mês de consultoria",
+        "description": "Redesenhamos o e-commerce do zero, apoiamos a mudança de marca e integramos Magalu e Bling. Projeto ainda vigente."
+      }
+    ]
+  },
+
+  "clients": {
+    "caption": "Quem confia na gente",
+    "title": "Marcas que já passaram pela nossa operação"
+  },
+
+  "footer": {
+    "crossSellTitle": "Você sabia que também trabalhamos com estes canais?",
+    "crossSellLead": "Cada marketplace tem sua própria página, com o time e o método específicos daquele canal.",
+    "siteHookTitle": "Precisa de mais do que marketplace?",
+    "siteHookText": "E-commerce próprio, integração de ERP, gestão de campanhas e mídia social: veja a operação completa da SD Digital.",
+    "siteHookCta": "Conhecer todos os serviços",
+    "links": [
+      { "label": "Site completo", "url": "/" },
+      { "label": "Case TOPFIT", "url": "/case/topfit" },
+      { "label": "Briefing", "url": "/briefing" }
+    ],
+    "copyright": "© Copyright 2026 - Said Diaz Digital Commerce. Todos os direitos reservados"
+  }
+}

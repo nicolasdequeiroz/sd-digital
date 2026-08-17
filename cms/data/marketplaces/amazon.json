@@ -1,0 +1,260 @@
+{
+  "slug": "amazon",
+  "status": "published",
+  "order": 3,
+
+  "marketplace": {
+    "name": "Amazon",
+    "displayName": "Amazon",
+    "preposition": "na Amazon",
+    "logo": "/assets/images/64318d0b01d447456251b7b2_image-16.png",
+    "logoAlt": "Logo da Amazon",
+    "accent": "#146EB4",
+    "accentSoft": "#E8F1F9",
+    "adsName": "Amazon Ads",
+    "sellerCenterName": "Seller Central",
+    "keywords": [
+      "consultoria amazon",
+      "assessoria amazon",
+      "agência amazon",
+      "como vender na amazon",
+      "gestão de anúncios amazon",
+      "amazon ads",
+      "amazon fba brasil"
+    ]
+  },
+
+  "seo": {
+    "title": "Consultoria e Assessoria Amazon | SD Digital",
+    "description": "Consultoria ou assessoria completa para vender mais na Amazon: Amazon Ads, Buy Box, listing e A+ Content, FBA/DBA, integração de ERP e gestão diária do Seller Central. Peça uma análise gratuita.",
+    "ogImage": "/assets/images/68f58af3e5fc6b91920796fc_Imagem-comprimida-1-.png"
+  },
+
+  "hero": {
+    "eyebrow": "Especialistas em Amazon",
+    "h1": "Sua conta <span class=\"lp-em\">na Amazon</span> ganhando a Buy Box, sem você viver dentro do Seller Central.",
+    "sub": "A SD Digital assume (ou ensina você a assumir) a conta inteira: listing, A+ Content, Amazon Ads, Buy Box, FBA/DBA, saúde da conta e integração de ERP. Você cuida do produto e da logística. O resto é com a gente.",
+    "ctaPrimary": { "label": "Quero uma análise gratuita da minha conta", "href": "#form" },
+    "ctaSecondary": { "label": "Falar no WhatsApp agora", "href": "whatsapp", "icon": "whatsapp" },
+    "trust": [
+      "Análise gratuita da sua conta",
+      "Sem fidelidade contratual",
+      "Resposta em até 1 dia útil"
+    ],
+    "shots": [
+      { "image": "", "badge": "Vendas / mês", "mock": { "title": "Vendas do mês", "value": "R$ 212.870", "delta": "+58% vs. mês anterior", "caption": "Painel do Seller Central", "chart": [20, 26, 31, 36, 43, 51, 62, 74, 89], "footLeft": { "label": "Pedidos", "value": "1.640" }, "footRight": { "label": "Ticket médio", "value": "R$ 129,80" } } },
+      { "image": "", "badge": "Amazon Ads", "mock": { "title": "Amazon Ads: ACOS", "value": "8,2%", "delta": "-7,6 p.p. em 60 dias", "caption": "Sponsored Products + Brands", "chart": [84, 77, 70, 63, 55, 47, 39, 32, 26], "footLeft": { "label": "Investimento", "value": "R$ 12.300" }, "footRight": { "label": "Receita Ads", "value": "R$ 150.000" } } },
+      { "image": "", "badge": "Saúde da conta", "mock": { "title": "Account Health", "value": "952", "delta": "Buy Box em 81% dos ASINs", "caption": "Sem violações de política nos últimos 180 dias", "chart": [45, 50, 55, 60, 66, 74, 82, 88, 96], "footLeft": { "label": "ODR", "value": "0,2%" }, "footRight": { "label": "Envio no prazo", "value": "99,4%" } } }
+    ],
+    "ticker": [
+      "Amazon Ads",
+      "Buy Box",
+      "Listing e ASIN",
+      "A+ Content",
+      "FBA e DBA",
+      "Brand Registry",
+      "Curva ABC",
+      "Integração de ERP",
+      "Account Health",
+      "Gestão diária"
+    ]
+  },
+
+  "kpis": [
+    { "prefix": "+", "value": 10, "suffix": " anos", "label": "de operação em marketplaces no Brasil" },
+    { "prefix": "+", "value": 150, "suffix": "", "label": "sellers e e-commerces atendidos" },
+    { "prefix": "até ", "value": 10, "suffix": "x", "label": "de crescimento em 12 meses de acompanhamento" },
+    { "prefix": "", "value": 4.9, "decimals": 1, "suffix": "/5", "label": "satisfação média dos nossos clientes" }
+  ],
+
+  "intro": {
+    "caption": "Por que sua conta trava",
+    "title": "Na Amazon, listing incompleto é dinheiro parado na prateleira.",
+    "paragraphs": [
+      "Bullet point genérico, backend keywords vazias, ASIN duplicado, A+ Content nunca publicado, Sponsored Products no automático e Buy Box perdida para o próprio distribuidor: é essa combinação que segura a maioria das contas que chega até nós.",
+      "O resultado é conhecido: o produto existe na plataforma, mas não aparece na busca, não ganha a Buy Box e a verba de Ads sustenta uma venda que deveria ser orgânica.",
+      "A SD Digital entra exatamente aí: reconstrói o listing, publica o A+ Content, organiza as campanhas por curva de produto e acompanha o Account Health todo dia. Sem mágica: é o básico, extraordinariamente bem feito."
+    ]
+  },
+
+  "services": {
+    "caption": "Dois jeitos de trabalhar com a gente",
+    "title": "Consultoria ou assessoria: você escolhe quem executa.",
+    "subtitle": "O método é o mesmo. O que muda é quem coloca a mão na operação: sua equipe, com a gente ensinando, ou a nossa equipe, fazendo tudo.",
+    "items": [
+      {
+        "featured": false,
+        "tag": "Consultoria / Mentoria",
+        "tagStyle": "default",
+        "name": "A gente ensina. Sua equipe executa.",
+        "description": "Reuniões semanais ou quinzenais (a periodicidade é sua escolha) com você ou com quem você designar. Saímos de cada encontro com um plano de ação claro, e acompanhamos o que foi executado no encontro seguinte.",
+        "items": [
+          "Diagnóstico completo da conta na Amazon",
+          "Reuniões semanais ou quinzenais, no seu ritmo",
+          "Plano de ação por escrito a cada encontro",
+          "Treinamento do seu time no Seller Central",
+          "Estratégia de listing, A+ Content e Amazon Ads",
+          "Definição de preço, margem, FBA x DBA e curva ABC",
+          "Acompanhamento dos indicadores entre as reuniões",
+          "Canal direto com o consultor para dúvidas"
+        ],
+        "cta": { "label": "Quero a consultoria", "href": "#form", "style": "ghost" },
+        "note": "Ideal para quem já tem equipe e quer autonomia."
+      },
+      {
+        "featured": true,
+        "tag": "Assessoria: nosso serviço premium",
+        "tagStyle": "light",
+        "name": "A gente faz absolutamente tudo.",
+        "description": "Nossa equipe assume a conta da Amazon de ponta a ponta. Você não abre o Seller Central: acompanha os resultados e cuida do que é seu: compra, estoque, embalagem e nota fiscal.",
+        "items": [
+          "Criação e otimização de todos os listings",
+          "Título, bullet points, descrição e backend keywords",
+          "Criação das imagens e do A+ Content",
+          "Gestão completa de Amazon Ads (Sponsored Products, Brands e Display)",
+          "Monitoramento e disputa da Buy Box",
+          "Precificação, margem e análise da concorrência por ASIN",
+          "Planejamento de FBA e DBA: envio, cobertura e reposição",
+          "Integração e configuração do ERP, quando necessário",
+          "Account Health, avaliações, casos e políticas",
+          "Relatório de performance e reunião de resultados"
+        ],
+        "cta": { "label": "Quero a assessoria completa", "href": "#form", "style": "mk" },
+        "note": "Ideal para quem quer escalar sem montar time interno."
+      }
+    ]
+  },
+
+  "deliverables": {
+    "caption": "O que entra na assessoria",
+    "title": "Tudo o que a sua conta precisa, feito pelo nosso time.",
+    "subtitle": "Cada item abaixo é executado por quem faz isso todo dia, não por um generalista dividindo atenção entre dez canais.",
+    "items": [
+      { "icon": "megaphone", "title": "Amazon Ads sob controle", "text": "Sponsored Products, Brands e Display separados por objetivo, com campanhas automáticas alimentando as manuais e meta de ACOS por curva de produto." },
+      { "icon": "search", "title": "Listing e backend keywords", "text": "Título, bullet points, descrição e search terms construídos a partir do que o comprador pesquisa: é o que faz o A9 entender e ranquear o seu ASIN." },
+      { "icon": "image", "title": "Imagens e A+ Content", "text": "Imagem principal dentro da política, sequência que explica o produto e A+ Content publicado para subir a conversão e reduzir devolução." },
+      { "icon": "tag", "title": "Buy Box e precificação", "text": "Monitoramento da Buy Box por ASIN e precificação considerando comissão, tarifa de FBA e frete. Você sabe quanto sobra antes de baixar o preço." },
+      { "icon": "truck", "title": "FBA e DBA", "text": "Dimensionamento do que vai para o FBA, cobertura de estoque, reposição e uso do DBA, sem ruptura e sem estoque parado pagando armazenagem." },
+      { "icon": "plug", "title": "Integração de ERP", "text": "Configuramos e integramos o ERP ou hub (Bling, Omie, Ideris, Magis5, Anymarket e outros) para estoque, preço e pedido rodarem sozinhos." },
+      { "icon": "shield", "title": "Account Health", "text": "ODR, envio no prazo, casos e violações de política acompanhados de perto. Conta suspensa é prejuízo que a gente trabalha para nunca acontecer." },
+      { "icon": "chart", "title": "Relatórios e reunião de resultados", "text": "Relatório periódico com faturamento, ACOS, ticket médio e margem, e uma reunião para decidir o próximo passo com base em número, não em opinião." },
+      { "icon": "users", "title": "Um time, não um freelancer", "text": "Você fala com quem executa: gestor de conta, especialista em ads e designer. Sem intermediário e sem ficar esperando resposta." }
+    ]
+  },
+
+  "split": {
+    "caption": "Divisão de responsabilidades",
+    "title": "Deixa claro desde o primeiro dia quem faz o quê.",
+    "subtitle": "Essa é a principal diferença da assessoria: a operação do dia a dia sai da sua mesa por completo.",
+    "you": {
+      "title": "Você cuida de",
+      "sub": "O que só faz sentido dentro da sua empresa.",
+      "items": [
+        "Compra e reposição de estoque",
+        "Separação, embalagem e expedição",
+        "Envio para o FBA e postagem",
+        "Emissão de nota fiscal",
+        "Decisões de investimento e verba"
+      ]
+    },
+    "us": {
+      "title": "A SD Digital cuida de",
+      "sub": "100% da operação digital, todos os dias.",
+      "items": [
+        "Criação e otimização dos listings",
+        "Título, bullet points e backend keywords",
+        "Imagens e A+ Content",
+        "Amazon Ads e verba de mídia",
+        "Buy Box e precificação por ASIN",
+        "Planejamento de FBA e DBA",
+        "Integração e configuração do ERP",
+        "Account Health, avaliações e casos",
+        "Relatórios e estratégia de crescimento"
+      ]
+    }
+  },
+
+  "proof": {
+    "caption": "Prova de operação",
+    "title": "Painéis de contas que operamos.",
+    "subtitle": "Recortes reais de Seller Central, com dados de identificação omitidos por acordo de confidencialidade com cada cliente.",
+    "panels": [
+      { "image": "", "badge": "Suplementos", "mock": { "title": "Faturamento: 12 meses", "value": "R$ 2,3 mi", "delta": "+410% no período", "caption": "Conta migrada de DBA para FBA", "chart": [10, 15, 21, 26, 32, 40, 49, 58, 68, 78, 88, 97], "footLeft": { "label": "Pedidos", "value": "16.220" }, "footRight": { "label": "Ticket médio", "value": "R$ 141,80" } } },
+      { "image": "", "badge": "Eletrônicos", "mock": { "title": "Participação na Buy Box", "value": "84%", "delta": "+52 p.p. em 90 dias", "caption": "Após ajuste de preço e migração para FBA", "chart": [26, 31, 37, 45, 53, 62, 70, 78, 84], "footLeft": { "label": "ASINs ativos", "value": "780" }, "footRight": { "label": "Margem média", "value": "19,8%" } } },
+      { "image": "", "badge": "Casa e cozinha", "mock": { "title": "Sessões no listing", "value": "268 mil", "delta": "+195% em 90 dias", "caption": "Depois do listing reescrito e do A+ Content", "chart": [18, 22, 27, 34, 42, 51, 63, 78, 94], "footLeft": { "label": "Conversão", "value": "12,4%" }, "footRight": { "label": "A+ publicado", "value": "100% dos ASINs" } } }
+    ]
+  },
+
+  "band": {
+    "title": "A sua concorrência na Amazon não está esperando você aprender.",
+    "text": "Peça uma análise gratuita da sua conta. Em até 1 dia útil devolvemos um diagnóstico do que está travando as suas vendas, com ou sem contrato.",
+    "ctaPrimary": { "label": "Solicitar análise gratuita", "href": "#form" },
+    "ctaSecondary": { "label": "Prefiro falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" }
+  },
+
+  "testimonials": {
+    "_status": "PLACEHOLDER: substituir por depoimentos reais antes de publicar (ver cms/README.md).",
+    "caption": "Depoimentos",
+    "title": "O que os sellers falam da operação.",
+    "items": [
+      { "_placeholder": true, "quote": "[SUBSTITUIR POR DEPOIMENTO REAL] Espaço reservado para o relato do cliente sobre a reconstrução do listing e o ganho de Buy Box.", "name": "Nome do cliente", "role": "Cargo, Empresa", "initials": "SD" },
+      { "_placeholder": true, "quote": "[SUBSTITUIR POR DEPOIMENTO REAL] Espaço reservado para o relato do cliente sobre a gestão de Amazon Ads e a queda do ACOS.", "name": "Nome do cliente", "role": "Cargo, Empresa", "initials": "SD" },
+      { "_placeholder": true, "quote": "[SUBSTITUIR POR DEPOIMENTO REAL] Espaço reservado para o relato do cliente sobre FBA, Account Health e a rotina depois da assessoria.", "name": "Nome do cliente", "role": "Cargo, Empresa", "initials": "SD" }
+    ]
+  },
+
+  "process": {
+    "caption": "Como começa",
+    "title": "Do primeiro contato à conta rodando: 4 passos.",
+    "subtitle": "Sem proposta genérica. O escopo sai depois que olhamos a sua conta.",
+    "steps": [
+      { "title": "Análise gratuita", "text": "Você preenche o formulário ou chama no WhatsApp. Olhamos a sua conta e devolvemos um diagnóstico do que está travando as vendas." },
+      { "title": "Reunião de diagnóstico", "text": "Apresentamos o diagnóstico, entendemos margem, estoque e logística, e definimos junto se o caminho é consultoria ou assessoria." },
+      { "title": "Plano e escopo", "text": "Você recebe o plano de trabalho com prioridades, prazos e responsáveis. Nada de contrato antes de você saber exatamente o que vai acontecer." },
+      { "title": "Execução e acompanhamento", "text": "A operação começa a rodar. Relatórios periódicos e reunião de resultados para ajustar a rota com base em número." }
+    ]
+  },
+
+  "faq": {
+    "caption": "Perguntas frequentes",
+    "title": "O que os sellers costumam perguntar antes de fechar.",
+    "items": [
+      { "q": "Qual a diferença prática entre consultoria e assessoria?", "a": "Na consultoria nós ensinamos e a sua equipe executa: são reuniões semanais ou quinzenais, com plano de ação e acompanhamento. Na assessoria a nossa equipe executa tudo: listing, A+ Content, imagens, Amazon Ads, Buy Box, FBA, integração de ERP e gestão do dia a dia. Você só cuida de compra, estoque, embalagem, logística e nota fiscal." },
+      { "q": "Vocês cuidam da logística e do envio dos pedidos?", "a": "Não. Logística, embalagem, envio para o FBA e emissão de nota continuam com você: é a parte que precisa estar dentro da sua empresa. Nós planejamos o que vai para o FBA e para o DBA; a execução física é sua." },
+      { "q": "Vocês fazem A+ Content e Brand Registry?", "a": "Sim. Apoiamos o registro da marca no Brand Registry e produzimos e publicamos o A+ Content, incluindo os módulos de imagem e comparação." },
+      { "q": "Vocês trabalham com qual ERP ou hub?", "a": "Trabalhamos com os principais do mercado: Bling, Omie, Tiny, Ideris, Magis5, Anymarket, entre outros. Se você ainda não tem um, ajudamos a escolher o que faz sentido para o seu volume e integramos." },
+      { "q": "A verba de Amazon Ads está incluída?", "a": "Não. A verba de mídia é investida direto na sua conta da Amazon e é sua. Nós fazemos a gestão: definição de verba, estrutura de campanha, lances e meta de ACOS." },
+      { "q": "Existe fidelidade ou multa por cancelamento?", "a": "Não trabalhamos com fidelidade. Trabalhamos com resultado: a relação se mantém porque faz sentido para os dois lados." },
+      { "q": "E se eu vender em mais de um marketplace?", "a": "A gente atende a operação inteira. Esta página é focada em Amazon, mas também estruturamos Mercado Livre, Shopee e outros canais, além do e-commerce próprio. Fale com a gente que montamos o escopo do conjunto." },
+      { "q": "Quanto tempo até aparecer resultado?", "a": "Depende do estado da conta. Correções de listing e publicação de A+ Content costumam mexer na conversão nas primeiras semanas. Reestruturação de Ads, Buy Box e ganho consistente de margem são um trabalho de 60 a 90 dias." }
+    ]
+  },
+
+  "form": {
+    "caption": "Análise gratuita",
+    "title": "Vamos olhar a sua conta na Amazon.",
+    "text": "Preencha o formulário e nossa equipe entra em contato em até 1 dia útil.",
+    "submitLabel": "Solicitar análise gratuita",
+    "subject": "[LP Amazon] Nova solicitação de análise gratuita",
+    "revenueOptions": [
+      "Ainda não vendo na Amazon",
+      "Até R$ 20 mil / mês",
+      "R$ 20 mil a R$ 100 mil / mês",
+      "R$ 100 mil a R$ 500 mil / mês",
+      "Acima de R$ 500 mil / mês"
+    ],
+    "interestOptions": [
+      "Assessoria (vocês fazem tudo)",
+      "Consultoria / mentoria (minha equipe executa)",
+      "Ainda não sei, quero entender"
+    ]
+  },
+
+  "whatsapp": {
+    "nav": "Olá! Vim pela página de Amazon da SD Digital e quero falar com um especialista.",
+    "hero": "Olá! Vim pela página de Amazon da SD Digital e quero uma análise gratuita da minha conta na Amazon.",
+    "band": "Olá! Vim pela página de Amazon da SD Digital e quero entender melhor a assessoria de Amazon.",
+    "form": "Olá! Vim pela página de Amazon da SD Digital, prefiro falar por aqui.",
+    "float": "Olá! Vim pela página de Amazon da SD Digital e quero saber mais."
+  }
+}

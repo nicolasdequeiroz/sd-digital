@@ -1,0 +1,993 @@
+/* ============================================================================
+   SD Digital: Landing Pages de Marketplace
+   ---------------------------------------------------------------------------
+   Camada de componentes que roda POR CIMA do CSS compilado do Webflow
+   (saiddiazdigital.webflow.shared.*.min.css). Todos os componentes aqui são
+   réplicas ou variações dos que existem em /case/topfit:
+
+     TOPFIT                          ->  LP de marketplace
+     .navigation-01                  ->  .lp-nav            (réplica + CTA fixo)
+     .section-regular-3 (header)     ->  .lp-hero           (réplica)
+     .header-image-grid/.header-image->  .lp-shots/.lp-shot (réplica)
+     .header-emoji                   ->  .header-emoji      (reuso direto)
+     .carousel / .roller-text        ->  .lp-ticker         (réplica, CSS puro)
+     .divider-caption + .dot-orange  ->  reuso direto
+     .gallery-card / .gallery-badge  ->  .lp-card/.lp-badge (variação)
+     .team-about-card                ->  .lp-service        (variação)
+     .team-badge                     ->  .lp-tag            (variação)
+     .logo-section (bloco vermelho)  ->  .lp-band           (variação, cor do mk)
+     .process-card                   ->  .lp-step           (variação)
+     .contact-sec / .form-right      ->  reuso direto + .lp-form
+     .footer / .whatsapp-block       ->  reuso direto
+
+   A cor de destaque vem do CMS (marketplace.accent) e é injetada em
+   `--mk` no <html>, então o mesmo CSS serve Shopee, Mercado Livre, Amazon...
+   ========================================================================= */
+
+:root {
+  --mk: #ee4d2d;              /* sobrescrito por página (CMS) */
+  --mk-soft: #fff1ec;         /* sobrescrito por página (CMS) */
+  --mk-ink: #1e2022;
+  --lp-bg: #f3f3f5;
+  --lp-surface: #ffffff;
+  --lp-line: #e4e5e9;
+  --lp-muted: #6b7280;
+  --lp-radius: 16px;
+  --lp-shadow: 0 46px 13px #6c718000, 0 29px 12px #6c718003,
+               0 17px 10px #6c71800a, 0 7px 7px #6c718012, 0 2px 4px #6c718014;
+  /* mesmas 5 camadas de --lp-shadow, só que 100% transparentes: usada como
+     estado de repouso em elementos que animam a sombra no hover. Sem isso,
+     o box-shadow pula de "none" (0 camadas) pro valor final (5 camadas) sem
+     transição suave, porque a interpolação exige o mesmo número de camadas
+     dos dois lados. */
+  --lp-shadow-flat: 0 46px 13px #6c718000, 0 29px 12px #6c718000,
+                     0 17px 10px #6c718000, 0 7px 7px #6c718000, 0 2px 4px #6c718000;
+}
+
+/* ---------------------------------------------------------------- base ---- */
+
+/* rolagem suave nos links de âncora do menu, com folga pro nav sticky não
+   tampar o topo da seção de destino. Este CSS só carrega nas LPs, então dá
+   pra mexer direto no html sem vazar pro resto do site. */
+html { scroll-behavior: smooth; }
+#servicos, #entregaveis, #resultados, #faq, #form { scroll-margin-top: 96px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+.lp-body { background-color: var(--lp-bg); }
+.lp-body * { box-sizing: border-box; }
+
+.lp-section {
+  background-color: var(--lp-bg);
+  padding: 96px 5%;
+  position: relative;
+  overflow: hidden;
+}
+.lp-section.is-tight { padding-top: 64px; padding-bottom: 64px; }
+.lp-section.is-white { background-color: #fff; }
+
+.lp-wide { width: 100%; max-width: 1180px; margin: 0 auto; }
+.lp-mid  { width: 100%; max-width: 840px;  margin: 0 auto; }
+
+.lp-head { max-width: 720px; margin-bottom: 56px; }
+.lp-head.is-center { margin-left: auto; margin-right: auto; text-align: center; }
+.lp-head.is-center .divider-caption { justify-content: center; }
+.lp-head .divider-caption { margin-bottom: 16px; }
+.lp-head h2 {
+  color: var(--mk-ink);
+  letter-spacing: -.5px;
+  margin: 0 0 16px;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.lp-head p {
+  color: var(--lp-muted);
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.lp-head .lp-em { color: var(--mk); }
+
+.lp-em { color: var(--mk); }
+.lp-strong { font-weight: 700; }
+
+/* ------------------------------------------------------- nav (réplica) ---- */
+
+.lp-nav {
+  z-index: 40;
+  background-color: #f9f9fa;
+  border-bottom: 1px solid #00000008;
+  padding: 16px 5%;
+  position: sticky;
+  top: 0;
+}
+/* 3 colunas iguais (1fr auto 1fr): a logo fica sempre no centro geométrico
+   da barra, não no centro do espaço sobrando entre os outros dois grupos. */
+.lp-nav-inner {
+  grid-template-columns: 1fr auto 1fr;
+  column-gap: 24px;
+  align-items: center;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+}
+.lp-nav-brand {
+  grid-column: 2;
+  justify-self: center;
+  align-items: center;
+  gap: 12px;
+  display: flex;
+  text-decoration: none;
+}
+.lp-nav-brand .navigation-logo { width: 150px; height: auto; }
+.lp-nav-brand .navigation-logo svg { width: 100%; height: auto; display: block; }
+.lp-nav-right { grid-column: 3; justify-self: end; align-items: center; gap: 8px; display: flex; }
+.lp-nav-links { grid-column: 1; justify-self: start; align-items: center; gap: 4px; display: flex; }
+.lp-nav-link {
+  color: #33333380;
+  padding: 10px 14px;
+  font-size: 15px;
+  line-height: 24px;
+  text-decoration: none;
+  transition: color .3s;
+}
+.lp-nav-link:hover { color: #000; }
+.lp-nav .button-primary-large {
+  padding: 12px 22px;
+  font-size: 15px;
+  line-height: 20px;
+}
+.lp-nav-toggle {
+  color: #000;
+  background-color: #fff;
+  border: 0;
+  border-radius: 100%;
+  padding: 14px;
+  display: none;
+  cursor: pointer;
+}
+.lp-drawer {
+  border-top: 1px solid var(--lp-line);
+  margin-top: 16px;
+  padding-top: 8px;
+  display: none;
+  flex-direction: column;
+}
+.lp-drawer.is-open { display: flex; }
+.lp-drawer .lp-nav-link { padding: 14px 4px; font-size: 18px; }
+
+/* ----------------------------------------------------- hero (réplica) ---- */
+
+.lp-hero {
+  background-color: var(--lp-bg);
+  padding: 72px 5% 0;
+  position: relative;
+  overflow: hidden;
+}
+.lp-hero-inner { width: 100%; max-width: 860px; margin: 0 auto; text-align: center; }
+
+.lp-eyebrow {
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  display: flex;
+}
+.lp-mk-logo {
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  display: flex;
+}
+.lp-mk-logo img { max-height: 40px; width: auto; }
+.lp-eyebrow .h6-heading-2 { text-align: center; }
+
+.lp-hero h1 {
+  color: var(--mk-ink);
+  letter-spacing: -.03em;
+  margin: 0 0 20px;
+  font-size: 58px;
+  font-weight: 700;
+  line-height: 1.08;
+}
+.lp-hero-sub {
+  color: #4b5563;
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.lp-actions {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+  display: flex;
+}
+.lp-btn-mk {
+  grid-column-gap: 8px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--mk);
+  border: 1px solid var(--mk);
+  border-radius: 99px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  text-decoration: none;
+  transition: filter .3s, transform .3s;
+  display: inline-flex;
+}
+.lp-btn-mk:hover { filter: brightness(.92); transform: translateY(-1px); }
+.lp-btn-ghost {
+  grid-column-gap: 8px;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #fff;
+  border: 1px solid #0000001f;
+  border-radius: 99px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration: none;
+  transition: background-color .3s, border-color .3s;
+  display: inline-flex;
+}
+.lp-btn-ghost:hover { background-color: #f3f3f5; border-color: #00000033; }
+.lp-btn-ghost svg { width: 20px; height: 20px; }
+
+.lp-trust {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  margin-top: 24px;
+  display: flex;
+}
+.lp-trust-item {
+  color: var(--lp-muted);
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+}
+.lp-trust-item svg { color: var(--mk); flex: none; width: 16px; height: 16px; }
+
+/* hero shots: réplica de .header-image-grid / .header-image */
+.lp-hero-visual { margin-top: 64px; position: relative; }
+.lp-shots {
+  z-index: 1;
+  grid-column-gap: 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+  position: relative;
+}
+.lp-shot {
+  aspect-ratio: 3 / 4;
+  background-color: #fff;
+  border: 4px solid #fff;
+  border-radius: var(--lp-radius);
+  box-shadow: var(--lp-shadow);
+  width: 100%;
+  overflow: hidden;
+}
+.lp-shot > img { object-fit: cover; width: 100%; height: 100%; display: block; }
+.lp-shot.is-left   { transform: translateY(24px) rotate(-1.5deg); }
+.lp-shot.is-center { transform: translateY(-8px); }
+.lp-shot.is-right  { transform: translateY(24px) rotate(1.5deg); }
+
+/* dentro do shot, o mock ocupa a altura toda; quem manda na proporção é o
+   .lp-shot, não o .lp-mock */
+.lp-shot .lp-mock { aspect-ratio: auto; height: 100%; }
+
+/* réplica do comportamento do TOPFIT: os emojis só "pulam" para fora quando
+   o visitante passa o mouse sobre a área das fotos, em vez de ficar sempre
+   ali cravado (o que, sem o resto do enquadramento do TOPFIT, ficava
+   cortado e esquisito no canto). */
+.lp-hero-emojis {
+  z-index: 2;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 0%;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.lp-hero-visual:hover .lp-hero-emojis,
+.lp-hero-visual:focus-within .lp-hero-emojis { opacity: 1; }
+.lp-hero-emojis .header-emoji {
+  transform: scale(.4);
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+}
+.lp-hero-visual:hover .lp-hero-emojis .header-emoji,
+.lp-hero-visual:focus-within .lp-hero-emojis .header-emoji { transform: scale(1); }
+.lp-hero-emojis .header-emoji.large { inset: -20px -12px auto auto; transition-delay: .03s; }
+.lp-hero-emojis .header-emoji.small { inset: auto auto -16px -12px; transition-delay: .08s; }
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-emojis, .lp-hero-emojis .header-emoji { transition: none; }
+}
+
+/* ticker: réplica do .carousel do TOPFIT, em CSS puro (sem Flowbase) */
+.lp-ticker {
+  -webkit-mask-image: linear-gradient(90deg, #0000, #000 12%, #000 88%, #0000);
+  mask-image: linear-gradient(90deg, #0000, #000 12%, #000 88%, #0000);
+  width: 100%;
+  margin-top: 72px;
+  padding-bottom: 72px;
+  overflow: hidden;
+}
+.lp-ticker-track {
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  display: flex;
+  animation: lp-marquee 32s linear infinite;
+}
+.lp-ticker:hover .lp-ticker-track { animation-play-state: paused; }
+.lp-ticker .roller-text { color: #9ca3af; }
+@keyframes lp-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-ticker-track { animation: none; }
+}
+
+/* --------------------------------------------------------------- KPIs ---- */
+
+.lp-kpis {
+  background-color: #fff;
+  border-radius: var(--lp-radius);
+  box-shadow: var(--lp-shadow);
+  grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  overflow: hidden;
+}
+.lp-kpi { border-right: 1px solid var(--lp-line); padding: 32px 24px; text-align: center; }
+.lp-kpi:last-child { border-right: 0; }
+.lp-kpi-value {
+  color: var(--mk-ink);
+  letter-spacing: -.03em;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.lp-kpi-value .lp-kpi-prefix,
+.lp-kpi-value .lp-kpi-suffix { color: var(--mk); }
+.lp-kpi-label { color: var(--lp-muted); margin-top: 6px; font-size: 14px; line-height: 1.4; }
+
+/* --------------------------------- band (variação de .logo-section) ------ */
+
+.lp-band {
+  background-color: var(--mk);
+  justify-content: center;
+  align-items: center;
+  padding: 96px 5%;
+  display: flex;
+  overflow: hidden;
+}
+.lp-band-inner { max-width: 900px; text-align: center; }
+.lp-band h2 {
+  color: #fff;
+  letter-spacing: -.03em;
+  margin: 0;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.lp-band p { color: #ffffffd9; margin: 20px 0 0; font-size: 18px; line-height: 1.6; }
+.lp-band .lp-actions .lp-btn-mk { color: var(--mk); background: #fff; border-color: #fff; }
+.lp-band .lp-btn-ghost { color: #fff; background: #0000; border-color: #ffffff59; }
+.lp-band .lp-btn-ghost:hover { background: #ffffff1f; border-color: #fff; }
+
+/* --------------------- serviços (variação de .team-about-card) ----------- */
+
+.lp-services { grid-template-columns: 1fr 1fr; gap: 24px; display: grid; }
+.lp-service {
+  background-color: var(--lp-surface);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  flex-direction: column;
+  padding: 32px;
+  display: flex;
+  position: relative;
+}
+.lp-service.is-featured {
+  background-color: #111214;
+  border-color: #111214;
+  color: #fff;
+}
+.lp-service.is-featured .lp-service-name,
+.lp-service.is-featured .lp-list li { color: #fff; }
+.lp-service.is-featured .lp-service-desc { color: #ffffffa6; }
+.lp-service.is-featured .lp-list li:before { background-color: var(--mk); color: #fff; }
+.lp-service.is-featured .lp-service-foot { border-top-color: #ffffff1f; }
+
+.lp-service-top { align-items: center; gap: 12px; margin-bottom: 16px; display: flex; }
+.lp-tag {
+  grid-column-gap: 8px;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid var(--lp-line);
+  border-radius: 12px;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  display: inline-flex;
+}
+.lp-tag.is-mk { color: #fff; background-color: var(--mk); border-color: var(--mk); }
+.lp-tag.is-light { color: #fff; background-color: #ffffff1f; border-color: #ffffff29; }
+
+.lp-service-name {
+  color: var(--mk-ink);
+  letter-spacing: -.5px;
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.lp-service-desc { color: var(--lp-muted); margin: 0 0 24px; font-size: 16px; line-height: 1.6; }
+
+.lp-list { flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; display: flex; }
+.lp-list li {
+  color: #374151;
+  padding-left: 30px;
+  font-size: 15px;
+  line-height: 1.5;
+  position: relative;
+}
+/* checkmark do Lucide (lucide.dev, "check"), aplicado via mask para não
+   inflar o HTML com um <svg> por item de lista */
+.lp-list li:before {
+  content: "";
+  background-color: var(--mk);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m20 6-11 11-5-5'/%3E%3C/svg%3E") center / 18px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m20 6-11 11-5-5'/%3E%3C/svg%3E") center / 18px no-repeat;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.lp-service-foot {
+  border-top: 1px solid var(--lp-line);
+  margin-top: auto; /* empurra o botão para o rodapé do card, mesmo quando o card vizinho tem mais itens na lista */
+  padding-top: 24px;
+}
+.lp-service-top,
+.lp-service-name,
+.lp-service-desc { flex: none; }
+.lp-list { flex: none; }
+.lp-service-foot .lp-btn-mk,
+.lp-service-foot .lp-btn-ghost { width: 100%; }
+.lp-service-note { color: var(--lp-muted); margin: 12px 0 0; font-size: 13px; text-align: center; }
+.lp-service.is-featured .lp-service-note { color: #ffffff8a; }
+
+/* ------------------ entregáveis (variação de .gallery-card) -------------- */
+
+.lp-grid-3 { grid-template-columns: repeat(3, 1fr); gap: 24px; display: grid; }
+.lp-grid-2 { grid-template-columns: repeat(2, 1fr); gap: 24px; display: grid; }
+
+.lp-card {
+  background-color: var(--lp-surface);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  flex-direction: column;
+  padding: 28px;
+  display: flex;
+  box-shadow: var(--lp-shadow-flat);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.lp-card:hover { transform: translateY(-3px); box-shadow: var(--lp-shadow); }
+.lp-card-icon {
+  color: var(--mk);
+  background-color: var(--mk-soft);
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 20px;
+  display: flex;
+}
+.lp-card-icon svg { width: 22px; height: 22px; }
+.lp-card h3 {
+  color: var(--mk-ink);
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.lp-card p { color: var(--lp-muted); margin: 0; font-size: 15px; line-height: 1.6; }
+
+/* ------------------------------ divisão de responsabilidades ------------- */
+
+.lp-split { grid-template-columns: 1fr 1fr; gap: 24px; display: grid; }
+.lp-split-col {
+  border-radius: var(--lp-radius);
+  padding: 32px;
+}
+.lp-split-col.is-you { background-color: #e9eaee; border: 1px solid var(--lp-line); }
+.lp-split-col.is-us  { background-color: var(--mk); color: #fff; }
+.lp-split-col.is-us .lp-split-title { color: #fff; }
+.lp-split-col.is-us .lp-list li { color: #fff; }
+.lp-split-col.is-us .lp-list li:before { background-color: #fff; }
+.lp-split-title {
+  color: var(--mk-ink);
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.lp-split-sub { margin: 0 0 24px; font-size: 15px; line-height: 1.6; opacity: .75; }
+
+/* -------------- painéis / provas (réplica de .gallery-card + badge) ------ */
+
+.lp-panels { grid-template-columns: repeat(3, 1fr); gap: 24px; display: grid; }
+.lp-panel {
+  background-color: #fff;
+  border: 4px solid #fff;
+  border-radius: var(--lp-radius);
+  box-shadow: var(--lp-shadow);
+  position: relative;
+  overflow: hidden;
+}
+.lp-panel > img { object-fit: cover; width: 100%; aspect-ratio: 4 / 3; display: block; }
+.lp-badge {
+  z-index: 2;
+  background-color: #fff;
+  border-radius: 99px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  box-shadow: 0 2px 6px #0000001a;
+}
+.lp-badge.is-mk { color: #fff; background-color: var(--mk); }
+
+/* mock de painel: usado enquanto os prints reais não entram no CMS */
+.lp-mock {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(#fff, #fafafb);
+  flex-direction: column;
+  padding: 18px;
+  display: flex;
+}
+.lp-mock-bar { align-items: center; gap: 6px; margin-bottom: 14px; display: flex; }
+.lp-mock-dot { background-color: #e0e1e6; border-radius: 99px; width: 8px; height: 8px; }
+.lp-mock-dot.is-mk { background-color: var(--mk); }
+.lp-mock-chip {
+  color: var(--mk);
+  background-color: var(--mk-soft);
+  border-radius: 99px;
+  margin-left: auto;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.lp-mock-title {
+  color: var(--lp-muted);
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.lp-mock-value {
+  color: var(--mk-ink);
+  letter-spacing: -.03em;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+.lp-mock-delta {
+  color: #0f9d58;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+}
+.lp-mock-delta svg { flex: none; width: 14px; height: 14px; }
+.lp-mock-caption { color: var(--lp-muted); margin-top: 2px; font-size: 12px; }
+.lp-mock-chart { align-items: flex-end; gap: 5px; height: 62px; margin-top: auto; display: flex; }
+.lp-mock-chart span {
+  background-color: var(--mk);
+  border-radius: 3px 3px 0 0;
+  flex: 1;
+  opacity: .28;
+}
+.lp-mock-chart span:nth-last-child(-n+3) { opacity: 1; }
+.lp-mock-foot {
+  border-top: 1px solid var(--lp-line);
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 10px;
+  display: flex;
+}
+.lp-mock-foot div { color: var(--lp-muted); font-size: 11px; }
+.lp-mock-foot b { color: var(--mk-ink); display: block; font-size: 14px; }
+
+.lp-disclaimer {
+  color: #9ca3af;
+  margin: 40px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ------------------------------------------------- cases / depoimentos --- */
+
+.lp-quote {
+  background-color: var(--lp-surface);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  flex-direction: column;
+  padding: 28px;
+  display: flex;
+}
+.lp-quote-stars { color: var(--mk); align-items: center; gap: 2px; margin-bottom: 14px; display: flex; }
+.lp-quote-stars svg { width: 16px; height: 16px; }
+.lp-quote p { color: #374151; flex: 1; margin: 0 0 20px; font-size: 16px; line-height: 1.65; }
+.lp-quote-who { align-items: center; gap: 12px; display: flex; }
+.lp-quote-avatar {
+  color: #fff;
+  background-color: var(--mk);
+  border-radius: 99px;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  flex: none;
+}
+.lp-quote-name { color: var(--mk-ink); font-size: 15px; font-weight: 600; line-height: 1.3; }
+.lp-quote-role { color: var(--lp-muted); font-size: 13px; line-height: 1.3; }
+
+.lp-case {
+  background-color: var(--lp-surface);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  color: var(--mk-ink);
+  flex-direction: column;
+  padding: 28px;
+  display: flex;
+}
+.lp-case-client {
+  color: var(--lp-muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.lp-case-result {
+  color: var(--mk);
+  letter-spacing: -.03em;
+  margin: 0 0 10px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.lp-case p { color: #4b5563; margin: 0; font-size: 15px; line-height: 1.6; }
+
+/* logos de clientes (SVGs reais extraídos do site): marquee giratória, mesmo
+   mecanismo do .lp-ticker do hero, com fade nas duas pontas */
+.lp-clients {
+  -webkit-mask-image: linear-gradient(90deg, #0000, #000 10%, #000 90%, #0000);
+  mask-image: linear-gradient(90deg, #0000, #000 10%, #000 90%, #0000);
+  width: 100%;
+  overflow: hidden;
+}
+.lp-clients-track {
+  align-items: center;
+  gap: 56px;
+  width: max-content;
+  display: flex;
+  animation: lp-marquee 36s linear infinite;
+}
+.lp-clients:hover .lp-clients-track { animation-play-state: paused; }
+/* caixa de tamanho fixo: o viewBox do SVG se encaixa (preserveAspectRatio),
+   então logos largas e estreitas ficam com peso visual parecido */
+.lp-client-logo {
+  color: #b8b8b8;
+  justify-content: center;
+  align-items: center;
+  width: 132px;
+  height: 34px;
+  flex: none;
+  transition: color .4s;
+  display: flex;
+}
+.lp-client-logo:hover { color: var(--mk-ink); }
+.lp-client-logo svg { width: 100%; height: 100%; display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .lp-clients-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
+}
+
+/* ------------------------------ processo (variação de .process-card) ----- */
+
+.lp-steps { grid-template-columns: repeat(4, 1fr); gap: 16px; display: grid; }
+.lp-step {
+  background-color: var(--lp-surface);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  flex-direction: column;
+  padding: 28px 24px;
+  display: flex;
+  position: relative;
+}
+.lp-step-num {
+  color: #fff;
+  background-color: var(--mk);
+  border-radius: 99px;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 18px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+}
+.lp-step h3 { color: var(--mk-ink); margin: 0 0 8px; font-size: 18px; font-weight: 600; line-height: 1.35; }
+.lp-step p { color: var(--lp-muted); margin: 0; font-size: 15px; line-height: 1.6; }
+
+/* ----------------------------------------------------------------- FAQ --- */
+/* Botão + painel em grid-template-rows 0fr/1fr: anima altura de "auto" sem
+   JS medir pixel nenhum, e sem o corte abrupto que <details> nativo tem. */
+
+.lp-faq { border-top: 1px solid var(--lp-line); }
+.lp-faq-item { border-bottom: 1px solid var(--lp-line); }
+.lp-faq-q {
+  color: var(--mk-ink);
+  cursor: pointer;
+  text-align: left;
+  background: none;
+  border: 0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 0;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  display: flex;
+}
+/* chevron do Lucide ("chevron-down"): gira 180° ao abrir, em vez do "+"
+   que virava "x" antes */
+.lp-faq-q svg {
+  color: var(--mk);
+  flex: none;
+  width: 20px;
+  height: 20px;
+  transition: transform .3s ease;
+}
+.lp-faq-q[aria-expanded="true"] svg { transform: rotate(180deg); }
+/* max-height animado via JS (assets/js): a grid-template-rows:0fr/1fr parecia
+   mais simples, mas num container de altura intrínseca o padding-bottom do
+   filho continua contando no tamanho mínimo da faixa mesmo com overflow
+   hidden, e sobrava uma tarja de ~24px do texto sempre visível. Medindo o
+   scrollHeight em JS não tem essa pegadinha. */
+.lp-faq-a-wrap {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease;
+}
+.lp-faq-answer {
+  color: var(--lp-muted);
+  margin: 0;
+  padding: 0 48px 24px 0;
+  font-size: 16px;
+  line-height: 1.7;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-faq-a-wrap, .lp-faq-q svg { transition: none; }
+}
+
+/* ---------------------------------------------- formulário (.lp-form) ---- */
+
+.lp-form { flex-direction: column; gap: 4px; display: flex; }
+.lp-form .label { display: block; margin-bottom: 4px; font-size: 13px; }
+.lp-form .text-field { color: #1e1e1e; }
+.lp-form .text-field:focus { border-bottom-color: var(--mk); outline: 0; }
+.lp-form-row { grid-template-columns: 1fr 1fr; gap: 0 16px; display: grid; }
+.lp-form select.text-field {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236b7280'%3E%3Cpath d='M8 11 3.5 6.5 4.6 5.4 8 8.8l3.4-3.4 1.1 1.1z'/%3E%3C/svg%3E");
+  background-position: right 2px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  border-radius: 0;
+  width: 100%;
+  height: 38px;
+  padding: 8px 24px 8px 0;
+}
+.lp-form .lp-btn-mk { width: 100%; margin-top: 8px; border: 0; cursor: pointer; font-family: inherit; }
+.lp-form-legal { color: var(--lp-muted); margin: 12px 0 0; font-size: 12px; line-height: 1.5; }
+.lp-form-legal a { color: var(--lp-muted); }
+.lp-form-status { display: none; margin-top: 16px; border-radius: 10px; padding: 14px 16px; font-size: 15px; }
+.lp-form-status.is-ok   { display: block; color: #075e35; background-color: #d8f3e4; }
+.lp-form-status.is-fail { display: block; color: #8a1c1c; background-color: #fbe1e1; }
+
+/* --------------------------------------------- upsell antes do rodapé ---- */
+/* Conteúdo só das LPs (cross-sell entre marketplaces + gancho pro site
+   completo). Fica ANTES do rodapé de verdade e segue o tema claro do
+   restante da página: não é o footer, é a última seção de conversão. */
+
+/* auto-fit: funciona com 1, 2, 3 ou N marketplaces publicados */
+.lp-cross { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; display: grid; }
+.lp-cross-card {
+  background-color: var(--lp-surface);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  color: var(--mk-ink);
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  text-decoration: none;
+  display: flex;
+  transition: border-color .3s, box-shadow .3s, transform .3s;
+}
+.lp-cross-card:hover {
+  border-color: var(--mk);
+  box-shadow: var(--lp-shadow);
+  transform: translateY(-2px);
+}
+.lp-cross-card:hover .lp-cross-arrow { color: var(--mk); transform: translateX(3px); }
+.lp-cross-logo {
+  background-color: var(--lp-bg);
+  border: 1px solid var(--lp-line);
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 72px;
+  height: 56px;
+  padding: 10px;
+  display: flex;
+  flex: none;
+}
+.lp-cross-logo img { max-width: 100%; max-height: 100%; }
+.lp-cross-body { flex: 1; min-width: 0; }
+.lp-cross-title {
+  color: var(--mk-ink);
+  letter-spacing: -.02em;
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.lp-cross-sub { color: var(--lp-muted); display: block; margin-top: 4px; font-size: 14px; line-height: 1.4; }
+.lp-cross-arrow {
+  color: var(--lp-muted);
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  transition: color .3s, transform .3s;
+  display: flex;
+}
+.lp-cross-arrow svg { width: 100%; height: 100%; }
+
+.lp-footer-hook {
+  border-top: 1px solid var(--lp-line);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 56px;
+  padding-top: 40px;
+  display: flex;
+}
+.lp-footer-hook h2 {
+  color: var(--mk-ink);
+  letter-spacing: -.3px;
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.lp-footer-hook p { color: var(--lp-muted); margin: 0; max-width: 520px; font-size: 15px; line-height: 1.6; }
+.lp-footer-hook .lp-btn-ghost { flex: none; }
+
+/* --------------------------------------------------- rodapé de verdade --- */
+/* Sem CSS próprio: .footer/.footer-wrapper/.social-div/.copyright-div já
+   vêm do CSS compilado do Webflow e são as mesmas classes usadas em
+   index.html, case/topfit e briefing: por isso o rodapé bate certinho. */
+
+/* ------------------------------------- contato (réplica de .contact-sec) -- */
+
+.lp-body .contact-sec { background-color: #fff; }
+.lp-body .lp-coin { animation: lp-spin 24s linear infinite; }
+@keyframes lp-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .lp-body .lp-coin { animation: none; } }
+
+.lp-btn-icon { align-items: center; display: inline-flex; }
+.lp-btn-icon svg { width: 20px; height: 20px; }
+
+/* --------------------------------------------------------- animações ---- */
+
+/* O conteúdo é visível por padrão. A classe .js-reveal só é adicionada ao
+   <html> pelo runtime quando ele consegue observar a rolagem; assim, se o JS
+   falhar, for bloqueado ou o navegador não disparar o IntersectionObserver,
+   a página continua legível em vez de ficar em branco. */
+.js-reveal .lp-reveal {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.js-reveal .lp-reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .lp-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* --------------------------------------------------------- responsivo --- */
+
+@media screen and (max-width: 991px) {
+  .lp-nav-links { display: none; }
+  .lp-nav-toggle { display: block; }
+  .lp-hero h1 { font-size: 44px; }
+  .lp-head h2 { font-size: 32px; }
+  .lp-band h2 { font-size: 34px; }
+  .lp-kpis { grid-template-columns: 1fr 1fr; }
+  .lp-kpi:nth-child(2n) { border-right: 0; }
+  .lp-kpi:nth-child(-n+2) { border-bottom: 1px solid var(--lp-line); }
+  .lp-services, .lp-split, .lp-grid-2 { grid-template-columns: 1fr; }
+  .lp-grid-3, .lp-panels { grid-template-columns: 1fr 1fr; }
+  .lp-steps { grid-template-columns: 1fr 1fr; }
+  .lp-section { padding: 72px 5%; }
+}
+
+@media screen and (max-width: 767px) {
+  .lp-hero { padding-top: 48px; }
+  .lp-hero h1 { font-size: 36px; }
+  .lp-hero-sub { font-size: 17px; }
+  .lp-actions .lp-btn-mk, .lp-actions .lp-btn-ghost { width: 100%; }
+  .lp-shots { gap: 12px; }
+  .lp-shot.is-left, .lp-shot.is-right, .lp-shot.is-center { transform: none; }
+  .lp-grid-3, .lp-panels { grid-template-columns: 1fr; }
+  .lp-service { padding: 24px; }
+  .lp-form-row { grid-template-columns: 1fr; }
+  .lp-body .contact-wrapper { grid-template-columns: 1fr; }
+  .lp-body .form-left { display: none; }
+  .lp-head h2 { font-size: 28px; }
+  .lp-band h2 { font-size: 28px; }
+  .lp-kpi-value { font-size: 32px; }
+}
+
+@media screen and (max-width: 479px) {
+  .lp-steps { grid-template-columns: 1fr; }
+  .lp-kpis { grid-template-columns: 1fr; }
+  .lp-kpi { border-right: 0; border-bottom: 1px solid var(--lp-line); }
+  .lp-kpi:last-child { border-bottom: 0; }
+  .lp-shots { grid-template-columns: 1fr; }
+  .lp-shot { aspect-ratio: 16 / 10; }
+  .lp-shot.is-right { display: none; }
+}

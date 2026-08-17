@@ -1,0 +1,12 @@
+/* ============================================================================
+   SD Digital: ajustes pontuais sobre o CSS compilado do Webflow
+   ---------------------------------------------------------------------------
+   O arquivo saiddiazdigital.webflow.shared.*.min.css é extraído do Webflow e
+   fica só leitura (é o CSS de produção, não código-fonte editável). Pequenos
+   ajustes que precisam valer em TODAS as páginas do site (index.html,
+   case/topfit, briefing e as LPs de marketplace) entram aqui, carregado
+   depois do CSS do Webflow em cada uma delas.
+   ========================================================================= */
+
+/* Copyright do rodapé: menor em todas as páginas (era 14px/.875rem). */
+.footer .text-14._60 { font-size: 12px; }

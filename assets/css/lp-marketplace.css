@@ -611,7 +611,18 @@ html { scroll-behavior: smooth; }
 }
 .lp-mock-delta svg { flex: none; width: 14px; height: 14px; }
 .lp-mock-caption { color: var(--lp-muted); margin-top: 2px; font-size: 12px; }
-.lp-mock-chart { align-items: flex-end; gap: 5px; height: 62px; margin-top: auto; display: flex; }
+/* O .lp-shot e' mais alto (3/4) do que o conteudo do mock precisa. Com
+   `margin-top: auto` o grafico era empurrado pro rodape e sobrava uma faixa
+   morta de ~180px no meio do card. Com `flex: 1` a sobra vira altura de
+   grafico, que e' o que um painel de vendas de verdade pareceria. */
+.lp-mock-chart {
+  flex: 1;
+  align-items: flex-end;
+  gap: 5px;
+  min-height: 62px;
+  margin-top: 16px;
+  display: flex;
+}
 .lp-mock-chart span {
   background-color: var(--mk);
   border-radius: 3px 3px 0 0;
@@ -989,5 +1000,18 @@ html { scroll-behavior: smooth; }
   .lp-kpi:last-child { border-bottom: 0; }
   .lp-shots { grid-template-columns: 1fr; }
   .lp-shot { aspect-ratio: 16 / 10; }
+  /* O mock tem mais conteudo do que cabe em 16/10 nessa largura: o rodape
+     ficava cortado pelo overflow:hidden do .lp-shot e o grafico colapsava
+     pra 0px. Aqui a altura passa a seguir o conteudo; quando o print real
+     entrar no lugar do mock, quem carrega a proporcao e' a propria imagem. */
+  .lp-shot:has(.lp-mock) { aspect-ratio: auto; }
+  .lp-shot:has(.lp-mock) .lp-mock { height: auto; }
+  /* As barras do grafico tem `height` em %, que so' resolve contra um pai de
+     altura DEFINIDA. Como aqui o card passa a dimensionar pelo conteudo, a
+     altura fica indefinida e as barras colapsariam pra 0 (o grafico sumia).
+     No desktop o `flex: 1` funciona porque o .lp-shot tem aspect-ratio e a
+     altura e' definida; aqui a altura volta a ser explicita. */
+  .lp-shot:has(.lp-mock) .lp-mock-chart { flex: none; height: 72px; }
+  .lp-shot > img { aspect-ratio: 16 / 10; height: auto; }
   .lp-shot.is-right { display: none; }
 }

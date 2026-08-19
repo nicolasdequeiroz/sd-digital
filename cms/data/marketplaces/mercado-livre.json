@@ -34,7 +34,8 @@
     "eyebrow": "Especialistas em Mercado Livre",
     "h1": "Sua operação <span class=\"lp-em\">no Mercado Livre</span> rodando com margem, sem depender de você.",
     "sub": "A SD Digital assume (ou ensina você a assumir) a conta inteira: ficha técnica, catálogo, Buy Box, Mercado Ads, reputação, Full e Flex e integração de ERP. Você cuida do produto e da logística. O resto é com a gente.",
-    "ctaPrimary": { "label": "Quero uma análise gratuita da minha conta", "href": "#form" },
+    "ctaPrimary": { "label": "Quero uma análise gratuita da minha conta",
+      "labelShort": "Quero minha análise gratuita", "href": "#form" },
     "ctaSecondary": { "label": "Falar no WhatsApp agora", "href": "whatsapp", "icon": "whatsapp" },
     "trust": [
       "Análise gratuita da sua conta",

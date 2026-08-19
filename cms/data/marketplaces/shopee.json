@@ -34,7 +34,8 @@
     "eyebrow": "Especialistas em Shopee",
     "h1": "Sua loja <span class=\"lp-em\">na Shopee</span> vendendo todo dia, sem você virar operador de marketplace.",
     "sub": "A SD Digital assume (ou ensina você a assumir) a operação inteira: anúncios, títulos com SEO, imagens, Shopee Ads, preço, reputação e integração de ERP. Você cuida do produto e da logística. O resto é com a gente.",
-    "ctaPrimary": { "label": "Quero uma análise gratuita da minha loja", "href": "#form" },
+    "ctaPrimary": { "label": "Quero uma análise gratuita da minha loja",
+      "labelShort": "Quero minha análise gratuita", "href": "#form" },
     "ctaSecondary": { "label": "Falar no WhatsApp agora", "href": "whatsapp", "icon": "whatsapp" },
     "trust": [
       "Análise gratuita da sua loja",

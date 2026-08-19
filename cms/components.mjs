@@ -42,6 +42,16 @@ function ctaHref(cta, ctx, waKey) {
   return cta.href || "#form";
 }
 
+/* Alguns CTAs tem rotulo longo demais pra largura de um botao no celular.
+   Quando o CMS traz `labelShort`, os dois textos vao pro HTML e o CSS mostra
+   um ou outro por breakpoint (display:none tambem esconde de leitor de tela,
+   entao nao ha texto duplicado sendo anunciado). Sem `labelShort`, sai so' o
+   rotulo normal e nada muda. */
+function ctaLabel(cta) {
+  if (!cta.labelShort) return esc(cta.label);
+  return `<span class="lp-cta-full">${esc(cta.label)}</span><span class="lp-cta-short">${esc(cta.labelShort)}</span>`;
+}
+
 function ctaAttrs(cta, ctx, waKey) {
   const isWa = cta && cta.href === "whatsapp";
   return `href="${esc(ctaHref(cta, ctx, waKey))}"${isWa ? ` target="_blank" rel="noopener" data-wa-position="${esc(waKey)}"` : ""}`;
@@ -201,8 +211,8 @@ export function hero(ctx) {
       <h1>${h.h1}</h1>
       <p class="lp-hero-sub">${esc(h.sub)}</p>
       <div class="lp-actions">
-        <a ${ctaAttrs(h.ctaPrimary, ctx, "hero")} class="lp-btn-mk">${esc(h.ctaPrimary.label)}</a>
-        <a ${ctaAttrs(h.ctaSecondary, ctx, "hero")} class="lp-btn-ghost">${h.ctaSecondary.icon === "whatsapp" ? waIcon : ""}${esc(h.ctaSecondary.label)}</a>
+        <a ${ctaAttrs(h.ctaPrimary, ctx, "hero")} class="lp-btn-mk">${ctaLabel(h.ctaPrimary)}</a>
+        <a ${ctaAttrs(h.ctaSecondary, ctx, "hero")} class="lp-btn-ghost">${h.ctaSecondary.icon === "whatsapp" ? waIcon : ""}${ctaLabel(h.ctaSecondary)}</a>
       </div>
       <div class="lp-trust">${trust}</div>
     </div>
@@ -344,8 +354,8 @@ export function band(ctx) {
       <h2>${esc(b.title)}</h2>
       <p>${esc(b.text)}</p>
       <div class="lp-actions">
-        <a ${ctaAttrs(b.ctaPrimary, ctx, "band")} class="lp-btn-mk">${esc(b.ctaPrimary.label)}</a>
-        <a ${ctaAttrs(b.ctaSecondary, ctx, "band")} class="lp-btn-ghost">${b.ctaSecondary.icon === "whatsapp" ? waIcon : ""}${esc(b.ctaSecondary.label)}</a>
+        <a ${ctaAttrs(b.ctaPrimary, ctx, "band")} class="lp-btn-mk">${ctaLabel(b.ctaPrimary)}</a>
+        <a ${ctaAttrs(b.ctaSecondary, ctx, "band")} class="lp-btn-ghost">${b.ctaSecondary.icon === "whatsapp" ? waIcon : ""}${ctaLabel(b.ctaSecondary)}</a>
       </div>
     </div>
   </section>`;

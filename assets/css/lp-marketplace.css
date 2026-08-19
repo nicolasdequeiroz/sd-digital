@@ -42,6 +42,9 @@
      dos dois lados. */
   --lp-shadow-flat: 0 46px 13px #6c718000, 0 29px 12px #6c718000,
                      0 17px 10px #6c718000, 0 7px 7px #6c718000, 0 2px 4px #6c718000;
+  /* idem: 5 camadas, alpha maior, pro hover dos cards do hero interpolar. */
+  --lp-shadow-hover: 0 46px 13px #6c718005, 0 29px 12px #6c71800a,
+                     0 17px 10px #6c718017, 0 7px 7px #6c718021, 0 2px 4px #6c718026;
 }
 
 /* ---------------------------------------------------------------- base ---- */
@@ -158,6 +161,10 @@ html { scroll-behavior: smooth; }
 }
 .lp-drawer.is-open { display: flex; }
 .lp-drawer .lp-nav-link { padding: 14px 4px; font-size: 18px; }
+
+/* par de rotulos de CTA (ver ctaLabel() em cms/components.mjs): o curto so'
+   aparece no breakpoint de celular, onde o longo estoura a largura do botao */
+.lp-cta-short { display: none; }
 
 /* ----------------------------------------------------- hero (réplica) ---- */
 
@@ -287,6 +294,25 @@ html { scroll-behavior: smooth; }
 .lp-shot.is-left   { transform: translateY(24px) rotate(-1.5deg); }
 .lp-shot.is-center { transform: translateY(-8px); }
 .lp-shot.is-right  { transform: translateY(24px) rotate(1.5deg); }
+
+/* Hover: o card sobe 10px e a sombra encorpa. Cada variante repete a propria
+   rotacao porque `transform` e' uma propriedade so' — omitir o rotate no hover
+   endireitaria o card no meio da animacao.
+   O `min-width: 768px` nao e' decorativo: abaixo disso o bloco responsivo zera
+   os transforms, e sem esse limite a regra de hover (mais especifica) traria a
+   rotacao de volta so' ao passar o mouse. `hover: hover` mantem tudo fora de
+   tela de toque, onde :hover fica grudado depois do tap. */
+.lp-shot {
+  position: relative;
+  transition: transform .45s cubic-bezier(.2, .7, .2, 1), box-shadow .45s ease;
+}
+@media (hover: hover) and (min-width: 768px) {
+  .lp-shot:hover { z-index: 2; box-shadow: var(--lp-shadow-hover); }
+  .lp-shot.is-left:hover   { transform: translateY(14px) rotate(-1.5deg); }
+  .lp-shot.is-center:hover { transform: translateY(-18px); }
+  .lp-shot.is-right:hover  { transform: translateY(14px) rotate(1.5deg); }
+}
+@media (prefers-reduced-motion: reduce) { .lp-shot { transition: none; } }
 
 /* dentro do shot, o mock ocupa a altura toda; quem manda na proporção é o
    .lp-shot, não o .lp-mock */
@@ -977,6 +1003,13 @@ html { scroll-behavior: smooth; }
 }
 
 @media screen and (max-width: 767px) {
+  /* A partir daqui o CTA do nav nao cabe: o botao (210px) mais o hamburguer
+     comem a coluna da direita, a folga ate' a logo zera e ela sai do centro.
+     Some no celular — os outros 4 pontos de contato (hero, band, formulario e
+     o botao flutuante do WhatsApp) continuam disponiveis. */
+  .lp-nav .button-primary-large { display: none; }
+  .lp-cta-full { display: none; }
+  .lp-cta-short { display: inline; }
   .lp-hero { padding-top: 48px; }
   .lp-hero h1 { font-size: 36px; }
   .lp-hero-sub { font-size: 17px; }

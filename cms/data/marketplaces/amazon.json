@@ -34,7 +34,8 @@
     "eyebrow": "Especialistas em Amazon",
     "h1": "Sua conta <span class=\"lp-em\">na Amazon</span> ganhando a Buy Box, sem você viver dentro do Seller Central.",
     "sub": "A SD Digital assume (ou ensina você a assumir) a conta inteira: listing, A+ Content, Amazon Ads, Buy Box, FBA/DBA, saúde da conta e integração de ERP. Você cuida do produto e da logística. O resto é com a gente.",
-    "ctaPrimary": { "label": "Quero uma análise gratuita da minha conta", "href": "#form" },
+    "ctaPrimary": { "label": "Quero uma análise gratuita da minha conta",
+      "labelShort": "Quero minha análise gratuita", "href": "#form" },
     "ctaSecondary": { "label": "Falar no WhatsApp agora", "href": "whatsapp", "icon": "whatsapp" },
     "trust": [
       "Análise gratuita da sua conta",

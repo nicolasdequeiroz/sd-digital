@@ -220,10 +220,6 @@ export function hero(ctx) {
     <div class="lp-hero-visual lp-wide lp-reveal">
       <div class="lp-shots">${shots}</div>
       ${heroHasMock ? `<p class="lp-disclaimer">${MOCK_NOTICE}</p>` : ""}
-      <div class="lp-hero-emojis">
-        <div class="header-emoji large"><img loading="lazy" src="/assets/images/68f56fe30e3afe8e1c52db4f_Header-Emoji-Stars.webp" alt="" class="icon-x-large"/></div>
-        <div class="header-emoji small"><img loading="lazy" src="/assets/images/68f56fe30e3afe8e1c52db4d_Team-Emoji-5.webp" alt="" class="icon-regular"/></div>
-      </div>
     </div>
 
     <div class="lp-ticker" aria-hidden="true">

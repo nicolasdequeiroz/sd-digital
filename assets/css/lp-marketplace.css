@@ -9,7 +9,6 @@
      .navigation-01                  ->  .lp-nav            (réplica + CTA fixo)
      .section-regular-3 (header)     ->  .lp-hero           (réplica)
      .header-image-grid/.header-image->  .lp-shots/.lp-shot (réplica)
-     .header-emoji                   ->  .header-emoji      (reuso direto)
      .carousel / .roller-text        ->  .lp-ticker         (réplica, CSS puro)
      .divider-caption + .dot-orange  ->  reuso direto
      .gallery-card / .gallery-badge  ->  .lp-card/.lp-badge (variação)
@@ -317,35 +316,6 @@ html { scroll-behavior: smooth; }
 /* dentro do shot, o mock ocupa a altura toda; quem manda na proporção é o
    .lp-shot, não o .lp-mock */
 .lp-shot .lp-mock { aspect-ratio: auto; height: 100%; }
-
-/* réplica do comportamento do TOPFIT: os emojis só "pulam" para fora quando
-   o visitante passa o mouse sobre a área das fotos, em vez de ficar sempre
-   ali cravado (o que, sem o resto do enquadramento do TOPFIT, ficava
-   cortado e esquisito no canto). */
-.lp-hero-emojis {
-  z-index: 2;
-  opacity: 0;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  position: absolute;
-  inset: 0%;
-  pointer-events: none;
-  transition: opacity .3s ease;
-}
-.lp-hero-visual:hover .lp-hero-emojis,
-.lp-hero-visual:focus-within .lp-hero-emojis { opacity: 1; }
-.lp-hero-emojis .header-emoji {
-  transform: scale(.4);
-  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
-}
-.lp-hero-visual:hover .lp-hero-emojis .header-emoji,
-.lp-hero-visual:focus-within .lp-hero-emojis .header-emoji { transform: scale(1); }
-.lp-hero-emojis .header-emoji.large { inset: -20px -12px auto auto; transition-delay: .03s; }
-.lp-hero-emojis .header-emoji.small { inset: auto auto -16px -12px; transition-delay: .08s; }
-@media (prefers-reduced-motion: reduce) {
-  .lp-hero-emojis, .lp-hero-emojis .header-emoji { transition: none; }
-}
 
 /* ticker: réplica do .carousel do TOPFIT, em CSS puro (sem Flowbase) */
 .lp-ticker {

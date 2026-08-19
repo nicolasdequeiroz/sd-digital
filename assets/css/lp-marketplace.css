@@ -151,6 +151,11 @@ html { scroll-behavior: smooth; }
   display: none;
   cursor: pointer;
 }
+/* O ícone é um SVG inline: sem isto ele se apoia na linha de texto do botão,
+   que tem line-height 20px em vez dos 16px do ícone. O botão saía 44x49 e o
+   border-radius de 100% transformava a diferença num oval. Como bloco, a
+   altura passa a ser 14 + 16 + 14 = 44, igual à largura. */
+.lp-nav-toggle svg { display: block; }
 .lp-drawer {
   border-top: 1px solid var(--lp-line);
   margin-top: 16px;

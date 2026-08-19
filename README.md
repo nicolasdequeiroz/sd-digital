@@ -71,11 +71,29 @@ estático puro.
    Jekyll que o Pages roda por padrão. Sem ele, o GitHub ignora pastas/arquivos
    começando com `_` (como `assets/_manifest.json`) e pode tentar interpretar
    `{{ }}` / `{% %}` dentro dos bundles JS do Webflow como sintaxe Liquid.
-4. Como os caminhos dos assets são absolutos (`/assets/...`), o site só funciona
-   corretamente servido na raiz do domínio, que é o caso normal com domínio
-   próprio. Se em algum momento for publicado sem domínio próprio (URL padrão
-   `usuario.github.io/repo`), os caminhos absolutos vão quebrar e precisam ser
-   reescritos para relativos.
+4. Os caminhos são **relativos** (`assets/...` na raiz, `../assets/...` um nível
+   abaixo, `../../assets/...` dois níveis abaixo). Por isso o site funciona tanto
+   servido na raiz de um domínio próprio quanto de uma subpasta, que é o caso da
+   URL padrão do Pages (`usuario.github.io/repo/`). Não introduza caminhos
+   começando com `/` — eles quebram na subpasta.
+
+   Nas LPs isso é automático: `cms/build.mjs` tem uma função `relativize()` que
+   converte os caminhos no momento de gravar o arquivo, então os componentes em
+   `cms/` podem continuar escrevendo `/assets/...`, que é a forma legível.
+
+## Preview no github.io (antes do domínio próprio)
+
+Enquanto o domínio próprio não entra, o site fica em
+`https://nicolasdequeiroz.github.io/sd-digital/`.
+
+**Checklist do cutover** — ao ligar o domínio próprio, reverta o modo preview:
+
+- [ ] `robots.txt`: hoje está com `Disallow: /` para o Google não indexar o
+      endereço de preview. Substitua o arquivo inteiro pela única linha
+      `Sitemap: https://www.saiddiazdigital.com/sitemap.xml`.
+      **Se esquecer, o site fica fora da busca do Google.**
+- [ ] GTM/GA4 continuam apontando pra propriedade de produção — os acessos ao
+      preview entram nos dados reais.
 
 ## O que continua remoto (de propósito)
 

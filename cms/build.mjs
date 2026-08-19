@@ -142,6 +142,51 @@ function audit(p) {
   return warnings;
 }
 
+/* -------------------------------------------------------- caminhos ---- */
+
+/* As fontes do CMS (components.mjs, _globals.json) escrevem os caminhos a
+   partir da raiz — "/assets/...", "/briefing" — que e' a forma canonica e
+   legivel. Mas o site precisa funcionar tambem quando servido de uma
+   subpasta (ex.: GitHub Pages de projeto, em /<repo>/), onde "/assets" cai
+   fora do site.
+
+   Em vez de espalhar "../../" por todo componente, a conversao acontece em
+   um lugar so: aqui, no momento de escrever o arquivo. Qualquer caminho
+   absoluto novo que alguem adicionar nos componentes ja sai relativo.
+
+   depth = quantos niveis a pagina esta abaixo da raiz. As LPs sao geradas em
+   lp/<slug>/index.html, entao depth = 2. */
+function relativize(html, depth) {
+  const prefix = "../".repeat(depth);
+  const one = (v) => (v.startsWith("//") ? v : prefix + v.slice(1) || "./");
+
+  return html
+    // srcset tem varias URLs separadas por virgula: "/a.png 500w, /b.png 800w"
+    .replace(/(\bsrcset\s*=\s*")([^"]*)"/g, (m, attr, val) => {
+      const out = val
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .map((item) => {
+          const bits = item.split(/\s+/);
+          if (bits[0].startsWith("/") && !bits[0].startsWith("//")) bits[0] = one(bits[0]);
+          return bits.join(" ");
+        })
+        .join(", ");
+      return attr + out + '"';
+    })
+    // data-video-urls e' uma lista separada por virgula, sem descritor
+    .replace(/(\bdata-video-urls\s*=\s*")([^"]*)"/g, (m, attr, val) =>
+      attr + val.split(",").map((u) => (u.trim().startsWith("/") ? one(u.trim()) : u.trim())).join(",") + '"')
+    .replace(/(\b(?:href|src|data-src|data-poster-url|content|action|poster)\s*=\s*")(\/(?!\/)[^"]*)"/g,
+      (m, attr, val) => attr + one(val) + '"')
+    .replace(/url\((["']?)(\/(?!\/)[^)"']*)\1\)/g,
+      (m, q, val) => `url(${q}${one(val)}${q})`)
+    // o Webflow emite poster de video como style="...url(&quot;/assets/...&quot;)"
+    .replace(/url\(&quot;(\/(?!\/)[^&]*)&quot;\)/g,
+      (m, val) => `url(&quot;${one(val)}&quot;)`);
+}
+
 /* -------------------------------------------------------------- escreve --- */
 
 const generated = [];
@@ -153,7 +198,8 @@ for (const p of targets) {
 
   const dir = join(OUT_DIR, p.slug);
   mkdirSync(dir, { recursive: true });
-  const html = page(ctx);
+  // LPs vivem em lp/<slug>/index.html -> dois niveis abaixo da raiz
+  const html = relativize(page(ctx), 2);
   writeFileSync(join(dir, "index.html"), html, "utf8");
 
   generated.push({ slug: p.slug, url, bytes: Buffer.byteLength(html), warnings: audit(p) });

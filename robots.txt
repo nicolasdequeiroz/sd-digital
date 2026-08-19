@@ -1,1 +1,18 @@
-Sitemap: https://www.saiddiazdigital.com/sitemap.xml
+# ###########################################################################
+# ATENCAO — ESTE ARQUIVO ESTA EM MODO PREVIEW
+# ---------------------------------------------------------------------------
+# Enquanto o site roda no endereco temporario do GitHub Pages
+# (https://nicolasdequeiroz.github.io/sd-digital/), o rastreamento esta
+# bloqueado para o Google nao indexar o endereco de preview e criar conteudo
+# duplicado competindo com o dominio proprio.
+#
+# >>> AO LIGAR O DOMINIO PROPRIO, SUBSTITUA TODO ESTE ARQUIVO POR:
+#
+#     Sitemap: https://www.saiddiazdigital.com/sitemap.xml
+#
+# Se este bloco continuar aqui depois do cutover, o site inteiro fica fora
+# da busca do Google.
+# ###########################################################################
+
+User-agent: *
+Disallow: /

@@ -130,7 +130,12 @@ function audit(p) {
 
   if (p.testimonials?._status?.startsWith("PLACEHOLDER")) {
     const n = (p.testimonials.items || []).filter((i) => i._placeholder).length;
-    warnings.push(`${n} depoimento(s) ainda são placeholder: trocar por relatos reais antes de publicar`);
+    const oculta = p.testimonials.enabled === false;
+    warnings.push(
+      oculta
+        ? `depoimentos: seção oculta de propósito (enabled:false) até ter ${n} relato(s) real(is)`
+        : `${n} depoimento(s) ainda são placeholder: trocar por relatos reais antes de publicar`
+    );
   }
 
   const noImageShots = (p.hero?.shots || []).filter((s) => !s.image).length;

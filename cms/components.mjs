@@ -416,7 +416,9 @@ export function cases(ctx) {
 
 export function testimonials(ctx) {
   const t = ctx.page.testimonials;
-  if (!t || !t.items || !t.items.length) return "";
+  // `enabled: false` tira a seção do ar sem apagar os itens: fica pronta pra
+  // voltar assim que os depoimentos reais substituírem os placeholders.
+  if (!t || !t.items || !t.items.length || t.enabled === false) return "";
   const items = t.items
     .map(
       (item) => `<article class="lp-quote lp-reveal">

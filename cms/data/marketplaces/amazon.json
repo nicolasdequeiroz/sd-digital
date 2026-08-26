@@ -34,9 +34,9 @@
     "eyebrow": "Especialistas em Amazon",
     "h1": "Sua conta <span class=\"lp-em\">na Amazon</span> ganhando a Buy Box, sem você viver dentro do Seller Central.",
     "sub": "A SD Digital assume (ou ensina você a assumir) a conta inteira: listing, A+ Content, Amazon Ads, Buy Box, FBA/DBA, saúde da conta e integração de ERP. Você cuida do produto e da logística. O resto é com a gente.",
-    "ctaPrimary": { "label": "Quero uma análise gratuita da minha conta",
-      "labelShort": "Quero minha análise gratuita", "href": "#form" },
-    "ctaSecondary": { "label": "Falar no WhatsApp agora", "href": "whatsapp", "icon": "whatsapp" },
+    "ctaPrimary": { "label": "Quero minha análise gratuita",
+      "labelShort": "Análise gratuita", "href": "#form" },
+    "ctaSecondary": { "label": "Falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" },
     "trust": [
       "Análise gratuita da sua conta",
       "Sem fidelidade contratual",
@@ -64,7 +64,7 @@
   "kpis": [
     { "prefix": "+", "value": 10, "suffix": " anos", "label": "de operação em marketplaces no Brasil" },
     { "prefix": "+", "value": 150, "suffix": "", "label": "sellers e e-commerces atendidos" },
-    { "prefix": "até ", "value": 10, "suffix": "x", "label": "de crescimento em 12 meses de acompanhamento" },
+    { "prefix": "até ", "value": 10, "suffix": "x", "label": "de crescimento em 12 meses" },
     { "prefix": "", "value": 4.9, "decimals": 1, "suffix": "/5", "label": "satisfação média dos nossos clientes" }
   ],
 
@@ -120,7 +120,7 @@
           "Account Health, avaliações, casos e políticas",
           "Relatório de performance e reunião de resultados"
         ],
-        "cta": { "label": "Quero a assessoria completa", "href": "#form", "style": "mk" },
+        "cta": { "label": "Quero a assessoria", "href": "#form", "style": "mk" },
         "note": "Ideal para quem quer escalar sem montar time interno."
       }
     ]
@@ -190,7 +190,7 @@
     "title": "A sua concorrência na Amazon não está esperando você aprender.",
     "text": "Peça uma análise gratuita da sua conta. Em até 1 dia útil devolvemos um diagnóstico do que está travando as suas vendas, com ou sem contrato.",
     "ctaPrimary": { "label": "Solicitar análise gratuita", "href": "#form" },
-    "ctaSecondary": { "label": "Prefiro falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" }
+    "ctaSecondary": { "label": "Falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" }
   },
 
   "testimonials": {

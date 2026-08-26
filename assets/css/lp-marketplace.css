@@ -32,6 +32,12 @@
   --lp-line: #e4e5e9;
   --lp-muted: #6b7280;
   --lp-radius: 16px;
+  /* easing padrão do site (o Webflow usa este em toda transição da home) */
+  --lp-ease: cubic-bezier(.215, .61, .355, 1);
+  /* corpo de texto da home: peso 300 + 0.5px de tracking. É o traço que mais
+     dá "cara de SD" fora dos títulos. */
+  --lp-body-weight: 300;
+  --lp-body-tracking: .5px;
   --lp-shadow: 0 46px 13px #6c718000, 0 29px 12px #6c718003,
                0 17px 10px #6c71800a, 0 7px 7px #6c718012, 0 2px 4px #6c718014;
   /* mesmas 5 camadas de --lp-shadow, só que 100% transparentes: usada como
@@ -59,6 +65,40 @@ html { scroll-behavior: smooth; }
 
 .lp-body { background-color: var(--lp-bg); }
 .lp-body * { box-sizing: border-box; }
+/* Quebras de linha:
+   `balance` distribui as linhas de um título de forma equilibrada (evita a
+   última linha com uma ou duas palavras soltas);
+   `pretty` faz o mesmo para blocos de texto corrido, priorizando não deixar
+   órfã a última linha.
+   Onde o navegador não suportar, a quebra continua sendo a padrão — é uma
+   melhoria progressiva, não uma dependência. */
+.lp-hero h1,
+.lp-head h2,
+.lp-band h2,
+.lp-service-name,
+.lp-case-result,
+.lp-split-title,
+.lp-faq-q { text-wrap: balance; }
+
+.lp-hero-sub,
+.lp-head p,
+.lp-service-desc,
+.lp-case p,
+.lp-step p,
+.lp-kpi-label,
+.lp-body .paragraph { text-wrap: pretty; }
+/* A home roda .paragraph-16 em weight 300 com 0.5px de tracking; as LPs
+   estavam em 400/normal, o que deixava o texto mais "pesado" que o do site.
+   Aplica-se ao corpo, não a títulos/botões/rótulos, que têm peso próprio. */
+.lp-body p,
+.lp-hero-sub,
+.lp-service-desc,
+.lp-case p,
+.lp-step p,
+.lp-faq-a p {
+  font-weight: var(--lp-body-weight);
+  letter-spacing: var(--lp-body-tracking);
+}
 
 .lp-section {
   background-color: var(--lp-bg);
@@ -69,19 +109,44 @@ html { scroll-behavior: smooth; }
 .lp-section.is-tight { padding-top: 64px; padding-bottom: 64px; }
 .lp-section.is-white { background-color: #fff; }
 
-.lp-wide { width: 100%; max-width: 1180px; margin: 0 auto; }
+/* mesma largura de container da home (.container do Webflow = 1236px), pra
+   as duas páginas alinharem a coluna de conteúdo quando abertas em sequência */
+.lp-wide { width: 100%; max-width: 1236px; margin: 0 auto; }
 .lp-mid  { width: 100%; max-width: 840px;  margin: 0 auto; }
 
-.lp-head { max-width: 720px; margin-bottom: 56px; }
+/* Mesma medida e centralização do .lp-mid (840px), mantendo o texto alinhado
+   à esquerda. Antes o bloco de título ficava colado na borda esquerda do
+   .lp-wide (1236px) enquanto o conteúdo abaixo ocupava a largura toda — o
+   título parecia descolado da seção. Centralizado, ele fica sobre o eixo do
+   conteúdo; a grade de cards embaixo continua na largura cheia. */
+.lp-head {
+  width: 100%;
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 56px;
+}
 .lp-head.is-center { margin-left: auto; margin-right: auto; text-align: center; }
 .lp-head.is-center .divider-caption { justify-content: center; }
 .lp-head .divider-caption { margin-bottom: 16px; }
+/* Quando a legenda vem dentro da régua (.divider-wrapper), quem carrega o
+   espaçamento é o wrapper — senão a margem da legenda desalinharia a linha
+   dentro da própria fileira flex. */
+.lp-head .divider-wrapper { margin-bottom: 16px; }
+.lp-head .divider-wrapper .divider-caption { flex: none; margin-bottom: 0; }
+/* o gap de 64px do Webflow é grande demais para o vão legenda→régua aqui */
+.lp-head .divider-wrapper { gap: 24px; }
+/* .caption-small vem do CSS compilado do Webflow (também usado no
+   /case/topfit), então o all-caps fica só nas LPs via .lp-body, sem mexer
+   no visual daquela página. */
+.lp-body .caption-small { text-transform: uppercase; letter-spacing: .04em; }
+
 .lp-head h2 {
   color: var(--mk-ink);
-  letter-spacing: -.5px;
+  letter-spacing: -.2px;
   margin: 0 0 16px;
   font-size: 40px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.15;
 }
 .lp-head p {
@@ -127,12 +192,14 @@ html { scroll-behavior: smooth; }
 .lp-nav-brand .navigation-logo { width: 150px; height: auto; }
 .lp-nav-brand .navigation-logo svg { width: 100%; height: auto; display: block; }
 .lp-nav-right { grid-column: 3; justify-self: end; align-items: center; gap: 8px; display: flex; }
-.lp-nav-links { grid-column: 1; justify-self: start; align-items: center; gap: 4px; display: flex; }
+.lp-nav-links { grid-column: 1; justify-self: start; align-items: center; gap: 0; display: flex; }
 .lp-nav-link {
   color: #33333380;
-  padding: 10px 14px;
-  font-size: 15px;
+  padding: 10px 10px;
+  font-size: 13px;
   line-height: 24px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
   text-decoration: none;
   transition: color .3s;
 }
@@ -164,7 +231,10 @@ html { scroll-behavior: smooth; }
   flex-direction: column;
 }
 .lp-drawer.is-open { display: flex; }
-.lp-drawer .lp-nav-link { padding: 14px 4px; font-size: 18px; }
+/* o drawer mobile fica do jeito que já estava: maiúsculas pequenas fazem
+   sentido no menu horizontal do desktop, mas atrapalham leitura numa lista
+   vertical de toque. */
+.lp-drawer .lp-nav-link { padding: 14px 4px; font-size: 18px; text-transform: none; letter-spacing: normal; }
 
 /* par de rotulos de CTA (ver ctaLabel() em cms/components.mjs): o curto so'
    aparece no breakpoint de celular, onde o longo estoura a largura do botao */
@@ -196,12 +266,16 @@ html { scroll-behavior: smooth; }
 .lp-mk-logo img { max-height: 40px; width: auto; }
 .lp-eyebrow .h6-heading-2 { text-align: center; }
 
+/* A home usa títulos em weight 400 e tracking normal. Uma LP precisa de mais
+   presença no H1, então não vou até 400 — mas o 700 com -1.74px de tracking
+   era de outra família tipográfica. 600 com tracking quase neutro fica no
+   meio do caminho e passa a conversar com o site. */
 .lp-hero h1 {
   color: var(--mk-ink);
-  letter-spacing: -.03em;
+  letter-spacing: -.01em;
   margin: 0 0 20px;
   font-size: 58px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.08;
 }
 .lp-hero-sub {
@@ -229,7 +303,7 @@ html { scroll-behavior: smooth; }
   border-radius: 99px;
   justify-content: center;
   align-items: center;
-  padding: 16px 32px;
+  padding: 13px 26px;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -248,7 +322,7 @@ html { scroll-behavior: smooth; }
   border-radius: 99px;
   justify-content: center;
   align-items: center;
-  padding: 16px 32px;
+  padding: 13px 26px;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -256,8 +330,26 @@ html { scroll-behavior: smooth; }
   transition: background-color .3s, border-color .3s;
   display: inline-flex;
 }
-.lp-btn-ghost:hover { background-color: #f3f3f5; border-color: #00000033; }
 .lp-btn-ghost svg { width: 20px; height: 20px; }
+
+/* Assinaturas do .bttn01 da home trazidas para os CTAs da LP: caixa alta com
+   tracking leve, e o easing padrão do site. O peso e o tamanho continuam
+   maiores que os da home de propósito — é o CTA principal de uma página de
+   campanha, não um botão de navegação. */
+.lp-btn-mk,
+.lp-btn-ghost {
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: 15px;
+  transition: all .325s var(--lp-ease);
+}
+/* hover do .bttn01.b da home: o botão inverte (fundo vira a cor da borda). */
+.lp-btn-ghost:hover {
+  color: #fff;
+  background-color: var(--mk-ink);
+  border-color: var(--mk-ink);
+}
+
 
 .lp-trust {
   flex-wrap: wrap;
@@ -358,7 +450,23 @@ html { scroll-behavior: smooth; }
   display: grid;
   overflow: hidden;
 }
-.lp-kpi { border-right: 1px solid var(--lp-line); padding: 32px 24px; text-align: center; }
+/* A grid estica todas as células à altura da mais alta (a que tem rótulo de
+   2 linhas), mas o conteúdo ficava colado no topo: as de rótulo curto
+   sobravam ~20px embaixo e o conjunto parecia subir. Centralizar em coluna
+   equilibra as folgas independentemente de quantas linhas o rótulo ocupa. */
+.lp-kpi {
+  border-right: 1px solid var(--lp-line);
+  /* 37px em cima, 32 embaixo: compensação óptica, não erro de conta. O número
+     tem fonte grande (40px) e sobra vão acima dos dígitos dentro da própria
+     linha; o rótulo, pequeno, sobra vão abaixo da linha de base. Centralizar a
+     CAIXA deixava a TINTA 5px acima do centro. Com estes 5px a mais no topo,
+     a distância do topo da célula ao número iguala a do rótulo à base. */
+  padding: 37px 24px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .lp-kpi:last-child { border-right: 0; }
 .lp-kpi-value {
   color: var(--mk-ink);
@@ -370,6 +478,22 @@ html { scroll-behavior: smooth; }
 .lp-kpi-value .lp-kpi-prefix,
 .lp-kpi-value .lp-kpi-suffix { color: var(--mk); }
 .lp-kpi-label { color: var(--lp-muted); margin-top: 6px; font-size: 14px; line-height: 1.4; }
+/* Só centralizar não bastava: com um rótulo de 2 linhas e os outros de 1, o
+   bloco centralizado deixava os NÚMEROS em alturas diferentes — e numa fileira
+   de estatísticas o olho lê os números na horizontal, então o desalinhamento
+   deles incomoda mais que a folga embaixo. Reservando a altura de 2 linhas
+   para todo rótulo, as células ficam idênticas: números na mesma linha de base
+   e folga igual em cima e embaixo.
+   Só a partir de 2 colunas — no empilhamento de 1 coluna isso viraria espaço
+   morto em cada item. */
+/* Antes havia aqui uma altura mínima de 2 linhas no rótulo, para compensar
+   um texto que quebrava enquanto os outros três não. Era um remendo: mantinha
+   números e rótulos alinhados, mas sobrava espaço no rodapé das células curtas
+   e a tinta não ficava centralizada. Com todos os rótulos em uma linha (o
+   texto longo foi encurtado no CMS), o `justify-content: center` do .lp-kpi
+   resolve tudo sozinho — e sem remendo.
+   Se algum rótulo voltar a quebrar em duas linhas, o conjunto continua
+   centralizado; o que se perde é o alinhamento entre os números. */
 
 /* --------------------------------- band (variação de .logo-section) ------ */
 
@@ -437,10 +561,10 @@ html { scroll-behavior: smooth; }
 
 .lp-service-name {
   color: var(--mk-ink);
-  letter-spacing: -.5px;
+  letter-spacing: -.2px;
   margin: 0 0 8px;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.25;
 }
 .lp-service-desc { color: var(--lp-muted); margin: 0 0 24px; font-size: 16px; line-height: 1.6; }
@@ -471,6 +595,11 @@ html { scroll-behavior: smooth; }
   margin-top: auto; /* empurra o botão para o rodapé do card, mesmo quando o card vizinho tem mais itens na lista */
   padding-top: 24px;
 }
+/* O `margin-top: auto` acima só sobra enquanto o card tem espaço livre. No
+   card mais longo (9 itens) a folga chegava a 0 e o último item da lista
+   encostava na linha divisória. Esta margem garante o respiro mínimo; onde
+   ainda há folga, ela apenas consome parte do `auto`. */
+.lp-service .lp-list { margin-bottom: 24px; }
 .lp-service-top,
 .lp-service-name,
 .lp-service-desc { flex: none; }
@@ -493,9 +622,44 @@ html { scroll-behavior: smooth; }
   padding: 28px;
   display: flex;
   box-shadow: var(--lp-shadow-flat);
-  transition: transform .35s ease, box-shadow .35s ease;
+  /* O deslocamento do hover usa `translate`, que é uma propriedade própria, e
+     NÃO `transform`. Motivo: `.js-reveal .lp-reveal` (a animação de entrada)
+     tem especificidade maior e redefine `transition` — apagando a do card,
+     inclusive o box-shadow, que por isso aparecia de uma vez só. Com as duas
+     em propriedades diferentes, entrada e hover deixam de disputar.
+     A sombra entra mais devagar (.55s) que o deslocamento (.3s): o card sobe
+     primeiro e a sombra "assenta" logo atrás — é isso que dá sensação de peso
+     em vez de um piscar. O easing é o mesmo que o Webflow usa na home. */
+  transition:
+    translate .3s var(--lp-ease),
+    box-shadow .55s var(--lp-ease),
+    border-color .55s var(--lp-ease);
 }
-.lp-card:hover { transform: translateY(-3px); box-shadow: var(--lp-shadow); }
+/* `.lp-reveal.lp-card` (0,3,0) em vez de só `.lp-card`: a regra de entrada é
+   `.js-reveal .lp-reveal` (0,2,0) e vem DEPOIS no arquivo, então empatar em
+   especificidade não bastaria — ela venceria pela ordem. Os cards sempre têm
+   as duas classes, então este seletor casa sempre. */
+.js-reveal .lp-reveal.lp-card {
+  transition:
+    opacity .7s ease,
+    transform .7s ease,
+    translate .3s var(--lp-ease),
+    box-shadow .55s var(--lp-ease),
+    border-color .55s var(--lp-ease);
+}
+/* `hover: hover` evita o hover "grudado" no celular, onde estes cards agora
+   são um carrossel: sem isso, o card tocado ficaria com a sombra acesa até
+   o toque seguinte. */
+@media (hover: hover) {
+  .lp-card:hover {
+    translate: 0 -4px;
+    box-shadow: var(--lp-shadow-hover);
+    border-color: rgba(30, 30, 30, .09);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-card:hover { translate: none; }
+}
 .lp-card-icon {
   color: var(--mk);
   background-color: var(--mk-soft);
@@ -712,11 +876,17 @@ html { scroll-behavior: smooth; }
   -webkit-mask-image: linear-gradient(90deg, #0000, #000 10%, #000 90%, #0000);
   mask-image: linear-gradient(90deg, #0000, #000 10%, #000 90%, #0000);
   width: 100%;
+  margin-top: 40px;
   overflow: hidden;
 }
+/* O espaçamento entra como margem DO ITEM, não como `gap` do flex. Com
+   `gap`, o track (que é a lista de logos duplicada) ganha um espaço a mais
+   entre a última logo da 1ª cópia e a primeira da 2ª, e o `translate(-50%)`
+   do marquee passa a não cair exatamente sobre o início da cópia — o loop
+   saltava meio gap a cada volta. Com margem no item, metade do track é
+   exatamente uma cópia. */
 .lp-clients-track {
   align-items: center;
-  gap: 56px;
   width: max-content;
   display: flex;
   animation: lp-marquee 36s linear infinite;
@@ -730,6 +900,7 @@ html { scroll-behavior: smooth; }
   align-items: center;
   width: 132px;
   height: 34px;
+  margin-right: 88px;
   flex: none;
   transition: color .4s;
   display: flex;
@@ -737,7 +908,8 @@ html { scroll-behavior: smooth; }
 .lp-client-logo:hover { color: var(--mk-ink); }
 .lp-client-logo svg { width: 100%; height: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
-  .lp-clients-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
+  .lp-clients-track { animation: none; flex-wrap: wrap; justify-content: center; gap: 32px 0; width: 100%; }
+  .lp-client-logo { margin-right: 44px; }
 }
 
 /* ------------------------------ processo (variação de .process-card) ----- */
@@ -827,22 +999,37 @@ html { scroll-behavior: smooth; }
 .lp-form { flex-direction: column; gap: 4px; display: flex; }
 .lp-form .label { display: block; margin-bottom: 4px; font-size: 13px; }
 .lp-form .text-field { color: #1e1e1e; }
-.lp-form .text-field:focus { border-bottom-color: var(--mk); outline: 0; }
+/* foco na cor do marketplace, agora na borda inteira e no anel */
+.lp-form .text-field:focus {
+  border-color: var(--mk);
+  box-shadow: 0 0 0 3px var(--mk-soft);
+  outline: 0;
+}
 .lp-form-row { grid-template-columns: 1fr 1fr; gap: 0 16px; display: grid; }
+/* O select acompanha o novo campo em caixa (site-overrides.css): o padding
+   zerado à esquerda e o canto reto eram do tempo do campo sublinhado. A seta
+   fica recuada da borda para não encostar no canto arredondado. */
 .lp-form select.text-field {
   -webkit-appearance: none;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236b7280'%3E%3Cpath d='M8 11 3.5 6.5 4.6 5.4 8 8.8l3.4-3.4 1.1 1.1z'/%3E%3C/svg%3E");
-  background-position: right 2px center;
+  background-position: right 12px center;
   background-repeat: no-repeat;
   background-size: 16px;
-  border-radius: 0;
   width: 100%;
-  height: 38px;
-  padding: 8px 24px 8px 0;
+  padding-right: 36px;
 }
 .lp-form .lp-btn-mk { width: 100%; margin-top: 8px; border: 0; cursor: pointer; font-family: inherit; }
 .lp-form-legal { color: var(--lp-muted); margin: 12px 0 0; font-size: 12px; line-height: 1.5; }
+/* O botão flutuante do WhatsApp (.whatsapp-block) é fixo no canto inferior
+   direito da TELA inteira — réplica do TOPFIT, usado no site inteiro — e o
+   formulário é uma das últimas seções da página. Em telas estreitas o
+   círculo (60px + até 15px de margem) cai bem em cima do fim deste texto
+   durante boa parte da rolagem. Reserva-se só a largura do botão nesta
+   linha, sem mudar o resto do formulário. */
+@media screen and (max-width: 767px) {
+  .lp-form-legal { padding-right: 84px; }
+}
 .lp-form-legal a { color: var(--lp-muted); }
 .lp-form-status { display: none; margin-top: 16px; border-radius: 10px; padding: 14px 16px; font-size: 15px; }
 .lp-form-status.is-ok   { display: block; color: #075e35; background-color: #d8f3e4; }
@@ -856,6 +1043,8 @@ html { scroll-behavior: smooth; }
 /* auto-fit: funciona com 1, 2, 3 ou N marketplaces publicados */
 .lp-cross { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; display: grid; }
 .lp-cross-card {
+  position: relative;
+  overflow: hidden;
   background-color: var(--lp-surface);
   border: 1px solid var(--lp-line);
   border-radius: var(--lp-radius);
@@ -865,14 +1054,50 @@ html { scroll-behavior: smooth; }
   padding: 24px;
   text-decoration: none;
   display: flex;
-  transition: border-color .3s, box-shadow .3s, transform .3s;
+  box-shadow: var(--lp-shadow-flat);
+  /* mesmo tratamento do .lp-card: `translate` em vez de `transform`, para não
+     brigar com a animação de entrada, e a sombra assentando mais devagar que
+     o deslocamento. */
+  transition:
+    translate .3s var(--lp-ease),
+    box-shadow .55s var(--lp-ease),
+    border-color .3s var(--lp-ease);
 }
-.lp-cross-card:hover {
-  border-color: var(--mk);
-  box-shadow: var(--lp-shadow);
-  transform: translateY(-2px);
+/* faixa na cor do marketplace, revelada no hover: dá identidade de canal ao
+   card sem pintar a superfície inteira */
+.lp-cross-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background-color: var(--mk);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s var(--lp-ease);
 }
-.lp-cross-card:hover .lp-cross-arrow { color: var(--mk); transform: translateX(3px); }
+@media (hover: hover) {
+  .lp-cross-card:hover {
+    translate: 0 -3px;
+    border-color: rgba(30, 30, 30, .12);
+    box-shadow: var(--lp-shadow-hover);
+  }
+  .lp-cross-card:hover::before { transform: scaleX(1); }
+  .lp-cross-card:hover .lp-cross-logo { border-color: var(--mk); background-color: var(--mk-soft); }
+  .lp-cross-card:hover .lp-cross-arrow {
+    color: #fff;
+    background-color: var(--mk);
+    border-color: var(--mk);
+    translate: 3px 0;
+  }
+}
+/* o foco por teclado precisa mostrar o mesmo destaque do hover */
+.lp-cross-card:focus-visible {
+  outline: 2px solid var(--mk);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-cross-card:hover { translate: none; }
+}
 .lp-cross-logo {
   background-color: var(--lp-bg);
   border: 1px solid var(--lp-line);
@@ -896,16 +1121,27 @@ html { scroll-behavior: smooth; }
   line-height: 1.25;
 }
 .lp-cross-sub { color: var(--lp-muted); display: block; margin-top: 4px; font-size: 14px; line-height: 1.4; }
+.lp-cross-logo { transition: border-color .3s var(--lp-ease), background-color .3s var(--lp-ease); }
+/* a seta vira um alvo circular: lê melhor como "isto leva a algum lugar" do
+   que um ícone solto, e ganha um estado de hover próprio */
 .lp-cross-arrow {
   color: var(--lp-muted);
+  background-color: var(--lp-bg);
+  border: 1px solid var(--lp-line);
+  border-radius: 999px;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 34px;
+  height: 34px;
   flex: none;
-  transition: color .3s, transform .3s;
+  transition:
+    color .3s var(--lp-ease),
+    background-color .3s var(--lp-ease),
+    border-color .3s var(--lp-ease),
+    translate .3s var(--lp-ease);
   display: flex;
 }
+.lp-cross-arrow svg { width: 16px; height: 16px; }
 .lp-cross-arrow svg { width: 100%; height: 100%; }
 
 .lp-footer-hook {
@@ -996,9 +1232,54 @@ html { scroll-behavior: smooth; }
   .lp-form-row { grid-template-columns: 1fr; }
   .lp-body .contact-wrapper { grid-template-columns: 1fr; }
   .lp-body .form-left { display: none; }
-  .lp-head h2 { font-size: 28px; }
-  .lp-band h2 { font-size: 28px; }
-  .lp-kpi-value { font-size: 32px; }
+  .lp-head h2 { font-size: 26px; }
+  .lp-band h2 { font-size: 26px; }
+  .lp-kpi-value { font-size: 30px; }
+
+  /* Encurtar o scroll do celular: a página passava de 19.500px. Tipografia e
+     respiros menores, sem mexer no conteúdo. Cada corte é pequeno, mas
+     multiplica pelas ~12 seções. */
+  .lp-section { padding-top: 56px; padding-bottom: 56px; }
+  .lp-head { margin-bottom: 32px; }
+  .lp-head p { font-size: 16px; }
+  .lp-service-name { font-size: 22px; }
+  .lp-service-desc { font-size: 15px; margin-bottom: 18px; }
+  .lp-list { gap: 9px; }
+  .lp-list li { font-size: 14px; }
+  .lp-service { padding: 20px; }
+  .lp-service .lp-list { margin-bottom: 18px; }
+  .lp-service-foot { padding-top: 18px; }
+  .lp-case-result { font-size: 26px; }
+  .lp-case p { font-size: 14px; }
+  .lp-step p { font-size: 14px; }
+  .lp-faq-q { font-size: 16px; }
+  .lp-clients { margin-top: 28px; }
+
+  /* ------------------------------------------------ carrossel no celular --
+     Empilhar 9 entregáveis, 4 cases e 3 painéis rendia ~5.900px de rolagem só
+     nessas três seções. No celular elas viram trilhos horizontais com
+     scroll-snap (CSS puro, sem biblioteca).
+     Ficaram de fora de propósito:
+       .lp-services — são consultoria x assessoria lado a lado; é uma
+         comparação, e comparar exige ver as duas, não deslizar entre elas;
+       .lp-steps — a sequência numerada de 4 passos comunica "são só 4";
+         escondê-la atrás de um gesto enfraquece justamente esse recado.
+     O card seguinte fica parcialmente visível (85% de largura): é o que
+     sinaliza ao visitante que há mais conteúdo para o lado. */
+  .lp-swipe {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .lp-swipe::-webkit-scrollbar { display: none; }
+  .lp-swipe > * {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
 }
 
 @media screen and (max-width: 479px) {

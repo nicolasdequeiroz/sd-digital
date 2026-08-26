@@ -34,9 +34,9 @@
     "eyebrow": "Especialistas em Shopee",
     "h1": "Sua loja <span class=\"lp-em\">na Shopee</span> vendendo todo dia, sem você virar operador de marketplace.",
     "sub": "A SD Digital assume (ou ensina você a assumir) a operação inteira: anúncios, títulos com SEO, imagens, Shopee Ads, preço, reputação e integração de ERP. Você cuida do produto e da logística. O resto é com a gente.",
-    "ctaPrimary": { "label": "Quero uma análise gratuita da minha loja",
-      "labelShort": "Quero minha análise gratuita", "href": "#form" },
-    "ctaSecondary": { "label": "Falar no WhatsApp agora", "href": "whatsapp", "icon": "whatsapp" },
+    "ctaPrimary": { "label": "Quero minha análise gratuita",
+      "labelShort": "Análise gratuita", "href": "#form" },
+    "ctaSecondary": { "label": "Falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" },
     "trust": [
       "Análise gratuita da sua loja",
       "Sem fidelidade contratual",
@@ -76,7 +76,7 @@
   "kpis": [
     { "prefix": "+", "value": 10, "suffix": " anos", "label": "de operação em marketplaces no Brasil" },
     { "prefix": "+", "value": 150, "suffix": "", "label": "sellers e e-commerces atendidos" },
-    { "prefix": "até ", "value": 10, "suffix": "x", "label": "de crescimento em 12 meses de acompanhamento" },
+    { "prefix": "até ", "value": 10, "suffix": "x", "label": "de crescimento em 12 meses" },
     { "prefix": "", "value": 4.9, "decimals": 1, "suffix": "/5", "label": "satisfação média dos nossos clientes" }
   ],
 
@@ -131,7 +131,7 @@
           "Gestão de reputação, chat e indicadores de saúde da loja",
           "Relatório de performance e reunião de resultados"
         ],
-        "cta": { "label": "Quero a assessoria completa", "href": "#form", "style": "mk" },
+        "cta": { "label": "Quero a assessoria", "href": "#form", "style": "mk" },
         "note": "Ideal para quem quer escalar sem montar time interno."
       }
     ]
@@ -200,7 +200,7 @@
     "title": "A sua concorrência na Shopee não está esperando você aprender.",
     "text": "Peça uma análise gratuita da sua loja. Em até 1 dia útil devolvemos um diagnóstico do que está travando as suas vendas, com ou sem contrato.",
     "ctaPrimary": { "label": "Solicitar análise gratuita", "href": "#form" },
-    "ctaSecondary": { "label": "Prefiro falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" }
+    "ctaSecondary": { "label": "Falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" }
   },
 
   "testimonials": {

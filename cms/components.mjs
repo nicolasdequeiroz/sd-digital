@@ -115,8 +115,17 @@ function caption(text) {
 }
 
 function sectionHead({ caption: cap, title, subtitle, center = false }) {
+  // A legenda vem acompanhada da régua horizontal (.divider-tertiary), o mesmo
+  // par que a seção de diagnóstico já usava — é um traço do site que estava
+  // aparecendo em um lugar só. Em cabeçalho centralizado a régua não cabe:
+  // ela pressupõe a legenda encostada à esquerda.
+  const head = cap
+    ? (center
+        ? caption(cap)
+        : `<div class="divider-wrapper">${caption(cap)}<div class="divider-tertiary"></div></div>`)
+    : "";
   return `<div class="lp-head${center ? " is-center" : ""} lp-reveal">
-        ${cap ? caption(cap) : ""}
+        ${head}
         ${title ? `<h2>${title}</h2>` : ""}
         ${subtitle ? `<p>${esc(subtitle)}</p>` : ""}
       </div>`;
@@ -206,7 +215,7 @@ export function hero(ctx) {
     <div class="lp-hero-inner">
       <div class="lp-eyebrow">
         <div class="lp-mk-logo"><img src="${esc(page.marketplace.logo)}" alt="${esc(page.marketplace.logoAlt)}" width="120" height="40"/></div>
-        <h6 class="h6-heading-2">${esc(h.eyebrow)}</h6>
+        <p class="h6-heading-2">${esc(h.eyebrow)}</p>
       </div>
       <h1>${h.h1}</h1>
       <p class="lp-hero-sub">${esc(h.sub)}</p>
@@ -262,7 +271,7 @@ export function intro(ctx) {
         ${caption(i.caption)}
         <div class="divider-tertiary"></div>
       </div>
-      <h5 class="h5-heading-2 lp-reveal" style="margin-top:24px">${esc(i.title)}</h5>
+      <h2 class="h5-heading-2 lp-reveal" style="margin-top:24px">${esc(i.title)}</h2>
       <div class="column-regular-2 lp-reveal" style="margin-top:24px">${paras}</div>
     </div>
   </section>`;
@@ -317,7 +326,7 @@ export function deliverables(ctx) {
   return `<section class="lp-section is-white" id="entregaveis">
     <div class="lp-wide">
       ${sectionHead({ caption: d.caption, title: esc(d.title), subtitle: d.subtitle })}
-      <div class="lp-grid-3">${cards}</div>
+      <div class="lp-grid-3 lp-swipe" tabindex="0">${cards}</div>
     </div>
   </section>`;
 }
@@ -376,7 +385,7 @@ export function proof(ctx) {
   return `<section class="lp-section is-white" id="resultados">
     <div class="lp-wide">
       ${sectionHead({ caption: p.caption, title: esc(p.title), subtitle: p.subtitle })}
-      <div class="lp-panels">${panels}</div>
+      <div class="lp-panels lp-swipe" tabindex="0">${panels}</div>
       ${hasMock ? `<p class="lp-disclaimer">${MOCK_NOTICE}</p>` : ""}
     </div>
   </section>`;
@@ -385,7 +394,11 @@ export function proof(ctx) {
 /* ============================================================ CASES ===== */
 
 export function cases(ctx) {
-  const c = ctx.globals.cases;
+  // Cada LP pode sobrescrever os cases compartilhados com `page.cases` no
+  // JSON do marketplace (mesmo formato de globals.cases: caption, title,
+  // subtitle, items[]). Sem isso, cai no case geral do site — que hoje é o
+  // que toda LP mostra, mesmo a de Shopee não tendo nenhum case de Shopee.
+  const c = ctx.page.cases || ctx.globals.cases;
   const items = c.items
     .map(
       (item) => `<article class="lp-case lp-reveal">
@@ -400,7 +413,7 @@ export function cases(ctx) {
   return `<section class="lp-section">
     <div class="lp-wide">
       ${sectionHead({ caption: c.caption, title: esc(c.title), subtitle: c.subtitle })}
-      <div class="lp-grid-2">${items}</div>
+      <div class="lp-grid-2 lp-swipe" tabindex="0">${items}</div>
       <div class="lp-head is-center lp-reveal" style="margin:72px auto 32px">
         ${caption(ctx.globals.clients.caption)}
         <h2 style="font-size:28px">${esc(ctx.globals.clients.title)}</h2>
@@ -518,7 +531,7 @@ export function contact(ctx) {
               <div class="divider-small"></div>
             </div>
             <div class="paragraph-div">
-              <h6 class="h6-heading-3 large"><strong>${esc(f.title)}</strong></h6>
+              <h2 class="h6-heading-3 large"><strong>${esc(f.title)}</strong></h2>
               <p class="paragraph-16 b">${esc(f.text)} Se preferir, fale pelo <a href="${esc(waHref)}" target="_blank" rel="noopener" data-wa-position="form" class="link-span">WhatsApp</a>.</p>
             </div>
 
@@ -550,13 +563,16 @@ export function contact(ctx) {
               <div class="lp-form-row">
                 <div>
                   <label for="email-${esc(page.slug)}" class="label">Email</label>
-                  <input class="text-field w-input" maxlength="160" name="email" id="email-${esc(page.slug)}" type="email" autocomplete="email" required/>
+                  <input class="text-field w-input" maxlength="160" name="email" id="email-${esc(page.slug)}" type="email" autocomplete="email"/>
                 </div>
                 <div>
                   <label for="telefone-${esc(page.slug)}" class="label">WhatsApp</label>
                   <input class="text-field w-input" maxlength="40" name="telefone" id="telefone-${esc(page.slug)}" type="tel" autocomplete="tel" required/>
                 </div>
               </div>
+
+              <label for="loja-${esc(page.slug)}" class="label">Link da sua loja ou conta ${esc(page.marketplace.preposition)}</label>
+              <input class="text-field w-input" maxlength="300" name="loja" id="loja-${esc(page.slug)}" type="url" placeholder="https://..." autocomplete="off"/>
 
               <label for="faturamento-${esc(page.slug)}" class="label">Faturamento ${esc(page.marketplace.preposition)}</label>
               <select class="text-field" name="faturamento" id="faturamento-${esc(page.slug)}" required>
@@ -659,7 +675,10 @@ export function footer(ctx) {
             <a href="${esc(globals.contact.instagram)}" target="_blank" rel="noopener" class="link-block w-inline-block"><img src="/assets/images/643097cfe2d057c418d68b8b_fa-icon-3.svg" loading="lazy" alt="Instagram"/></a>
           </div>
         </div>
-        <div class="copyright-div"><div class="text-14 _60">${esc(fo.copyright)}</div></div>
+        <div class="copyright-div">
+          <div class="text-14 _60">${esc(fo.copyright)}</div>
+          <div class="text-14 _60">A SD Digital é uma empresa independente de consultoria e assessoria em marketplaces, sem vínculo oficial com ${esc(ctx.page.marketplace.name)}.</div>
+        </div>
       </div>
     </div>
   </div>`;

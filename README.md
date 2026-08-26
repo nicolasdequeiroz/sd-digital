@@ -92,6 +92,11 @@ Enquanto o domínio próprio não entra, o site fica em
       endereço de preview. Substitua o arquivo inteiro pela única linha
       `Sitemap: https://www.saiddiazdigital.com/sitemap.xml`.
       **Se esquecer, o site fica fora da busca do Google.**
+- [ ] `cms/build.mjs`: `const PREVIEW = true;` no topo do arquivo bota
+      `noindex, nofollow` no `<meta name="robots">` de cada LP (`/lp/...`).
+      Mude para `false` e rode `node cms/build.mjs` de novo — senão as LPs
+      seguem fora da busca mesmo depois do `robots.txt` liberar o resto do
+      site.
 - [ ] GTM/GA4 continuam apontando pra propriedade de produção — os acessos ao
       preview entram nos dados reais.
 

@@ -23,6 +23,18 @@ const OUT_DIR = join(ROOT, "lp");
 
 const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
 
+/* ---------------------------------------------------------- modo preview - */
+/* true enquanto o site roda só no endereço temporário do GitHub Pages
+   (github.io/sd-digital), antes do domínio próprio: as LPs saem com
+   noindex, senão o Google pode indexar o endereço de preview e depois
+   competir com o domínio definitivo por conteúdo duplicado.
+
+   >>> AO LIGAR O DOMÍNIO PRÓPRIO: mude para `false` e rode `node cms/build.mjs`
+   de novo. É o mesmo cutover documentado no robots.txt e no README, só que
+   aquele cobre o site inteiro por fora e este é o <meta> de cada LP. */
+const PREVIEW = true;
+const ROBOTS_META = PREVIEW ? "noindex, nofollow" : "index, follow";
+
 /* ------------------------------------------------------------ carrega ---- */
 
 const globals = readJson(join(DATA, "_globals.json"));
@@ -54,7 +66,7 @@ function page(ctx) {
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>${C.esc(p.seo.title)}</title>
 <meta name="description" content="${C.esc(p.seo.description)}"/>
-<meta name="robots" content="index, follow"/>
+<meta name="robots" content="${ROBOTS_META}"/>
 <link rel="canonical" href="${C.esc(url)}"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="${C.esc(url)}"/>

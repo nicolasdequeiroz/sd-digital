@@ -50,3 +50,101 @@
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(45 12 12)'/%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(-45 12 12)'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(45 12 12)'/%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(-45 12 12)'/%3E%3C/svg%3E");
 }
+
+/* ============================================================================
+   Cantos levemente arredondados (site inteiro)
+   ---------------------------------------------------------------------------
+   O CSS do Webflow entrega quase tudo com canto reto. O objetivo aqui é só
+   tirar a dureza — raio pequeno, nada de "pílula". Dois valores:
+     --sd-radius     12px  caixas grandes (cards, painéis, imagens de bloco)
+     --sd-radius-sm   8px  elementos pequenos (botões de UI, thumbs, campos)
+   Seções de página inteira ficam de fora de propósito: arredondar uma faixa
+   que sangra de ponta a ponta cria um recorte estranho contra a cor de fundo.
+   ========================================================================= */
+
+:root {
+  --sd-radius: 12px;
+  --sd-radius-sm: 8px;
+}
+
+/* cards e blocos de conteúdo */
+.hiw-card,
+.process-card,
+.gallery-card,
+.team-about-card,
+.tab-panel,
+.hiw-image-wrapper,
+.hiw-image-small { border-radius: var(--sd-radius); }
+
+/* imagens que aparecem como bloco dentro de cards */
+.image-3,
+.image-7,
+.image-service,
+.blur-image,
+.process-card-image { border-radius: var(--sd-radius); }
+
+/* elementos pequenos de interface */
+.hiw-button,
+.feature-tab-link { border-radius: var(--sd-radius-sm); }
+
+/* o overflow precisa acompanhar, senão o conteúdo vaza pelo canto arredondado */
+.hiw-card,
+.tab-panel,
+.feature-tab-link,
+.hiw-image-wrapper { overflow: hidden; }
+
+/* ============================================================================
+   Tabs de cases: respirar entre os blocos
+   ---------------------------------------------------------------------------
+   Com canto arredondado, os blocos coladinhos passam a mostrar as "quinas"
+   negativas entre um e outro. Um espaçamento pequeno resolve e ainda separa
+   visualmente a lista de logos do painel de detalhe.
+   ========================================================================= */
+
+.feature-tab-menu { gap: 8px; }
+.tab-panel { margin-top: 16px; padding: 24px; }
+.tab-detail-wrapper { margin-bottom: 20px; }
+.div-block-4 { gap: 16px; }
+
+/* ============================================================================
+   Campos de formulário (home, briefing, TOPFIT e as LPs)
+   ---------------------------------------------------------------------------
+   Eram sublinhados: fundo transparente e só a borda de baixo (2px). Viram
+   campos com caixa própria — fundo, borda inteira, canto suave e área de
+   toque maior. O estado de foco deixa de depender só da cor da linha:
+   ganha anel, que também serve de indicação de foco para teclado.
+   ========================================================================= */
+
+.text-field {
+  border: 1px solid rgba(30, 30, 30, .14);
+  border-radius: var(--sd-radius-sm);
+  background-color: #fff;
+  color: #1e1e1e;
+  padding: 11px 14px;
+  height: auto;
+  min-height: 44px;              /* alvo de toque confortável no celular */
+  margin-bottom: 14px;
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.text-field::placeholder { color: rgba(30, 30, 30, .38); }
+.text-field:hover { border-color: rgba(30, 30, 30, .26); }
+.text-field:focus {
+  border-color: #1e1e1e;
+  box-shadow: 0 0 0 3px rgba(30, 30, 30, .10);
+  outline: 0;
+}
+textarea.text-field { min-height: 120px; padding-top: 12px; resize: vertical; }
+
+/* o rótulo passa a ficar mais perto do campo que ele nomeia */
+.label { margin-bottom: 6px; display: block; font-size: 13px; }
+
+/* ============================================================================
+   Rodapé: copyright e disclaimer em caixa normal
+   ---------------------------------------------------------------------------
+   .text-14 vem do Webflow com text-transform:uppercase, o que faz sentido nas
+   tags curtas da home ("análise de dados", "integração erp"). Mas o rodapé usa
+   o modificador ._60 para frases inteiras, e frase inteira em caixa alta fica
+   difícil de ler. Por isso o alvo é ._60, não .text-14 inteiro.
+   ========================================================================= */
+
+.text-14._60 { text-transform: none; letter-spacing: normal; }

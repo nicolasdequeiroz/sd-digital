@@ -25,14 +25,19 @@
   var toggle = doc.querySelector("[data-lp-toggle]");
   var drawer = doc.querySelector("[data-lp-drawer]");
   if (toggle && drawer) {
-    toggle.addEventListener("click", function () {
-      var open = drawer.classList.toggle("is-open");
+    // aria-label troca junto com aria-expanded: sem isso, leitor de tela
+    // continua anunciando "Abrir menu" com o menu já aberto.
+    var setToggleState = function (open) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    };
+    toggle.addEventListener("click", function () {
+      setToggleState(drawer.classList.toggle("is-open"));
     });
     drawer.addEventListener("click", function (e) {
       if (e.target.closest("a")) {
         drawer.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
+        setToggleState(false);
       }
     });
   }

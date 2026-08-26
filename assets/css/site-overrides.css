@@ -93,6 +93,17 @@
 .feature-tab-link,
 .hiw-image-wrapper { overflow: hidden; }
 
+/* barra de progresso da troca automática das abas de cases (site-overrides.js) */
+.tab-progress-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  background-color: currentColor;
+  opacity: .55;
+}
+
 /* ============================================================================
    Tabs de cases: respirar entre os blocos
    ---------------------------------------------------------------------------
@@ -102,7 +113,7 @@
    ========================================================================= */
 
 .feature-tab-menu { gap: 8px; }
-.tab-panel { margin-top: 16px; padding: 24px; }
+.tab-panel { margin-top: 8px; padding: 40px 24px 0; }
 .tab-detail-wrapper { margin-bottom: 20px; }
 .div-block-4 { gap: 16px; }
 
@@ -148,3 +159,6 @@ textarea.text-field { min-height: 120px; padding-top: 12px; resize: vertical; }
    ========================================================================= */
 
 .text-14._60 { text-transform: none; letter-spacing: normal; }
+
+/* Vídeo de fundo da seção de contato: em preto e branco. */
+#contato .background-video video { filter: grayscale(1); }

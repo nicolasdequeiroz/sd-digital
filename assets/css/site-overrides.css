@@ -14,17 +14,25 @@
 /* Logos de marketplace na home (seção #marketplace): agora linkam pra LP de
    cada canal (/lp/mercado-livre, /lp/amazon, /lp/shopee). O grid-area e o
    place-self continuam vindo do CSS do Webflow (seletor por #id, que ficou
-   nesses <a> no lugar dos <img>). */
+   nesses <a> no lugar dos <img>). Ganham chrome de botão (borda, fundo,
+   canto suave) pra parecer clicável, no lugar do logo solto — no mesmo
+   espírito visual das tags .hiw-button (borda #d8dbdf) já usadas ao lado. */
 .marketplace-logo-link {
   align-items: center;
   justify-content: center;
   display: flex;
-  transition: opacity .25s ease, transform .25s ease;
+  padding: 14px 22px;
+  border: 1px solid #d8dbdf;
+  border-radius: var(--sd-radius-sm);
+  background-color: #f7f8f8;
+  transition: transform .25s ease, border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
 }
 .marketplace-logo-link:hover,
 .marketplace-logo-link:focus-visible {
-  opacity: .8;
   transform: translateY(-2px);
+  border-color: #1e1e1e;
+  background-color: #fff;
+  box-shadow: 0 6px 16px rgba(30, 30, 30, .08);
 }
 
 /* Ícone do menu mobile (index.html): a fonte de ícones do Webflow
@@ -160,5 +168,6 @@ textarea.text-field { min-height: 120px; padding-top: 12px; resize: vertical; }
 
 .text-14._60 { text-transform: none; letter-spacing: normal; }
 
-/* Vídeo de fundo da seção de contato: em preto e branco. */
-#contato .background-video video { filter: grayscale(1); }
+/* Vídeo de fundo em preto e branco: seção de contato na home, cases (TOPFIT)
+   e as LPs de marketplace — todas usam .background-video. */
+.background-video video { filter: grayscale(1); }

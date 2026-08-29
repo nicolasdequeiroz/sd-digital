@@ -139,9 +139,12 @@
 /* imagens que aparecem como bloco dentro de cards */
 .image-3,
 .image-7,
-.image-service,
 .blur-image,
 .process-card-image { border-radius: var(--sd-radius); }
+
+/* .image-service são logos (marketplace, ERP, e-commerce, hubs, ads) — canto
+   arredondado corta a marca sem necessidade, aqui não faz sentido. */
+.image-service { border-radius: 0; }
 
 /* elementos pequenos de interface */
 .hiw-button,

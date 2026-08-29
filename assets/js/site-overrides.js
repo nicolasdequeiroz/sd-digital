@@ -10,6 +10,7 @@
 // .click() programático pega o valor antigo e anima a barra errada.
 (function () {
   var INTERVAL_MS = 8000;
+  var BAR_INSET = 8; // px de respiro de cada lado (bate com o left/right do CSS)
   var menu = document.querySelector('.feature-tab-menu');
   if (!menu) return;
   var wrapper = menu.closest('.w-tabs') || menu;
@@ -32,15 +33,19 @@
   function resetBars() {
     bars.forEach(function (bar) {
       bar.style.transition = 'none';
-      bar.style.width = '0%';
+      bar.style.width = '0px';
     });
   }
 
   function animateBar(index) {
     var bar = bars[index];
+    // a barra fica dentro de um respiro de 8px de cada lado (não vai de
+    // borda a borda) — largura em px, não %, pra não ter que brigar com o
+    // left/right fixos do CSS numa conta de "100% menos o respiro".
+    var fullWidth = links[index].clientWidth - BAR_INSET * 2;
     bar.offsetHeight; // força reflow: sem isso o navegador agrupa os dois estilos e não anima
     bar.style.transition = 'width ' + INTERVAL_MS + 'ms linear';
-    bar.style.width = '100%';
+    bar.style.width = fullWidth + 'px';
   }
 
   function start() {

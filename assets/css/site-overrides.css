@@ -166,28 +166,33 @@
 .hiw-image-wrapper { overflow: hidden; }
 
 /* Barra de progresso da troca automática das abas de cases
-   (site-overrides.js). O ::after é a trilha (largura inteira, opacidade
-   baixa) — sem ela, o preenchimento sozinho quase não aparece contra o
-   fundo da aba. A barra de preenchimento fica por cima (z-index) e em
-   opacidade cheia, pra marcar bem quanto falta pra trocar. */
+   (site-overrides.js). Pílula fina com respiro de 8px dos quatro lados —
+   não encosta em nenhuma borda da aba. O ::after é a trilha (opacidade
+   baixa, largura inteira do respiro) — sem ela, o preenchimento sozinho
+   quase não aparece contra o fundo da aba. A barra de preenchimento
+   (.tab-progress-bar) fica por cima, em opacidade cheia; a largura dela é
+   definida em px pelo JS (não dá pra animar em % aqui, já que ela some
+   dentro do respiro em vez de ir de borda a borda). */
 .feature-tab-link::after {
   content: '';
   position: absolute;
   z-index: 1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  height: 3px;
+  border-radius: 999px;
   background-color: currentColor;
   opacity: .16;
 }
 .tab-progress-bar {
   position: absolute;
   z-index: 2;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 4px;
+  left: 8px;
+  bottom: 8px;
+  width: 0;
+  height: 3px;
+  border-radius: 999px;
   background-color: currentColor;
   opacity: 1;
 }

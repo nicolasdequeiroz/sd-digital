@@ -1041,7 +1041,7 @@ html { scroll-behavior: smooth; }
    restante da página: não é o footer, é a última seção de conversão. */
 
 /* auto-fit: funciona com 1, 2, 3 ou N marketplaces publicados */
-.lp-cross { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; display: grid; }
+.lp-cross { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; display: grid; }
 .lp-cross-card {
   position: relative;
   overflow: hidden;
@@ -1049,9 +1049,11 @@ html { scroll-behavior: smooth; }
   border: 1px solid var(--lp-line);
   border-radius: var(--lp-radius);
   color: var(--mk-ink);
+  flex-direction: column;
   align-items: center;
-  gap: 18px;
-  padding: 24px;
+  text-align: center;
+  gap: 16px;
+  padding: 40px 28px 32px;
   text-decoration: none;
   display: flex;
   box-shadow: var(--lp-shadow-flat);
@@ -1063,16 +1065,16 @@ html { scroll-behavior: smooth; }
     box-shadow .55s var(--lp-ease),
     border-color .3s var(--lp-ease);
 }
-/* faixa na cor do marketplace, revelada no hover: dá identidade de canal ao
-   card sem pintar a superfície inteira */
+/* faixa na cor do marketplace, revelada no hover: no card vertical vira uma
+   régua no topo (era uma barra lateral esquerda no layout horizontal) */
 .lp-cross-card::before {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 3px;
+  inset: 0 0 auto 0;
+  height: 3px;
   background-color: var(--mk);
-  transform: scaleX(0);
-  transform-origin: left;
+  transform: scaleY(0);
+  transform-origin: top;
   transition: transform .3s var(--lp-ease);
 }
 @media (hover: hover) {
@@ -1101,26 +1103,26 @@ html { scroll-behavior: smooth; }
 .lp-cross-logo {
   background-color: var(--lp-bg);
   border: 1px solid var(--lp-line);
-  border-radius: 12px;
+  border-radius: 16px;
   justify-content: center;
   align-items: center;
-  width: 72px;
-  height: 56px;
-  padding: 10px;
+  width: 112px;
+  height: 96px;
+  padding: 18px;
   display: flex;
   flex: none;
 }
 .lp-cross-logo img { max-width: 100%; max-height: 100%; }
-.lp-cross-body { flex: 1; min-width: 0; }
+.lp-cross-body { flex: none; width: 100%; }
 .lp-cross-title {
   color: var(--mk-ink);
   letter-spacing: -.02em;
   display: block;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 1.25;
 }
-.lp-cross-sub { color: var(--lp-muted); display: block; margin-top: 4px; font-size: 14px; line-height: 1.4; }
+.lp-cross-sub { color: var(--lp-muted); display: block; margin-top: 6px; font-size: 14px; line-height: 1.4; }
 .lp-cross-logo { transition: border-color .3s var(--lp-ease), background-color .3s var(--lp-ease); }
 /* a seta vira um alvo circular: lê melhor como "isto leva a algum lugar" do
    que um ícone solto, e ganha um estado de hover próprio */

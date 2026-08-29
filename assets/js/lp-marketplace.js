@@ -239,4 +239,21 @@
         });
     });
   }
+
+  /* ------------------------------------------------- 8. evita "viúva" -- */
+  // Parágrafo que termina com uma palavra sozinha na última linha (ex: "O
+  // resto é com\na gente." -> "a gente." isolado). Troca o ÚLTIMO espaço do
+  // texto por um espaço inquebrável, colando as duas últimas palavras — elas
+  // sempre quebram juntas ou ficam juntas na linha de cima, nunca uma
+  // sozinha. Não depende da largura da tela (funciona em qualquer viewport,
+  // sem precisar recalcular no resize).
+  // Só mexe em parágrafos sem marcação interna (sem filhos): reescrever
+  // textContent de um <p> com um <a>/<b> dentro apagaria essa marcação.
+  Array.prototype.forEach.call(doc.querySelectorAll("main p"), function (p) {
+    if (p.children.length) return;
+    var text = p.textContent;
+    var lastSpace = text.lastIndexOf(" ");
+    if (lastSpace === -1) return;
+    p.textContent = text.slice(0, lastSpace) + " " + text.slice(lastSpace + 1);
+  });
 })();

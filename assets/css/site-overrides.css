@@ -123,9 +123,7 @@
 .process-card,
 .gallery-card,
 .team-about-card,
-.tab-panel,
-.hiw-image-wrapper,
-.hiw-image-small { border-radius: var(--sd-radius); }
+.tab-panel { border-radius: var(--sd-radius); }
 
 /* imagens que aparecem como bloco dentro de cards */
 .image-3,
@@ -137,6 +135,18 @@
 /* elementos pequenos de interface */
 .hiw-button,
 .feature-tab-link { border-radius: var(--sd-radius-sm); }
+
+/* .hiw-image-wrapper/.hiw-image-small ficam DENTRO do .hiw-card (que tem
+   24px de padding) — usar o mesmo raio do card (12px) pros dois deixava a
+   moldura interna parecendo "solta", sem relação com o contorno externo.
+   Raio menor (--sd-radius-sm) resolve essa aninhagem. O border tracejado
+   do Webflow também sai — a própria cor de fundo (#edeef1) já separa o
+   bloco do card sem precisar de contorno. */
+.hiw-image-wrapper {
+  border: none;
+  border-radius: var(--sd-radius-sm);
+}
+.hiw-image-small { border-radius: var(--sd-radius-sm); }
 
 /* o overflow precisa acompanhar, senão o conteúdo vaza pelo canto arredondado */
 .hiw-card,

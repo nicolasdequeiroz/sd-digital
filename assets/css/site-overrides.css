@@ -84,6 +84,14 @@
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(45 12 12)'/%3E%3Crect x='11' y='-1.2' width='2.4' height='26.4' rx='1.2' transform='rotate(-45 12 12)'/%3E%3C/svg%3E");
 }
 
+/* Cards de "novidades": a imagem tinha uma máscara que esmaecia os 30% de
+   baixo até transparente, criando um fade pra branco contra o fundo do
+   card. Remove a máscara — a imagem fica inteira, sem o degradê. */
+.process-card-bottom {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 /* ============================================================================
    Cantos levemente arredondados (site inteiro)
    ---------------------------------------------------------------------------

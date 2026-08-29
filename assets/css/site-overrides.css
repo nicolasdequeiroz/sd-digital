@@ -11,6 +11,21 @@
 /* Copyright do rodapé: menor em todas as páginas (era 14px/.875rem). */
 .footer .text-14._60 { font-size: 12px; }
 
+/* Header (home): troca de cor ao rolar a página. Substitui a interpolação
+   contínua que o Webflow IX2 fazia via JS (escrevia background-color no
+   style inline a cada evento de scroll — pesada, e o efeito ficava
+   inconsistente). site-overrides.js alterna a classe .nav--scrolled com um
+   listener passivo throttled por rAF; o !important abaixo garante que ela
+   vença o inline style que o IX2 ainda escreve nesse mesmo elemento (ele
+   segue cuidando só da animação de entrada do header no mobile). */
+.nav.w-nav {
+  background-color: transparent !important;
+  transition: background-color .3s ease;
+}
+.nav.w-nav.nav--scrolled {
+  background-color: var(--black, #1e1e1e) !important;
+}
+
 /* Logos de marketplace na home (seção #marketplace): agora linkam pra LP de
    cada canal (/lp/mercado-livre, /lp/amazon, /lp/shopee). O grid-area e o
    place-self continuam vindo do CSS do Webflow (seletor por #id, que ficou

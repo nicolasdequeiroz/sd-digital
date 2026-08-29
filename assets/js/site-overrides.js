@@ -70,3 +70,33 @@
 
   start();
 })();
+
+// Header (home): troca de cor ao rolar. O Webflow IX2 interpolava
+// background-color continuamente via JS a cada evento de scroll, escrito
+// direto no style inline — pesado (recalcula em toda página) e o resultado
+// visual ficava inconsistente entre telas. Aqui é só um listener passivo
+// throttled por requestAnimationFrame alternando uma classe; a transição é
+// CSS (site-overrides.css cuida do !important pra vencer o inline style que
+// o IX2 continua escrevendo nesse mesmo elemento — ele segue controlando só
+// a animação de entrada do header no mobile, que não mexe nessa propriedade).
+(function () {
+  var nav = document.querySelector('.nav.w-nav');
+  if (!nav) return;
+
+  var SCROLLED_AT = 60; // px
+  var ticking = false;
+
+  function update() {
+    nav.classList.toggle('nav--scrolled', window.scrollY > SCROLLED_AT);
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  update();
+})();

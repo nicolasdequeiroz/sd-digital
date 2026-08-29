@@ -18,17 +18,22 @@
    canto suave) pra parecer clicável, no lugar do logo solto — no mesmo
    espírito visual das tags .hiw-button (borda #d8dbdf) já usadas ao lado.
    width:100% ocupa a coluna inteira do grid (que já reserva 1fr por item),
-   garantindo os três do mesmo tamanho mesmo com logos de larguras diferentes. */
+   garantindo os três do mesmo tamanho mesmo com logos de larguras diferentes.
+   .inner-block não esticava (o .hiw-card é flex com align-items:flex-start,
+   então o filho só ocupa a largura do próprio conteúdo) — o :has() aqui é só
+   pra esse bloco específico (o das logos de marketplace), sem esticar os
+   outros .inner-block do slider (ERP, e-commerce, hubs). */
+.inner-block:has(.logos-grid._32) { align-self: stretch; }
 .logos-grid._32 { grid-column-gap: 12px; grid-row-gap: 12px; }
 .marketplace-logo-link {
   align-items: center;
   justify-content: center;
   display: flex;
   width: 100%;
-  height: 72px;
-  padding: 14px 22px;
+  height: 60px;
+  padding: 10px 20px;
   border: 1px solid #d8dbdf;
-  border-radius: var(--sd-radius-sm);
+  border-radius: var(--sd-radius);
   background-color: #f7f8f8;
   transition: transform .25s ease, border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
 }

@@ -11,6 +11,11 @@
 /* Copyright do rodapé: menor em todas as páginas (era 14px/.875rem). */
 .footer .text-14._60 { font-size: 12px; }
 
+/* Botão do menu mobile e o dropdown que ele abre: cantos retos no Webflow,
+   ganham um raio pequeno pra acompanhar o resto do site. */
+.menu-button.w-nav-button { border-radius: var(--sd-radius-sm); }
+.nav-menu.w-nav-menu { border-radius: var(--sd-radius); }
+
 /* Header (home): troca de cor ao rolar a página. Substitui a interpolação
    contínua que o Webflow IX2 fazia via JS (escrevia background-color no
    style inline a cada evento de scroll — pesada, e o efeito ficava
@@ -48,7 +53,7 @@
   height: 44px;
   padding: 6px 18px;
   border: 1px solid #d8dbdf;
-  border-radius: var(--sd-radius);
+  border-radius: 6px;
   background-color: #f7f8f8;
   transition: transform .25s ease, border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
 }
@@ -67,7 +72,7 @@
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 18px;
+  max-height: 24px;
 }
 
 /* Ícone do menu mobile (index.html): a fonte de ícones do Webflow

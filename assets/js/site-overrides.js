@@ -9,7 +9,7 @@
 // troca tem fade, data-duration-in="300"), então lê-la logo depois de um
 // .click() programático pega o valor antigo e anima a barra errada.
 (function () {
-  var INTERVAL_MS = 5000;
+  var INTERVAL_MS = 8000;
   var menu = document.querySelector('.feature-tab-menu');
   if (!menu) return;
   var wrapper = menu.closest('.w-tabs') || menu;

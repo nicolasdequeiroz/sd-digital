@@ -12,9 +12,15 @@
 .footer .text-14._60 { font-size: 12px; }
 
 /* Botão do menu mobile e o dropdown que ele abre: cantos retos no Webflow,
-   ganham um raio pequeno pra acompanhar o resto do site. */
+   ganham um raio pequeno pra acompanhar o resto do site. O dropdown também
+   ficava colado na borda direita da tela (float:right sem margem) — margem
+   lateral pra não tocar as bordas do viewport. */
 .menu-button.w-nav-button { border-radius: var(--sd-radius-sm); }
-.nav-menu.w-nav-menu { border-radius: var(--sd-radius); }
+.nav-menu.w-nav-menu {
+  border-radius: var(--sd-radius);
+  margin-left: 16px;
+  margin-right: 16px;
+}
 
 /* Header (home): troca de cor ao rolar a página. Substitui a interpolação
    contínua que o Webflow IX2 fazia via JS (escrevia background-color no
@@ -159,15 +165,31 @@
 .feature-tab-link,
 .hiw-image-wrapper { overflow: hidden; }
 
-/* barra de progresso da troca automática das abas de cases (site-overrides.js) */
+/* Barra de progresso da troca automática das abas de cases
+   (site-overrides.js). O ::after é a trilha (largura inteira, opacidade
+   baixa) — sem ela, o preenchimento sozinho quase não aparece contra o
+   fundo da aba. A barra de preenchimento fica por cima (z-index) e em
+   opacidade cheia, pra marcar bem quanto falta pra trocar. */
+.feature-tab-link::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background-color: currentColor;
+  opacity: .16;
+}
 .tab-progress-bar {
   position: absolute;
+  z-index: 2;
   left: 0;
   bottom: 0;
   width: 0%;
-  height: 3px;
+  height: 4px;
   background-color: currentColor;
-  opacity: .55;
+  opacity: 1;
 }
 
 /* ============================================================================

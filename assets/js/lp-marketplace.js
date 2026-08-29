@@ -241,15 +241,16 @@
   }
 
   /* ------------------------------------------------- 8. evita "viúva" -- */
-  // Parágrafo que termina com uma palavra sozinha na última linha (ex: "O
+  // Parágrafo (ou título) que termina com uma palavra sozinha na última
   // resto é com\na gente." -> "a gente." isolado). Troca o ÚLTIMO espaço do
   // texto por um espaço inquebrável, colando as duas últimas palavras — elas
   // sempre quebram juntas ou ficam juntas na linha de cima, nunca uma
   // sozinha. Não depende da largura da tela (funciona em qualquer viewport,
   // sem precisar recalcular no resize).
-  // Só mexe em parágrafos sem marcação interna (sem filhos): reescrever
-  // textContent de um <p> com um <a>/<b> dentro apagaria essa marcação.
-  Array.prototype.forEach.call(doc.querySelectorAll("main p"), function (p) {
+  // Só mexe em elementos sem marcação interna (sem filhos): reescrever
+  // textContent de algo com um <a>/<b>/<span> dentro apagaria essa marcação
+  // (é assim que o <h1> do hero, com um <span class="lp-em">, fica de fora).
+  Array.prototype.forEach.call(doc.querySelectorAll("main p, main h1, main h2, main h3, main h4"), function (p) {
     if (p.children.length) return;
     var text = p.textContent;
     var lastSpace = text.lastIndexOf(" ");

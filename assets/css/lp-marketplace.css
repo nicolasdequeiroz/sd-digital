@@ -1086,10 +1086,9 @@ html { scroll-behavior: smooth; }
   .lp-cross-card:hover::before { transform: scaleX(1); }
   .lp-cross-card:hover .lp-cross-logo { border-color: var(--mk); background-color: var(--mk-soft); }
   .lp-cross-card:hover .lp-cross-arrow {
-    color: #fff;
-    background-color: var(--mk);
-    border-color: var(--mk);
-    translate: 3px 0;
+    color: var(--mk);
+    background-color: var(--mk-soft);
+    translate: 2px -2px;
   }
 }
 /* o foco por teclado precisa mostrar o mesmo destaque do hover */
@@ -1124,27 +1123,29 @@ html { scroll-behavior: smooth; }
 }
 .lp-cross-sub { color: var(--lp-muted); display: block; margin-top: 6px; font-size: 14px; line-height: 1.4; }
 .lp-cross-logo { transition: border-color .3s var(--lp-ease), background-color .3s var(--lp-ease); }
-/* a seta vira um alvo circular: lê melhor como "isto leva a algum lugar" do
-   que um ícone solto, e ganha um estado de hover próprio */
+/* Um círculo solto boiando embaixo do texto (fora do fluxo de leitura, sem
+   nada ao lado) lia como um botão à toa, meio deslocado do resto do card.
+   Vira um indicador de canto — o idioma visual comum pra "o card inteiro é
+   um link": pequeno, sem moldura em repouso, só ganha o círculo de destaque
+   no hover (junto com a régua no topo e a logo). */
 .lp-cross-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
   color: var(--lp-muted);
-  background-color: var(--lp-bg);
-  border: 1px solid var(--lp-line);
+  background-color: transparent;
   border-radius: 999px;
   justify-content: center;
   align-items: center;
-  width: 34px;
-  height: 34px;
-  flex: none;
+  width: 30px;
+  height: 30px;
   transition:
     color .3s var(--lp-ease),
     background-color .3s var(--lp-ease),
-    border-color .3s var(--lp-ease),
     translate .3s var(--lp-ease);
   display: flex;
 }
 .lp-cross-arrow svg { width: 16px; height: 16px; }
-.lp-cross-arrow svg { width: 100%; height: 100%; }
 
 .lp-footer-hook {
   border-top: 1px solid var(--lp-line);

@@ -11,15 +11,27 @@
 /* Copyright do rodapé: menor em todas as páginas (era 14px/.875rem). */
 .footer .text-14._60 { font-size: 12px; }
 
-/* Botão do menu mobile e o dropdown que ele abre: cantos retos no Webflow,
-   ganham um raio pequeno pra acompanhar o resto do site. O dropdown também
-   ficava colado na borda direita da tela (float:right sem margem) — margem
-   lateral pra não tocar as bordas do viewport. */
-.menu-button.w-nav-button { border-radius: var(--sd-radius-sm); }
+/* O menu do Webflow é hamburguer em qualquer largura (data-collapse="all"
+   no nav), mas o CSS original só dava fundo sólido e padding pro dropdown
+   dentro de @media (max-width:479px) — acima disso ele abre transparente,
+   sem cartão nenhum por trás (o raio ficava sem efeito visível: não dá pra
+   ver canto arredondado num fundo invisível). Repete esses valores fora da
+   media query, pra ficar igual em qualquer tamanho de tela. O dropdown
+   também ficava colado na borda direita quando aberto (sem margem) —
+   margem lateral pra não tocar as bordas do viewport. */
+.menu-button.w-nav-button {
+  border-radius: var(--sd-radius-sm);
+  border: 1px solid transparent;
+  padding: 12px;
+}
+.menu-button.w-nav-button.w--open { border-color: hsla(0, 0%, 100%, .6); }
 .nav-menu.w-nav-menu {
+  background-color: #1e1e1e;
   border-radius: var(--sd-radius);
   margin-left: 16px;
   margin-right: 16px;
+  padding: 16px 6px;
+  overflow: hidden;
 }
 
 /* Header (home): troca de cor ao rolar a página. Substitui a interpolação

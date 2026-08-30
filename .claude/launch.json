@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "sd-digital",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8788", "--directory", "."],
-      "port": 8788
+      "autoPort": true,
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "exec python3 -m http.server \"$PORT\" --directory ."]
     }
   ]
 }

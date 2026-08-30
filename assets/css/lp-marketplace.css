@@ -1268,7 +1268,14 @@ html { scroll-behavior: smooth; }
        .lp-steps — a sequência numerada de 4 passos comunica "são só 4";
          escondê-la atrás de um gesto enfraquece justamente esse recado.
      O card seguinte fica parcialmente visível (85% de largura): é o que
-     sinaliza ao visitante que há mais conteúdo para o lado. */
+     sinaliza ao visitante que há mais conteúdo para o lado.
+
+     O trilho sangra até as bordas da tela (full bleed): margin negativa
+     `50% - 50vw` cancela exatamente o gutter de 5% da .lp-section (a seção
+     já ocupa 100vw, então isso encosta nas bordas sem estourar o
+     overflow:hidden dela). O padding/scroll-padding de 5vw recoloca o
+     primeiro card alinhado ao texto da seção — o card só desliza para dentro
+     da faixa sangrada. */
   .lp-swipe {
     display: flex;
     gap: 16px;
@@ -1276,12 +1283,25 @@ html { scroll-behavior: smooth; }
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    width: auto;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: 5vw;
     padding-bottom: 4px;
+    scroll-padding-inline: 5vw;
   }
   .lp-swipe::-webkit-scrollbar { display: none; }
   .lp-swipe > * {
     flex: 0 0 85%;
     scroll-snap-align: start;
+  }
+
+  /* Marquees (palavras do hero e logos de clientes) acompanham: a faixa em
+     movimento vai de ponta a ponta, com o fade das máscaras nas bordas da
+     tela. */
+  .lp-ticker,
+  .lp-clients {
+    width: auto;
+    margin-inline: calc(50% - 50vw);
   }
 }
 

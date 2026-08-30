@@ -213,6 +213,65 @@
 .tab-detail-wrapper { margin-bottom: 20px; }
 .div-block-4 { gap: 16px; }
 
+/* No ≤479px a lista de logos das abas de cases é uma grade de 2 colunas
+   (.feature-tab-menu{flex-flow:wrap} + .feature-tab-link{width:50%} no CSS do
+   Webflow). Só que o gap:8px que adicionamos ao menu logo acima faz
+   50% + 50% + 8px estourar a linha: cada logo quebrava sozinho, ocupando só
+   metade da largura e encostado à esquerda — com a barra de progresso
+   (::after, left/right:8px) e o fundo do item ativo cortados no meio da tela.
+   calc(50% - 4px) desconta a metade do gap de cada item, então os dois cabem
+   na mesma linha e a grade de 2 colunas volta a fechar certinho. O .w--current
+   precisa do mesmo valor porque a regra do Webflow pra aba ativa também fixa
+   width:50% com especificidade maior. */
+@media screen and (max-width: 479px) {
+  .feature-tab-link,
+  .feature-tab-link.w--current { width: calc(50% - 4px); }
+}
+
+/* ============================================================================
+   #solucoes: CTA mobile solto (só ≤479px)
+   ---------------------------------------------------------------------------
+   No mobile a seção troca o botão do topo (.bttn01.b.hide-mob, ao lado do
+   título) por um CTA próprio embrulhado em .hide-desk, que no HTML vem
+   DEPOIS do slider "Veja como podemos te ajudar". O slider (.hiw-slider) tem
+   a altura do slide mais alto (~704px) e os slides visíveis são mais baixos
+   (~600px), então sobra um vão morto embaixo dele — e o botão aparecia
+   flutuando nesse vazio, sem relação com o conteúdo acima ou abaixo.
+   Reordena via flex pra o CTA seguir direto o parágrafo de introdução
+   (encostado em conteúdo real), com o slider logo abaixo dele.
+   ========================================================================= */
+@media screen and (max-width: 479px) {
+  #solucoes .page-padding { display: flex; flex-direction: column; }
+  #solucoes .hide-desk { order: 1; margin-bottom: 42px; }
+  #solucoes .hide-desk .spacing-top-32 { margin-top: 0; }
+  #solucoes .hiw-slider { order: 2; }
+}
+
+/* ============================================================================
+   #solucoes ↔ #novos-projetos: vão gigante entre as seções no mobile (≤479px)
+   ---------------------------------------------------------------------------
+   Só essas duas seções (vizinhas) usam .section-regular. O espaço entre elas
+   passava de 230px: 72px de padding em cada + ~90px de folga morta que o
+   slider deixava embaixo — a .hiw-slider assume a altura do slide mais alto
+   (~692px) e os slides visíveis têm ~600px, então sobrava um vazio dentro do
+   slider, abaixo do card.
+   - Encolhe o padding vertical das duas seções e zera quase todo o
+     padding-bottom de #solucoes (o slider já dá peso visual embaixo).
+   - Faz o slider caber no slide ativo: os inativos (aria-hidden="true") só
+     inflavam a linha do w-slider-mask; colapsando a altura deles, o mask e o
+     .hiw-slider (height:auto) passam a seguir só o slide visível. Se o JS do
+     slider não rodar, nenhum slide tem aria-hidden e cai no comportamento
+     antigo (mostra o mais alto) — degrada sem quebrar.
+   ========================================================================= */
+@media screen and (max-width: 479px) {
+  .section-regular { padding-top: 48px; padding-bottom: 48px; }
+  #solucoes { padding-bottom: 24px; }
+  #solucoes .hiw-slider,
+  #solucoes .w-slider-mask { height: auto; }
+  #solucoes .hiw-slide { height: auto; }
+  #solucoes .hiw-slide[aria-hidden="true"] { height: 0; overflow: hidden; }
+}
+
 /* ============================================================================
    Campos de formulário (home, briefing, TOPFIT e as LPs)
    ---------------------------------------------------------------------------

@@ -41,7 +41,7 @@ const ROBOTS_META = PREVIEW ? "noindex, nofollow" : "index, follow";
    visitou a LP continua com o CSS/JS antigo depois de um deploy.
 
    >>> Subir o número ao editar lp-marketplace.css / .js / sd-forms.js. */
-const CSS_V = 36;
+const CSS_V = 37;
 const JS_V = 6;
 const FORMS_V = 1;
 

@@ -1704,7 +1704,12 @@ html { scroll-behavior: smooth; }
     width: auto;
     margin-inline: calc(50% - 50vw);
     padding-inline: 5vw;
-    padding-bottom: 4px;
+    /* overflow-x:auto faz o eixo Y virar auto também (regra do CSS quando só
+       um eixo é "visible"), então a sombra dos cards (--lp-shadow desce até
+       uns 40px) precisa desse respiro pra não ser cortada rente à borda do
+       trilho. */
+    padding-block: 8px 48px;
+    margin-bottom: -44px;
     scroll-padding-inline: 5vw;
   }
   .lp-swipe::-webkit-scrollbar { display: none; }

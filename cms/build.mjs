@@ -32,7 +32,7 @@ const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
    >>> AO LIGAR O DOMÍNIO PRÓPRIO: mude para `false` e rode `node cms/build.mjs`
    de novo. É o mesmo cutover documentado no robots.txt e no README, só que
    aquele cobre o site inteiro por fora e este é o <meta> de cada LP. */
-const PREVIEW = true;
+const PREVIEW = false;
 const ROBOTS_META = PREVIEW ? "noindex, nofollow" : "index, follow";
 
 /* --------------------------------------------------- versão dos assets ---- */

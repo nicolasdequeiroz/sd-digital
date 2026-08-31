@@ -82,7 +82,7 @@ function page(ctx) {
 <meta property="og:url" content="${C.esc(url)}"/>
 <meta property="og:title" content="${C.esc(p.seo.title)}"/>
 <meta property="og:description" content="${C.esc(p.seo.description)}"/>
-${p.seo.ogImage ? `<meta property="og:image" content="${C.esc(g.brand.site + p.seo.ogImage)}"/>\n` : ""}<meta name="twitter:card" content="summary_large_image"/>
+${p.seo.ogImage ? `<meta property="og:image" content="${C.esc(g.brand.site + p.seo.ogImage)}"/>\n` : ""}<meta name="twitter:card" content="${p.seo.ogImage ? "summary_large_image" : "summary"}"/>
 <meta name="twitter:title" content="${C.esc(p.seo.title)}"/>
 <meta name="twitter:description" content="${C.esc(p.seo.description)}"/>
 ${p.seo.ogImage ? `<meta name="twitter:image" content="${C.esc(g.brand.site + p.seo.ogImage)}"/>\n` : ""}

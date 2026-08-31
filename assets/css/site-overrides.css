@@ -418,6 +418,23 @@ textarea.text-field { min-height: 120px; padding-top: 12px; resize: vertical; }
 .sd-form-status.is-ok   { display: block; color: #075e35; background-color: #d8f3e4; }
 .sd-form-status.is-fail { display: block; color: #8a1c1c; background-color: #fbe1e1; }
 
-/* Aviso de LGPD abaixo do botão nos formulários fora das LPs (nas LPs, o
-   .lp-form-legal já cobre isso com o tema claro da página). */
-.sd-form-legal { margin-top: 14px; font-size: 13px; line-height: 1.5; opacity: .6; }
+/* Aviso de LGPD ao lado do botão ENVIAR (Home e Case TOPFIT — únicas duas
+   páginas que usam .right-align-div/.sd-form-legal). O Webflow deixa
+   .right-align-div só right-aligned em linha única; aqui o aviso mora dentro
+   dela, ao lado do botão, com espaço generoso entre os dois. Em telas
+   estreitas, quebra pro aviso ficar acima do botão em vez de espremer os
+   dois numa linha só. */
+.right-align-div {
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 32px;
+}
+.right-align-div .sd-form-legal { flex: 1 1 240px; margin: 0; font-size: 13px; line-height: 1.5; opacity: .6; }
+.right-align-div .submit-button { flex: 0 0 auto; }
+
+/* Setas do carrossel de #solucoes: o Webflow zera o border-radius delas na
+   versão mobile/tablet (.hiw-arrow.hide-tablet), deixando as pontas retas
+   só nessa variante — inconsistente com a versão desktop, que é arredondada
+   (.hiw-arrow tem border-radius:8px). */
+.hiw-arrow.hide-tablet { border-radius: 8px; }

@@ -102,11 +102,6 @@ const STAR_ICON = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentC
 // seta de tendência, usada nos números dos paineis (mock)
 const TRENDING_UP_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>`;
 
-/** Aviso exibido enquanto os painéis são ilustração e não print de conta real.
- *  É gerado automaticamente e some sozinho quando todo `image` for preenchido. */
-const MOCK_NOTICE =
-  "Ilustração de layout: os painéis reais das contas que operamos entram aqui. Números meramente ilustrativos.";
-
 /* -------------------------------------------------- blocos compartilhados */
 
 /** Legenda de seção: réplica de .divider-caption + .dot-orange do TOPFIT. */
@@ -151,53 +146,95 @@ function panelMock(mock, badge) {
 }
 
 /* ============================================================== NAV ===== */
-/* réplica de .navigation-01 do TOPFIT, com CTA fixo (LP precisa converter) */
+/* Mesmo header da home (.nav.w-nav): logo + hambúrguer -> dropdown de links.
+   Os links apontam para as seções DESTA LP (#topo, #servicos, #entregaveis,
+   #resultados, #faq, #form) — o menu é sobre o conteúdo da página, não o do
+   site. A classe .is-menu-open e o estado "rolado" são cuidados por
+   assets/js/lp-marketplace.js (o runtime do Webflow não roda aqui). */
 
-export function nav(ctx) {
-  const { page, globals } = ctx;
+export function nav() {
+  const backIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>';
+
   const links = [
+    { label: "Início", href: "#topo" },
     { label: "Serviços", href: "#servicos" },
     { label: "O que fazemos", href: "#entregaveis" },
     { label: "Resultados", href: "#resultados" },
-    { label: "Dúvidas", href: "#faq" }
+    { label: "Dúvidas", href: "#faq" },
+    { label: "Contato", href: "#form", cls: "nav-link_2" },
+    // única saída da LP: separada dos âncoras por uma divisória no CSS
+    { label: "Voltar para a home", href: "/", cls: "nav-link lp-nav-home", icon: backIcon }
   ];
-  const items = links.map((l) => `<a href="${l.href}" class="lp-nav-link">${esc(l.label)}</a>`).join("");
+  const items = links
+    .map(
+      (l) =>
+        `<a href="${l.href}" class="${l.cls || "nav-link"} w-nav-link">${l.icon || ""}${esc(l.label)}</a>`
+    )
+    .join("");
 
-  return `<header class="lp-nav">
-    <div class="lp-nav-inner">
-      <nav class="lp-nav-links">${items}</nav>
-      <a href="/" class="lp-nav-brand" aria-label="SD Digital: página inicial">
-        <div class="navigation-logo">${SD_LOGO}</div>
-      </a>
-      <div class="lp-nav-right">
-        <a href="${esc(wa(globals.contact.whatsappPhone, page.whatsapp.nav))}" target="_blank" rel="noopener" data-wa-position="nav" class="button-primary-large">Fale com um especialista</a>
-        <button type="button" class="lp-nav-toggle" data-lp-toggle aria-expanded="false" aria-label="Abrir menu">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M12 12V13.3333H4V12H12ZM14 7.33334V8.66667H2V7.33334H14ZM12 2.66667V4.00001H4V2.66667H12Z" fill="currentColor"/></svg>
-        </button>
+  return `<div role="banner" class="nav w-nav" data-lp-nav>
+    <div class="container rel_2 w-container">
+      <div class="page-padding">
+        <div class="nav-wrapper">
+          <div class="div-block-3"><a href="/" class="logo w-nav-brand" aria-label="SD Digital: página inicial"><span class="lp-nav-logo" aria-hidden="true"></span></a></div>
+          <nav role="navigation" class="nav-menu w-nav-menu"><div class="container"><div class="page-padding menupdd"><div class="menu"><div class="links-wrapper">${items}</div></div></div></div></nav>
+          <div class="menu-button w-nav-button" role="button" tabindex="0" aria-label="Abrir menu" aria-expanded="false"><div class="w-icon-nav-menu"></div></div>
+        </div>
       </div>
     </div>
-    <div class="lp-drawer" data-lp-drawer>${items}</div>
-  </header>`;
+  </div>`;
 }
 
 /* ============================================================= HERO ===== */
-/* réplica do header do TOPFIT: eyebrow + logo, h1, sub, CTAs, shots, ticker */
+/* Layout do Beam Header 01 (flowbase.co/preview/beam-header-01): a página é
+   cinza e o hero é um cartão BRANCO arredondado; dentro, a coluna de texto
+   centrada (eyebrow, h1, sub, CTAs, selos) e um segundo cartão CINZA com a
+   prova social — legenda + marquee de logos de clientes.
+   Os três painéis (heroShots) NÃO ficam mais aqui: são renderizados em
+   #resultados, junto dos outros painéis de conta. */
+
+/* Cortina antes x depois: o print do painel entra no rodapé do cartão cinza,
+   embutido nos 8px que sobram das bordas — a mesma vaga que o Beam dá ao
+   dashboard (sem o fade branco que ele põe por cima).
+   São dois prints do MESMO painel, empilhados; o de cima ("depois") é
+   recortado por clip-path a partir da posição da cortina. Quem move é um
+   <input type="range"> transparente por cima (arrasto, toque e teclado de
+   graça); a linha e a alça visíveis são decorativas.
+   Os rótulos ficam FORA do print, numa linha discreta abaixo dele — dentro
+   da imagem eles cobriam justamente os números que o visitante precisa ler.
+   No celular a cortina não cabe: lá o print entra grande (sangrando para a
+   direita) e a troca vira o botão "avançar alguns meses", que espera um
+   instante, faz o crossfade e solta uma explosão de emojis dentro do bloco
+   (ver lp-marketplace.js e o bloco ≤767px do lp-marketplace.css). */
+function compare() {
+  const grip =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6-6 6 6 6"/><path d="m15 6 6 6-6 6"/></svg>';
+
+  return `<div class="lp-hero-dash">
+          <div class="lp-hero-shot">
+            <div class="lp-compare" data-lp-compare>
+              <img src="/assets/images/lp-dashboard-antes.png" width="2144" height="1020" loading="lazy" decoding="async" alt="Painel do Seller Centre antes: R$ 96.482,15 em vendas no mês, 2,10% abaixo do mês anterior, com a curva de vendas em queda."/>
+              <div class="lp-compare-after">
+                <img src="/assets/images/lp-dashboard-depois.png" width="2144" height="1020" loading="lazy" decoding="async" alt="O mesmo painel depois: R$ 660.318,40 em vendas no mês, 58,42% acima do mês anterior, com a curva de vendas em alta."/>
+              </div>
+              <input class="lp-compare-range" type="range" min="0" max="100" value="50" step="0.1" aria-label="Comparar o painel antes e depois: arraste para revelar"/>
+              <div class="lp-compare-line" aria-hidden="true"><span class="lp-compare-grip">${grip}</span></div>
+              <div class="lp-compare-fx" aria-hidden="true"></div>
+            </div>
+          </div>
+          <p class="lp-compare-legend">
+            <span class="lp-compare-legend-item">Antes</span>
+            <span class="lp-compare-legend-hint">Arraste para comparar</span>
+            <span class="lp-compare-legend-item is-after">Depois</span>
+          </p>
+          <button type="button" class="lp-compare-advance" data-lp-advance aria-pressed="false" data-label-forward="Avançar alguns meses" data-label-back="Ver como estava antes"><span class="lp-compare-advance-spin" aria-hidden="true"></span><span class="lp-compare-advance-label">Avançar alguns meses</span></button>
+        </div>`;
+}
 
 export function hero(ctx) {
   const { page, globals } = ctx;
   const h = page.hero;
-
-  const shots = h.shots
-    .map((shot, i) => {
-      const pos = ["is-left", "is-center", "is-right"][i] || "is-center";
-      return shot.image
-        ? `<div class="lp-shot ${pos}">${shot.badge ? `<div class="lp-badge is-mk">${esc(shot.badge)}</div>` : ""}<img src="${esc(shot.image)}" alt="${esc(shot.badge || "")}" loading="eager" decoding="async"/></div>`
-        : `<div class="lp-shot ${pos}">${panelMock(shot.mock, shot.badge)}</div>`;
-    })
-    .join("");
-
-  // Aviso automático: só aparece enquanto algum painel ainda é ilustração.
-  const heroHasMock = h.shots.some((s) => !s.image);
 
   const trust = h.trust
     .map(
@@ -206,35 +243,51 @@ export function hero(ctx) {
     )
     .join("");
 
-  // duplicado para o loop do marquee ficar contínuo
-  const tickerItems = [...h.ticker, ...h.ticker]
-    .map((t) => `<div class="roller-text">${esc(t)}</div>`)
-    .join("");
-
   return `<section class="lp-hero" id="topo">
-    <div class="lp-hero-inner">
-      <div class="lp-eyebrow">
-        <div class="lp-mk-logo"><img src="${esc(page.marketplace.logo)}" alt="${esc(page.marketplace.logoAlt)}" width="120" height="40"/></div>
-        <p class="h6-heading-2">${esc(h.eyebrow)}</p>
+    <div class="lp-hero-main">
+      <div class="lp-hero-inner">
+        <div class="lp-eyebrow">
+          <div class="lp-mk-logo"><img src="${esc(page.marketplace.logo)}" alt="${esc(page.marketplace.logoAlt)}" width="120" height="40"/></div>
+          <p class="h6-heading-2">${esc(h.eyebrow)}</p>
+        </div>
+        <h1>${h.h1}</h1>
+        <p class="lp-hero-sub">${esc(h.sub)}</p>
+        <div class="lp-actions">
+          <a ${ctaAttrs(h.ctaPrimary, ctx, "hero")} class="lp-btn-mk">${ctaLabel(h.ctaPrimary)}</a>
+          <a ${ctaAttrs(h.ctaSecondary, ctx, "hero")} class="lp-btn-ghost">${h.ctaSecondary.icon === "whatsapp" ? waIcon : ""}${ctaLabel(h.ctaSecondary)}</a>
+        </div>
+        <div class="lp-trust">${trust}</div>
       </div>
-      <h1>${h.h1}</h1>
-      <p class="lp-hero-sub">${esc(h.sub)}</p>
-      <div class="lp-actions">
-        <a ${ctaAttrs(h.ctaPrimary, ctx, "hero")} class="lp-btn-mk">${ctaLabel(h.ctaPrimary)}</a>
-        <a ${ctaAttrs(h.ctaSecondary, ctx, "hero")} class="lp-btn-ghost">${h.ctaSecondary.icon === "whatsapp" ? waIcon : ""}${ctaLabel(h.ctaSecondary)}</a>
+
+      <div class="lp-hero-card lp-reveal">
+        <div class="lp-hero-logos">
+          <p class="lp-hero-card-title">${esc(globals.clients.title)}</p>
+          <div class="lp-clients lp-reveal" aria-label="${esc(globals.clients.title)}">
+            <div class="lp-clients-track">${CLIENT_LOGOS}${CLIENT_LOGOS}</div>
+          </div>
+        </div>
+        ${compare()}
       </div>
-      <div class="lp-trust">${trust}</div>
-    </div>
-
-    <div class="lp-hero-visual lp-wide lp-reveal">
-      <div class="lp-shots">${shots}</div>
-      ${heroHasMock ? `<p class="lp-disclaimer">${MOCK_NOTICE}</p>` : ""}
-    </div>
-
-    <div class="lp-ticker" aria-hidden="true">
-      <div class="lp-ticker-track">${tickerItems}</div>
     </div>
   </section>`;
+}
+
+/* Os três painéis que ficavam no hero. Renderizados por proof(), no fim de
+   #resultados — mesmo tipo de conteúdo dos painéis de conta. */
+export function heroShots(ctx) {
+  const h = ctx.page.hero;
+  const shots = h.shots
+    .map((shot, i) => {
+      const pos = ["is-left", "is-center", "is-right"][i] || "is-center";
+      return shot.image
+        ? `<div class="lp-shot ${pos}">${shot.badge ? `<div class="lp-badge is-mk">${esc(shot.badge)}</div>` : ""}<img src="${esc(shot.image)}" alt="${esc(shot.badge || "")}" loading="lazy" decoding="async"/></div>`
+        : `<div class="lp-shot ${pos}">${panelMock(shot.mock, shot.badge)}</div>`;
+    })
+    .join("");
+
+  return `<div class="lp-hero-visual lp-wide lp-reveal">
+      <div class="lp-shots lp-swipe" tabindex="0">${shots}</div>
+    </div>`;
 }
 
 /* ============================================================= KPIs ===== */
@@ -265,6 +318,12 @@ export function kpis(ctx) {
 export function intro(ctx) {
   const i = ctx.page.intro;
   const paras = i.paragraphs.map((p) => `<p class="paragraph">${esc(p)}</p>`).join("");
+  // duplicado para o loop do marquee ficar contínuo. A faixa de frentes de
+  // trabalho fecha esta seção: entra logo depois do diagnóstico, como a
+  // resposta a ele — e por isso fica FORA do .lp-mid, ocupando a largura toda.
+  const tickerItems = [...ctx.page.hero.ticker, ...ctx.page.hero.ticker]
+    .map((t) => `<div class="roller-text">${esc(t)}</div>`)
+    .join("");
   return `<section class="lp-section is-white" id="diagnostico">
     <div class="lp-mid">
       <div class="divider-wrapper lp-reveal">
@@ -273,6 +332,9 @@ export function intro(ctx) {
       </div>
       <h2 class="h5-heading-2 lp-reveal" style="margin-top:24px">${esc(i.title)}</h2>
       <div class="column-regular-2 lp-reveal" style="margin-top:24px">${paras}</div>
+    </div>
+    <div class="lp-ticker" aria-hidden="true">
+      <div class="lp-ticker-track">${tickerItems}</div>
     </div>
   </section>`;
 }
@@ -379,14 +441,11 @@ export function proof(ctx) {
     )
     .join("");
 
-  // Aviso automático: some sozinho quando todos os prints reais entrarem.
-  const hasMock = p.panels.some((panel) => !panel.image);
-
   return `<section class="lp-section is-white" id="resultados">
     <div class="lp-wide">
       ${sectionHead({ caption: p.caption, title: esc(p.title), subtitle: p.subtitle })}
       <div class="lp-panels lp-swipe" tabindex="0">${panels}</div>
-      ${hasMock ? `<p class="lp-disclaimer">${MOCK_NOTICE}</p>` : ""}
+      ${heroShots(ctx)}
     </div>
   </section>`;
 }
@@ -410,17 +469,12 @@ export function cases(ctx) {
     )
     .join("");
 
+  // A marquee de logos de clientes vive no cartão do hero (ver hero()); aqui
+  // ficam só os cases.
   return `<section class="lp-section">
     <div class="lp-wide">
       ${sectionHead({ caption: c.caption, title: esc(c.title), subtitle: c.subtitle })}
       <div class="lp-grid-2 lp-swipe" tabindex="0">${items}</div>
-      <div class="lp-head is-center lp-reveal" style="margin:72px auto 32px">
-        ${caption(ctx.globals.clients.caption)}
-        <h2 style="font-size:28px">${esc(ctx.globals.clients.title)}</h2>
-      </div>
-      <div class="lp-clients lp-reveal" aria-label="${esc(ctx.globals.clients.title)}">
-        <div class="lp-clients-track">${CLIENT_LOGOS}${CLIENT_LOGOS}</div>
-      </div>
     </div>
   </section>`;
 }

@@ -33,7 +33,7 @@
   "hero": {
     "eyebrow": "Especialistas em Shopee",
     "h1": "Sua loja <span class=\"lp-em\">na Shopee</span> vendendo todo dia, sem você virar operador de marketplace.",
-    "sub": "A SD Digital assume (ou ensina você a assumir) a operação inteira: anúncios, títulos com SEO, imagens, Shopee Ads, preço, reputação e integração de ERP. Você cuida do produto e da logística. O resto é com a gente.",
+    "sub": "Assumimos (ou ensinamos você a assumir) a operação inteira: anúncios, SEO, imagens, Shopee Ads, preço, reputação e ERP. Você cuida do produto e da logística.",
     "ctaPrimary": { "label": "Quero minha análise gratuita",
       "labelShort": "Análise gratuita", "href": "#form" },
     "ctaSecondary": { "label": "Falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" },
@@ -84,23 +84,23 @@
     "caption": "Por que sua loja trava",
     "title": "Vender na Shopee é fácil. Vender com margem, todo mês, é outra história.",
     "paragraphs": [
-      "A maioria dos sellers que chega até nós tem o mesmo diagnóstico: catálogo grande, anúncio mal indexado, imagem fora do padrão, Shopee Ads queimando verba em palavra-chave errada e preço definido no achismo.",
-      "O resultado é sempre parecido: a loja vende, mas depende de promoção, o ROAS não fecha e ninguém sabe qual produto realmente dá lucro.",
-      "A SD Digital entra exatamente aí: organiza o catálogo, corrige a indexação, reconstrói os anúncios com SEO, estrutura as campanhas e passa a acompanhar os números todo dia. Sem mágica: é o básico, extraordinariamente bem feito."
+      "A maioria dos sellers chega com o mesmo diagnóstico: anúncio mal indexado, imagem fora do padrão, Shopee Ads queimando verba em palavra-chave errada e preço no achismo.",
+      "O resultado é sempre o mesmo: a loja vende, mas depende de promoção e ninguém sabe qual produto dá lucro.",
+      "É aí que entramos: organizamos o catálogo, corrigimos a indexação, reconstruímos os anúncios com SEO e acompanhamos os números todo dia. Sem mágica: é o básico, extraordinariamente bem feito."
     ]
   },
 
   "services": {
     "caption": "Dois jeitos de trabalhar com a gente",
     "title": "Consultoria ou assessoria: você escolhe quem executa.",
-    "subtitle": "O método é o mesmo. O que muda é quem coloca a mão na operação: sua equipe, com a gente ensinando, ou a nossa equipe, fazendo tudo.",
+    "subtitle": "O método é o mesmo. Muda quem executa: sua equipe, com a gente ensinando, ou a nossa, fazendo tudo.",
     "items": [
       {
         "featured": false,
         "tag": "Consultoria / Mentoria",
         "tagStyle": "default",
         "name": "A gente ensina. Sua equipe executa.",
-        "description": "Reuniões semanais ou quinzenais (a periodicidade é sua escolha) com você ou com quem você designar. Saímos de cada encontro com um plano de ação claro, e acompanhamos o que foi executado no encontro seguinte.",
+        "description": "Reuniões semanais ou quinzenais, com você ou com quem você designar. Cada encontro termina com um plano de ação claro, revisado no seguinte.",
         "items": [
           "Diagnóstico completo da loja na Shopee",
           "Reuniões semanais ou quinzenais, no seu ritmo",
@@ -119,7 +119,7 @@
         "tag": "Assessoria: nosso serviço premium",
         "tagStyle": "light",
         "name": "A gente faz absolutamente tudo.",
-        "description": "Nossa equipe assume a operação da sua loja na Shopee de ponta a ponta. Você não abre o Seller Centre: acompanha os resultados e cuida do que é seu: compra, estoque, embalagem e nota fiscal.",
+        "description": "Nossa equipe assume a loja de ponta a ponta. Você não abre o Seller Centre: acompanha os resultados e cuida de compra, estoque, embalagem e nota fiscal.",
         "items": [
           "Criação e otimização de todos os anúncios",
           "Títulos, descrição e ficha técnica com SEO",
@@ -140,24 +140,24 @@
   "deliverables": {
     "caption": "O que entra na assessoria",
     "title": "Tudo o que a sua loja precisa, feito pelo nosso time.",
-    "subtitle": "Cada item abaixo é executado por quem faz isso todo dia, não por um generalista dividindo atenção entre dez canais.",
+    "subtitle": "Cada item é executado por quem faz isso todo dia, não por um generalista dividindo atenção entre dez canais.",
     "items": [
-      { "icon": "megaphone", "title": "Shopee Ads do jeito certo", "text": "Campanhas de busca e descoberta separadas, lances por palavra-chave, corte de termo que só gasta e realocação de verba para o que converte." },
-      { "icon": "search", "title": "Títulos e SEO de anúncio", "text": "Título construído a partir do que o comprador realmente pesquisa, com atributos e ficha técnica completos para a Shopee entender e ranquear seu produto." },
-      { "icon": "image", "title": "Imagens e fotos de produto", "text": "Criação das imagens no padrão da plataforma: capa que ganha o clique, sequência que explica o produto e elimina a dúvida que trava a compra." },
-      { "icon": "tag", "title": "Preço, margem e promoções", "text": "Precificação considerando comissão, frete grátis e cupom. Você sabe exatamente quanto sobra em cada venda antes de entrar na campanha." },
-      { "icon": "plug", "title": "Integração de ERP", "text": "Configuramos e integramos o ERP ou hub (Bling, Omie, Ideris, Magis5, Anymarket e outros) para estoque, preço e pedido rodarem sozinhos." },
-      { "icon": "shield", "title": "Reputação e saúde da loja", "text": "Monitoramento de avaliações, tempo de resposta no chat, envio no prazo e taxa de cancelamento: os indicadores que decidem se você vira Loja Preferida." },
-      { "icon": "box", "title": "Curadoria de catálogo", "text": "Curva ABC do catálogo: o que subir, o que pausar, o que reembalar em kit e o que simplesmente não deveria estar anunciado." },
-      { "icon": "chart", "title": "Relatórios e reunião de resultados", "text": "Relatório periódico com faturamento, ROAS, ticket médio e margem, e uma reunião para decidir o próximo passo com base em número, não em opinião." },
-      { "icon": "users", "title": "Um time, não um freelancer", "text": "Você fala com quem executa: gestor de conta, especialista em ads e designer. Sem intermediário e sem ficar esperando resposta." }
+      { "icon": "megaphone", "title": "Shopee Ads do jeito certo", "text": "Busca e descoberta separadas, lance por palavra-chave e verba realocada do que só gasta para o que converte." },
+      { "icon": "search", "title": "Títulos e SEO de anúncio", "text": "Título construído a partir do que o comprador pesquisa, com ficha técnica completa para a Shopee entender e ranquear o produto." },
+      { "icon": "image", "title": "Imagens e fotos de produto", "text": "Imagens no padrão da plataforma: capa que ganha o clique e sequência que elimina a dúvida que trava a compra." },
+      { "icon": "tag", "title": "Preço, margem e promoções", "text": "Precificação com comissão, frete grátis e cupom na conta. Você sabe quanto sobra antes de entrar na campanha." },
+      { "icon": "plug", "title": "Integração de ERP", "text": "Configuramos o ERP ou hub (Bling, Omie, Ideris, Magis5, Anymarket e outros) para estoque, preço e pedido rodarem sozinhos." },
+      { "icon": "shield", "title": "Reputação e saúde da loja", "text": "Avaliações, resposta no chat, envio no prazo e cancelamento: os indicadores que decidem se você vira Loja Preferida." },
+      { "icon": "box", "title": "Curadoria de catálogo", "text": "Curva ABC do catálogo: o que subir, o que pausar, o que virar kit e o que não deveria estar anunciado." },
+      { "icon": "chart", "title": "Relatórios e reunião de resultados", "text": "Relatório periódico com faturamento, ROAS, ticket médio e margem, e reunião para decidir o próximo passo com base em número." },
+      { "icon": "users", "title": "Um time, não um freelancer", "text": "Você fala com quem executa: gestor de conta, especialista em ads e designer. Sem intermediário." }
     ]
   },
 
   "split": {
     "caption": "Divisão de responsabilidades",
     "title": "Deixa claro desde o primeiro dia quem faz o quê.",
-    "subtitle": "Essa é a principal diferença da assessoria: a operação do dia a dia sai da sua mesa por completo.",
+    "subtitle": "É a principal diferença da assessoria: o dia a dia sai da sua mesa por completo.",
     "you": {
       "title": "Você cuida de",
       "sub": "O que só faz sentido dentro da sua empresa.",
@@ -188,7 +188,7 @@
   "proof": {
     "caption": "Prova de operação",
     "title": "Painéis de contas que operamos.",
-    "subtitle": "Recortes reais de Seller Centre, com dados de identificação omitidos por acordo de confidencialidade com cada cliente.",
+    "subtitle": "Recortes reais de Seller Centre, com dados de identificação omitidos por confidencialidade.",
     "panels": [
       { "image": "", "badge": "Suplementos", "mock": { "title": "Faturamento: 12 meses", "value": "R$ 1,42 mi", "delta": "+318% no período", "caption": "Seller de suplementos, catálogo de 240 SKUs", "chart": [12, 18, 22, 20, 31, 38, 44, 51, 63, 72, 85, 98], "footLeft": { "label": "Pedidos", "value": "18.740" }, "footRight": { "label": "Ticket médio", "value": "R$ 75,80" } } },
       { "image": "", "badge": "Auto peças", "mock": { "title": "Shopee Ads: ROAS", "value": "9,1x", "delta": "+4,3x após reestruturação", "caption": "Após separar campanhas de busca e descoberta", "chart": [20, 22, 19, 28, 34, 47, 55, 68, 79], "footLeft": { "label": "Investido", "value": "R$ 14.200" }, "footRight": { "label": "Receita", "value": "R$ 129.220" } } },
@@ -198,7 +198,7 @@
 
   "band": {
     "title": "A sua concorrência na Shopee não está esperando você aprender.",
-    "text": "Peça uma análise gratuita da sua loja. Em até 1 dia útil devolvemos um diagnóstico do que está travando as suas vendas, com ou sem contrato.",
+    "text": "Em até 1 dia útil devolvemos um diagnóstico do que está travando as suas vendas. Com ou sem contrato.",
     "ctaPrimary": { "label": "Solicitar análise gratuita", "href": "#form" },
     "ctaSecondary": { "label": "Falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" }
   },
@@ -238,10 +238,10 @@
     "title": "Do primeiro contato à loja rodando: 4 passos.",
     "subtitle": "Sem proposta genérica. O escopo sai depois que olhamos a sua conta.",
     "steps": [
-      { "title": "Análise gratuita", "text": "Você preenche o formulário ou chama no WhatsApp. Olhamos a sua loja e devolvemos um diagnóstico do que está travando as vendas." },
-      { "title": "Reunião de diagnóstico", "text": "Apresentamos o diagnóstico, entendemos margem, estoque e logística, e definimos junto se o caminho é consultoria ou assessoria." },
-      { "title": "Plano e escopo", "text": "Você recebe o plano de trabalho com prioridades, prazos e responsáveis. Nada de contrato antes de você saber exatamente o que vai acontecer." },
-      { "title": "Execução e acompanhamento", "text": "A operação começa a rodar. Relatórios periódicos e reunião de resultados para ajustar a rota com base em número." }
+      { "title": "Análise gratuita", "text": "Você preenche o formulário ou chama no WhatsApp. Olhamos a loja e devolvemos um diagnóstico." },
+      { "title": "Reunião de diagnóstico", "text": "Apresentamos o diagnóstico, entendemos margem, estoque e logística e definimos juntos o caminho." },
+      { "title": "Plano e escopo", "text": "Plano de trabalho com prioridades, prazos e responsáveis. Nada de contrato antes de você saber o que vai acontecer." },
+      { "title": "Execução e acompanhamento", "text": "A operação roda com relatórios periódicos e reunião de resultados para ajustar a rota." }
     ]
   },
 
@@ -251,35 +251,35 @@
     "items": [
       {
         "q": "Qual a diferença prática entre consultoria e assessoria?",
-        "a": "Na consultoria nós ensinamos e a sua equipe executa: são reuniões semanais ou quinzenais, com plano de ação e acompanhamento. Na assessoria a nossa equipe executa tudo: anúncios, imagens, títulos com SEO, Shopee Ads, integração de ERP e gestão do dia a dia. Você só cuida de compra, estoque, embalagem, logística e nota fiscal."
+        "a": "Na consultoria nós ensinamos e a sua equipe executa, em reuniões com plano de ação e acompanhamento. Na assessoria a nossa equipe faz tudo: anúncios, imagens, SEO, Shopee Ads, ERP e gestão diária. Você cuida de compra, estoque, embalagem, logística e nota fiscal."
       },
       {
         "q": "Vocês cuidam da logística e do envio dos pedidos?",
-        "a": "Não. Logística, embalagem, postagem e emissão de nota continuam com você: é a parte que precisa estar dentro da sua empresa. Toda a operação digital do dia a dia é nossa."
+        "a": "Não. Logística, embalagem, postagem e nota fiscal continuam com você. Toda a operação digital do dia a dia é nossa."
       },
       {
         "q": "Preciso já vender na Shopee para contratar?",
-        "a": "Não. Atendemos tanto quem quer abrir a loja do zero (cadastro, catálogo, anúncios e primeiras campanhas) quanto quem já vende e quer escalar ou recuperar margem."
+        "a": "Não. Atendemos quem vai abrir do zero — cadastro, catálogo e primeiras campanhas — e quem já vende e quer escalar."
       },
       {
         "q": "Vocês trabalham com qual ERP ou hub?",
-        "a": "Trabalhamos com os principais do mercado: Bling, Omie, Tiny, Ideris, Magis5, Anymarket, entre outros. Se você ainda não tem um, ajudamos a escolher o que faz sentido para o seu volume e integramos."
+        "a": "Os principais do mercado: Bling, Omie, Tiny, Ideris, Magis5, Anymarket e outros. Se você ainda não tem, ajudamos a escolher e integramos."
       },
       {
         "q": "A verba de Shopee Ads está incluída?",
-        "a": "Não. A verba de mídia é investida direto na sua conta da Shopee e é sua. Nós fazemos a gestão: definição de verba, estrutura de campanha, lances, palavras-chave e otimização."
+        "a": "Não. A verba é investida direto na sua conta da Shopee e é sua. Nós fazemos a gestão: verba, estrutura de campanha, lances e palavras-chave."
       },
       {
         "q": "Existe fidelidade ou multa por cancelamento?",
-        "a": "Não trabalhamos com fidelidade. Trabalhamos com resultado: a relação se mantém porque faz sentido para os dois lados."
+        "a": "Sem fidelidade. A relação se mantém porque faz sentido para os dois lados."
       },
       {
         "q": "E se eu vender em mais de um marketplace?",
-        "a": "A gente atende a operação inteira. Esta página é focada em Shopee, mas também estruturamos Mercado Livre, Amazon e outros canais, além do e-commerce próprio. Fale com a gente que montamos o escopo do conjunto."
+        "a": "A gente atende a operação inteira. Esta página é focada em Shopee, mas também estruturamos Mercado Livre, Amazon e o e-commerce próprio. Fale com a gente e montamos o escopo do conjunto."
       },
       {
         "q": "Quanto tempo até aparecer resultado?",
-        "a": "Depende do estado da conta. Ajustes de título, ficha técnica e imagem costumam mexer no ranqueamento nas primeiras semanas. Reestruturação de Ads e ganho consistente de margem são um trabalho de 60 a 90 dias."
+        "a": "Depende do estado da conta. Título, ficha técnica e imagem costumam mexer no ranqueamento nas primeiras semanas. Ads e margem consistente são um trabalho de 60 a 90 dias."
       }
     ]
   },

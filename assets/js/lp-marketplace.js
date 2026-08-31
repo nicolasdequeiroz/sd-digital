@@ -21,26 +21,163 @@
   var doc = document;
   var dl = (window.dataLayer = window.dataLayer || []);
 
-  /* ------------------------------------------------------------ 1. menu -- */
-  var toggle = doc.querySelector("[data-lp-toggle]");
-  var drawer = doc.querySelector("[data-lp-drawer]");
-  if (toggle && drawer) {
-    // aria-label troca junto com aria-expanded: sem isso, leitor de tela
-    // continua anunciando "Abrir menu" com o menu já aberto.
-    var setToggleState = function (open) {
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+  /* ----------------------------------------------------- 1. header (home) --
+     O header usa a marcação da home (.nav.w-nav), mas o runtime do Webflow
+     (jQuery/w-nav) não roda aqui. Este bloco faz o que o w-nav faria: abre/
+     fecha o dropdown alternando .is-menu-open no .nav e .w--open no botão
+     (é essa classe que o site-overrides.css usa pra virar o ícone num X), e
+     mantém .nav--scrolled em dia pro realce ao descolar do topo. */
+  var nav = doc.querySelector("[data-lp-nav]");
+  if (nav) {
+    var navBtn = nav.querySelector(".menu-button");
+    var navMenu = nav.querySelector(".nav-menu");
+
+    var setNav = function (open) {
+      nav.classList.toggle("is-menu-open", open);
+      if (navBtn) {
+        navBtn.classList.toggle("w--open", open);
+        navBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        navBtn.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      }
     };
-    toggle.addEventListener("click", function () {
-      setToggleState(drawer.classList.toggle("is-open"));
+    var toggleNav = function () {
+      setNav(!nav.classList.contains("is-menu-open"));
+    };
+
+    if (navBtn) {
+      navBtn.addEventListener("click", toggleNav);
+      navBtn.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleNav();
+        }
+      });
+    }
+    if (navMenu) {
+      navMenu.addEventListener("click", function (e) {
+        if (e.target.closest("a")) setNav(false);
+      });
+    }
+    doc.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setNav(false);
     });
-    drawer.addEventListener("click", function (e) {
-      if (e.target.closest("a")) {
-        drawer.classList.remove("is-open");
-        setToggleState(false);
+    doc.addEventListener("click", function (e) {
+      if (nav.classList.contains("is-menu-open") && !e.target.closest("[data-lp-nav]")) {
+        setNav(false);
       }
     });
+
+    var navTicking = false;
+    var syncScrolled = function () {
+      // no topo a barra é transparente sobre o hero claro; assim que sai do
+      // topo ela fica sólida, senão os links passariam por cima do conteúdo
+      nav.classList.toggle("nav--scrolled", window.scrollY > 24);
+      navTicking = false;
+    };
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (navTicking) return;
+        navTicking = true;
+        requestAnimationFrame(syncScrolled);
+      },
+      { passive: true }
+    );
+    syncScrolled();
   }
+
+  /* ------------------------------------------ 1b. cortina antes x depois -- */
+  // Desktop: o <input type="range"> por cima do bloco já entrega arrasto,
+  // toque e teclado; aqui só se copia o valor dele para a custom property que
+  // o CSS usa no clip-path da imagem "depois" e na posição da linha.
+  Array.prototype.forEach.call(doc.querySelectorAll("[data-lp-compare]"), function (box) {
+    var range = box.querySelector(".lp-compare-range");
+    if (!range) return;
+    var apply = function () {
+      box.style.setProperty("--lp-compare", range.value + "%");
+    };
+    range.addEventListener("input", apply);
+    apply();
+  });
+
+  /* ------------------------------------- 1c. "avançar alguns meses" -------
+     No celular a cortina dá lugar a um botão: a imagem "antes" fica grande
+     (sangrando para a direita) e o clique avança para o "depois", com uma
+     espera curta e uma explosão de bolinhas dentro do bloco.
+     A espera existe para o gesto ter consequência visível — sem ela a troca
+     acontece antes do dedo sair do botão e ninguém percebe o que mudou. */
+  var FX_EMOJI = ["💰", "📈", "🛒", "🎉", "⭐", "💸", "📦", "🔥", "✨", "🏆"];
+  var FX_COUNT = 14;
+  var ADVANCE_MS = 900;
+  var reduceMotion = window.matchMedia
+    ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    : false;
+
+  function burst(layer) {
+    if (!layer || reduceMotion) return;
+    layer.textContent = "";
+    for (var i = 0; i < FX_COUNT; i++) {
+      var bit = doc.createElement("span");
+      bit.className = "lp-fx-bit";
+      bit.textContent = FX_EMOJI[i % FX_EMOJI.length];
+      // leque para cima: ângulo entre -170° e -10°, distância e giro variados
+      var angle = (-170 + Math.random() * 160) * (Math.PI / 180);
+      var dist = 90 + Math.random() * 130;
+      bit.style.setProperty("--lp-fx-x", Math.cos(angle) * dist + "px");
+      bit.style.setProperty("--lp-fx-y", Math.sin(angle) * dist + "px");
+      bit.style.setProperty("--lp-fx-r", (-160 + Math.random() * 320) + "deg");
+      bit.style.setProperty("--lp-fx-dur", (750 + Math.random() * 500) + "ms");
+      bit.style.setProperty("--lp-fx-delay", Math.random() * 120 + "ms");
+      layer.appendChild(bit);
+    }
+    // as bolinhas somem sozinhas no fim da animação; some com os nós também
+    window.setTimeout(function () {
+      layer.textContent = "";
+    }, 1500);
+  }
+
+  Array.prototype.forEach.call(doc.querySelectorAll("[data-lp-advance]"), function (btn) {
+    var dash = btn.closest(".lp-hero-dash");
+    var box = dash && dash.querySelector("[data-lp-compare]");
+    if (!box) return;
+
+    var label = btn.querySelector(".lp-compare-advance-label");
+    var fx = box.querySelector(".lp-compare-fx");
+    var labelForward = btn.getAttribute("data-label-forward") || "Avançar alguns meses";
+    var labelBack = btn.getAttribute("data-label-back") || "Ver como estava antes";
+    var busy = false;
+
+    btn.addEventListener("click", function () {
+      if (busy) return;
+      var goingForward = !box.classList.contains("is-after");
+
+      // voltar é imediato: não há nada a comemorar no caminho de volta
+      if (!goingForward) {
+        box.classList.remove("is-after");
+        if (label) label.textContent = labelForward;
+        btn.setAttribute("aria-pressed", "false");
+        return;
+      }
+
+      busy = true;
+      btn.disabled = true;
+      btn.classList.add("is-loading");
+      if (label) label.textContent = "Avançando…";
+
+      window.setTimeout(
+        function () {
+          box.classList.add("is-after");
+          burst(fx);
+          btn.disabled = false;
+          btn.classList.remove("is-loading");
+          if (label) label.textContent = labelBack;
+          btn.setAttribute("aria-pressed", "true");
+          busy = false;
+        },
+        reduceMotion ? 0 : ADVANCE_MS
+      );
+    });
+  });
 
   /* -------------------------------------------------------- 2. FAQ acordeão -- */
   // Marcação é botão + painel (não <details>). A altura da resposta é medida

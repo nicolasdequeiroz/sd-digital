@@ -11,30 +11,121 @@
 /* Copyright do rodapé: menor em todas as páginas (era 14px/.875rem). */
 .footer .text-14._60 { font-size: 12px; }
 
-/* Botão do menu mobile e o dropdown que ele abre: cantos retos no Webflow,
-   ganham um raio pequeno pra acompanhar o resto do site. O dropdown também
-   ficava colado na borda direita da tela (float:right sem margem) — margem
-   lateral pra não tocar as bordas do viewport. */
-.menu-button.w-nav-button { border-radius: var(--sd-radius-sm); }
-.nav-menu.w-nav-menu {
-  border-radius: var(--sd-radius);
-  margin-left: 16px;
-  margin-right: 16px;
-}
+/* ============================================================================
+   Header da home
+   ---------------------------------------------------------------------------
+   A marcação saiu do componente `w-nav` do Webflow. Motivo: aquele runtime
+   (jQuery) abria e fechava o menu escrevendo estilo inline no elemento, e o
+   IX2 ainda plantava um `opacity:0; translate3d(0,-220px,0)` no próprio
+   dropdown como "animação de entrada" — o painel nascia invisível e deslocado
+   e brigava com qualquer CSS nosso. Havia também um <style> no <head> que
+   escondia o header inteiro no mobile até o webflow.js subir.
+   Agora o header é HTML comum (mesma estrutura, mesmas classes de estilo, o
+   mesmo Lottie), aberto por uma classe `.is-menu-open` que o site-overrides.js
+   alterna — igual ao header das LPs. Nada aqui depende mais do runtime.
+   ========================================================================= */
 
-/* Header (home): troca de cor ao rolar a página. Substitui a interpolação
-   contínua que o Webflow IX2 fazia via JS (escrevia background-color no
-   style inline a cada evento de scroll — pesada, e o efeito ficava
-   inconsistente). site-overrides.js alterna a classe .nav--scrolled com um
-   listener passivo throttled por rAF; o !important abaixo garante que ela
-   vença o inline style que o IX2 ainda escreve nesse mesmo elemento (ele
-   segue cuidando só da animação de entrada do header no mobile). */
-.nav.w-nav {
+/* `z-index: 1000` vinha da classe `.w-nav`, que saiu junto com o runtime; sem
+   ele o header (que é `position: fixed`) fica atrás do conteúdo do hero.
+   O `!important` no fundo continua necessário: a interação de scroll do IX2
+   casa por classe (não por data-w-id) e segue interpolando `background-color`
+   no style inline do `.nav` — o resultado era uma barra semitransparente que
+   nunca fechava a cor. Quem manda na cor é a classe .nav--scrolled. */
+.nav {
+  z-index: 1000;
   background-color: transparent !important;
   transition: background-color .3s ease;
 }
-.nav.w-nav.nav--scrolled {
-  background-color: var(--black, #1e1e1e) !important;
+.nav.nav--scrolled { background-color: var(--black, #1e1e1e) !important; }
+
+/* o botão é um <button> de verdade (só na home): zera o chrome do navegador.
+   O seletor pega pelo elemento porque nas LPs o gatilho ainda é uma <div>. */
+button.menu-button {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-radius: var(--sd-radius-sm);
+  padding: 12px;
+  font: inherit;
+  line-height: 0;
+  display: block;
+}
+button.menu-button.w--open { background-color: var(--black, #1e1e1e); }
+
+/* Dropdown. `.container.rel_2` volta a ser estático: era ele (position:
+   relative) que ancorava o painel absoluto, e como é mais baixo que a barra o
+   `top:100%` caía dentro do header. Sem ele quem ancora é o `.nav`, que é
+   fixed — então 100% é a altura real da barra.
+   Os wrappers internos (.container centrado, .page-padding, .menu) são
+   achatados: o painel visível passa a ser exatamente o .links-wrapper. */
+.nav .container.rel_2 { position: static; }
+.nav .nav-menu { display: none; }
+.nav.is-menu-open .nav-menu {
+  display: block;
+  position: absolute;
+  inset: 100% 16px auto 16px;
+  margin-top: 8px;
+  padding: 0;
+  background-color: var(--black, #1e1e1e);
+  border-radius: var(--sd-radius);
+  box-shadow: 0 18px 40px #00000038;
+  overflow: hidden;
+}
+.nav.is-menu-open .nav-menu .container,
+.nav.is-menu-open .nav-menu .page-padding,
+.nav.is-menu-open .nav-menu .menu {
+  max-width: none;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+.nav.is-menu-open .links-wrapper {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  background: none;
+  padding: 10px;
+  display: flex;
+}
+/* alvo de toque confortável: os 8px de padding do Webflow davam 36px */
+.nav.is-menu-open .nav-link,
+.nav.is-menu-open .nav-link_2 {
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: flex;
+}
+/* "Contato" traz um border-bottom do Webflow que, com o item esticado, virava
+   uma régua branca de ponta a ponta. Encolhido ao conteúdo, volta a ser o
+   sublinhado do rótulo. */
+.nav.is-menu-open .nav-link_2 {
+  width: auto;
+  align-self: flex-end;
+}
+/* O `w--current` que o webflow.js carimba em "início" desenhava um traço
+   vertical solto ao lado do rótulo. Como todos os itens são âncoras da mesma
+   página, esse "item atual" nunca muda e não informa nada — some. */
+.nav .nav-link.w--current {
+  border-left: 0;
+  border-right: 0;
+  font-weight: inherit;
+}
+/* no desktop o painel para exatamente embaixo do hambúrguer: o botão fica
+   dentro do .container (max-width 1236px, centrado) + 16px de padding, então
+   o recuo soma essa sobra do container. `max()` segura em 16px quando a
+   janela é mais estreita que o container. */
+@media screen and (min-width: 992px) {
+  .nav.is-menu-open .nav-menu {
+    left: auto;                 /* painel compacto, do tamanho dos rótulos */
+    width: max-content;
+    right: max(16px, calc(16px + (100% - 1236px) / 2));
+  }
 }
 
 /* Logos de marketplace na home (seção #marketplace): agora linkam pra LP de

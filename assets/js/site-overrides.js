@@ -76,18 +76,55 @@
   start();
 })();
 
-// Header (home): troca de cor ao rolar. O Webflow IX2 interpolava
-// background-color continuamente via JS a cada evento de scroll, escrito
-// direto no style inline — pesado (recalcula em toda página) e o resultado
-// visual ficava inconsistente entre telas. Aqui é só um listener passivo
-// throttled por requestAnimationFrame alternando uma classe; a transição é
-// CSS (site-overrides.css cuida do !important pra vencer o inline style que
-// o IX2 continua escrevendo nesse mesmo elemento — ele segue controlando só
-// a animação de entrada do header no mobile, que não mexe nessa propriedade).
+// Header da home. A marcação saiu do componente `w-nav` do Webflow: o runtime
+// dele (jQuery) abria e fechava o menu escrevendo estilo inline, e o IX2 ainda
+// plantava `opacity:0` + translate no próprio dropdown como animação de
+// entrada — o painel nascia invisível e deslocado, brigando com o CSS.
+// Aqui o header é HTML comum e todo o comportamento é este bloco:
+//   1. abrir/fechar o dropdown (classe .is-menu-open no .nav)
+//   2. .nav--scrolled quando a página sai do topo
+// É o mesmo desenho do header das LPs (assets/js/lp-marketplace.js).
 (function () {
-  var nav = document.querySelector('.nav.w-nav');
+  var nav = document.querySelector('[data-sd-nav]');
   if (!nav) return;
 
+  var btn = nav.querySelector('.menu-button');
+  var menu = nav.querySelector('.nav-menu');
+
+  /* ------------------------------------------------------- 1. dropdown -- */
+  if (btn && menu) {
+    // aria-label acompanha o estado: sem isso o leitor de tela continua
+    // anunciando "Abrir menu" com o menu já aberto.
+    var setOpen = function (open) {
+      nav.classList.toggle('is-menu-open', open);
+      btn.classList.toggle('w--open', open); // é dela que o ícone vira "x"
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    };
+
+    btn.addEventListener('click', function () {
+      setOpen(!nav.classList.contains('is-menu-open'));
+    });
+
+    // clicar num link fecha: os itens são âncoras da própria página, então o
+    // painel ficaria aberto por cima da seção recém-rolada.
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('is-menu-open') && !e.target.closest('[data-sd-nav]')) {
+        setOpen(false);
+      }
+    });
+  }
+
+  /* --------------------------------------------- 2. barra sólida ao rolar */
+  // Listener passivo throttled por rAF; a transição de cor é CSS. O IX2 fazia
+  // isso interpolando background-color inline a cada evento de scroll.
   var SCROLLED_AT = 60; // px
   var ticking = false;
 

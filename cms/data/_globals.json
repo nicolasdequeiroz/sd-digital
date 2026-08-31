@@ -15,7 +15,8 @@
   },
 
   "form": {
-    "endpoint": "https://formspree.io/f/mojrgnra",
+    "_comment": "endpoint = FALLBACK. Cada LP tem o form próprio dela em cms/data/marketplaces/<slug>.json (chave form.endpoint); este aqui só entra em ação se uma LP nova esquecer de declarar o dela.",
+    "endpoint": "https://formspree.io/f/mvkokgok",
     "successMessage": "Recebemos seus dados! Nossa equipe entra em contato em até 1 dia útil.",
     "legal": "Ao enviar, você concorda em receber contato da SD Digital. Não compartilhamos seus dados com terceiros."
   },

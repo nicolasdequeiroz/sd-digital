@@ -11,9 +11,11 @@
      2. acordeão do FAQ (abre um por vez, com animação)
      3. reveal on scroll (.lp-reveal)
      4. contador animado dos KPIs ([data-countup])
-     5. captura de UTM/gclid -> campos hidden do formulário + links de WhatsApp
-     6. submit do formulário via fetch (Formspree) sem sair da página
-     7. eventos no dataLayer (GTM/GA4): generate_lead, whatsapp_click
+     5. carimba a campanha (UTM) nos links de WhatsApp
+     6. evento whatsapp_click no dataLayer (GTM/GA4)
+
+   A captura de UTM e o envio do formulário são iguais no site inteiro e
+   ficam em assets/js/sd-forms.js, que carrega antes deste arquivo.
    ========================================================================= */
 (function () {
   "use strict";
@@ -284,34 +286,12 @@
     }
   }
 
-  /* ------------------------------------------------- 5. UTM / atribuição -- */
-  var TRACKED = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
-  var params = new URLSearchParams(window.location.search);
-  var attribution = {};
-
-  TRACKED.forEach(function (key) {
-    var value = params.get(key);
-    if (value) {
-      attribution[key] = value;
-      try { sessionStorage.setItem("sd_" + key, value); } catch (e) { /* modo restrito */ }
-    } else {
-      try {
-        var stored = sessionStorage.getItem("sd_" + key);
-        if (stored) attribution[key] = stored;
-      } catch (e) { /* modo restrito */ }
-    }
-  });
-
-  Object.keys(attribution).forEach(function (key) {
-    var field = doc.querySelector('[name="' + key + '"]');
-    if (field) field.value = attribution[key];
-  });
-
-  var pageField = doc.querySelector('[name="pagina"]');
-  if (pageField) pageField.value = window.location.href;
-
-  // repassa a atribuição para o WhatsApp: assim o time comercial sabe de qual
-  // campanha o lead veio mesmo quando ele não preenche o formulário.
+  /* --------------------------------- 5. atribuição nos links de WhatsApp -- */
+  /* A captura de UTM/gclid e o envio do formulário vivem em sd-forms.js (são
+     iguais em todo o site). Aqui só se aproveita o resultado: repassar a
+     campanha pro WhatsApp faz o time comercial saber de onde veio o lead
+     mesmo quando ele não preenche o formulário. */
+  var attribution = window.SD_ATTRIBUTION || {};
   var waSuffix = attribution.utm_campaign
     ? "\n\n[origem: " + attribution.utm_campaign + "]"
     : "";
@@ -321,7 +301,7 @@
     });
   }
 
-  /* ------------------------------------------------------ 6+7. formulário -- */
+  /* ------------------------------------------------- 6. clique no WhatsApp -- */
   Array.prototype.forEach.call(doc.querySelectorAll('a[href*="api.whatsapp.com"]'), function (a) {
     a.addEventListener("click", function () {
       dl.push({
@@ -332,52 +312,7 @@
     });
   });
 
-  var form = doc.querySelector("[data-lp-form]");
-  if (form) {
-    var status = doc.querySelector("[data-lp-form-status]");
-    var submit = form.querySelector('[type="submit"]');
-    var submitLabel = submit ? submit.textContent : "";
-
-    form.addEventListener("submit", function (e) {
-      var endpoint = form.getAttribute("action");
-      if (!endpoint || endpoint.indexOf("http") !== 0) return; // sem endpoint: submit nativo
-
-      e.preventDefault();
-      if (submit) { submit.disabled = true; submit.textContent = "Enviando..."; }
-      if (status) status.className = "lp-form-status";
-
-      fetch(endpoint, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          form.reset();
-          if (status) {
-            status.className = "lp-form-status is-ok";
-            status.textContent = form.getAttribute("data-success-message") ||
-              "Recebemos seus dados. Nossa equipe entra em contato em breve.";
-          }
-          dl.push({
-            event: "generate_lead",
-            marketplace: doc.documentElement.getAttribute("data-marketplace") || "",
-            form_id: form.getAttribute("id") || ""
-          });
-        })
-        .catch(function () {
-          if (status) {
-            status.className = "lp-form-status is-fail";
-            status.textContent = "Não conseguimos enviar agora. Tente novamente ou fale com a gente pelo WhatsApp.";
-          }
-        })
-        .finally(function () {
-          if (submit) { submit.disabled = false; submit.textContent = submitLabel; }
-        });
-    });
-  }
-
-  /* ------------------------------------------------- 8. evita "viúva" -- */
+  /* ------------------------------------------------- 7. evita "viúva" -- */
   // Parágrafo (ou título) que termina com uma palavra sozinha na última
   // resto é com\na gente." -> "a gente." isolado). Troca o ÚLTIMO espaço do
   // texto por um espaço inquebrável, colando as duas últimas palavras — elas

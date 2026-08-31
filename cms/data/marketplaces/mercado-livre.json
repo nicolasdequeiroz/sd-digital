@@ -26,7 +26,7 @@
 
   "seo": {
     "title": "Consultoria e Assessoria Mercado Livre | SD Digital",
-    "description": "Consultoria ou assessoria completa para vender mais no Mercado Livre: Mercado Ads, catálogo, Buy Box, reputação, Full e Flex, integração de ERP e gestão diária. Peça uma análise gratuita.",
+    "description": "Consultoria completa para vender mais no Mercado Livre: Mercado Ads, catálogo, Buy Box, reputação, Full e Flex e integração de ERP. Peça uma análise gratuita.",
     "ogImage": "/assets/images/68f58af3e5fc6b91920796fc_Imagem-comprimida-1-.png"
   },
 
@@ -233,6 +233,8 @@
   },
 
   "form": {
+    "_comment": "endpoint: form PRÓPRIO desta LP no Formspree (um por canal, para separar os leads de cada campanha). Sem esta chave, cai no endpoint compartilhado de _globals.json.",
+    "endpoint": "https://formspree.io/f/xyeyezya",
     "caption": "Análise gratuita",
     "title": "Vamos olhar a sua conta no Mercado Livre.",
     "text": "Preencha o formulário e nossa equipe entra em contato em até 1 dia útil.",

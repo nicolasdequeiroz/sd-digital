@@ -589,10 +589,11 @@ export function contact(ctx) {
               <p class="paragraph-16 b">${esc(f.text)} Se preferir, fale pelo <a href="${esc(waHref)}" target="_blank" rel="noopener" data-wa-position="form" class="link-span">WhatsApp</a>.</p>
             </div>
 
-            <form class="lp-form" data-lp-form id="lp-form-${esc(page.slug)}" method="POST"
-                  action="${esc(globals.form.endpoint)}"
+            <form class="lp-form" data-sd-form data-sd-event="generate_lead" id="lp-form-${esc(page.slug)}" method="POST"
+                  action="${esc(f.endpoint || globals.form.endpoint)}"
                   data-success-message="${esc(globals.form.successMessage)}">
               <input type="hidden" name="_subject" value="${esc(f.subject)}"/>
+              <input type="hidden" name="origem" value="LP ${esc(page.marketplace.name)}"/>
               <input type="hidden" name="marketplace" value="${esc(page.marketplace.name)}"/>
               <input type="hidden" name="pagina" value=""/>
               <input type="hidden" name="utm_source" value=""/>
@@ -645,7 +646,7 @@ export function contact(ctx) {
 
               <button type="submit" class="lp-btn-mk">${esc(f.submitLabel)}</button>
               <p class="lp-form-legal">${esc(globals.form.legal)}</p>
-              <div class="lp-form-status" data-lp-form-status role="status" aria-live="polite"></div>
+              <div class="sd-form-status" data-sd-form-status role="status" aria-live="polite"></div>
             </form>
           </div>
         </div>

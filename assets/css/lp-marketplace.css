@@ -1397,9 +1397,7 @@ html { scroll-behavior: smooth; }
   .lp-form-legal { padding-right: 84px; }
 }
 .lp-form-legal a { color: var(--lp-muted); }
-.lp-form-status { display: none; margin-top: 16px; border-radius: 10px; padding: 14px 16px; font-size: 15px; }
-.lp-form-status.is-ok   { display: block; color: #075e35; background-color: #d8f3e4; }
-.lp-form-status.is-fail { display: block; color: #8a1c1c; background-color: #fbe1e1; }
+/* .sd-form-status: agora em site-overrides.css, é do site inteiro. */
 
 /* --------------------------------------------- upsell antes do rodapé ---- */
 /* Conteúdo só das LPs (cross-sell entre marketplaces + gancho pro site

@@ -35,6 +35,16 @@ const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
 const PREVIEW = true;
 const ROBOTS_META = PREVIEW ? "noindex, nofollow" : "index, follow";
 
+/* --------------------------------------------------- versão dos assets ---- */
+/* Sufixo ?v=N nos assets PRÓPRIOS das LPs (o CSS/JS do Webflow já vem com
+   hash no nome). O GitHub Pages serve com cache longo: sem o sufixo, quem já
+   visitou a LP continua com o CSS/JS antigo depois de um deploy.
+
+   >>> Subir o número ao editar lp-marketplace.css / .js / sd-forms.js. */
+const CSS_V = 36;
+const JS_V = 6;
+const FORMS_V = 1;
+
 /* ------------------------------------------------------------ carrega ---- */
 
 const globals = readJson(join(DATA, "_globals.json"));
@@ -86,7 +96,7 @@ function page(ctx) {
 
 <link rel="stylesheet" href="/assets/css/saiddiazdigital.webflow.shared.899e1d6f1.min.css"/>
 <link rel="stylesheet" href="/assets/css/site-overrides.css"/>
-<link rel="stylesheet" href="/assets/css/lp-marketplace.css"/>
+<link rel="stylesheet" href="/assets/css/lp-marketplace.css?v=${CSS_V}"/>
 <link rel="shortcut icon" href="/assets/images/6433569aa31608f904c65bf5_Frame-124.svg" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/6433569ea50b9c74586c1456_Frame-125.svg"/>
 
@@ -129,7 +139,8 @@ ${C.contact(ctx)}
 </main>
 ${C.footer(ctx)}
 ${C.whatsappFloat(ctx)}
-<script src="/assets/js/lp-marketplace.js" defer></script>
+<script src="/assets/js/sd-forms.js?v=${FORMS_V}" defer></script>
+<script src="/assets/js/lp-marketplace.js?v=${JS_V}" defer></script>
 </body>
 </html>
 `;
@@ -237,7 +248,9 @@ function updateSitemap() {
   // remove entradas de /lp/ anteriores e regrava a partir do CMS
   xml = xml.replace(/\s*<url>\s*<loc>[^<]*\/lp\/[^<]*<\/loc>[\s\S]*?<\/url>/g, "");
 
-  const entries = published
+  // Em preview as LPs saem com noindex: anunciá-las no sitemap seria pedir
+  // pro Google rastrear justamente o que o <meta> manda ignorar.
+  const entries = (PREVIEW ? [] : published)
     .map(
       (p) => `  <url>
     <loc>${globals.brand.site}/lp/${p.slug}/</loc>
@@ -248,9 +261,11 @@ function updateSitemap() {
     )
     .join("\n");
 
-  xml = xml.replace(/<\/urlset>/, `${entries}\n</urlset>`);
+  xml = xml.replace(/<\/urlset>/, entries ? `${entries}\n</urlset>` : "</urlset>");
   writeFileSync(file, xml, "utf8");
-  return `sitemap.xml atualizado com ${published.length} LP(s)`;
+  return PREVIEW
+    ? "sitemap.xml: LPs fora do sitemap (PREVIEW = true, elas estão noindex)"
+    : `sitemap.xml atualizado com ${published.length} LP(s)`;
 }
 
 const sitemapResult = updateSitemap();

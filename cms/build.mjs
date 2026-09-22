@@ -41,9 +41,11 @@ const ROBOTS_META = PREVIEW ? "noindex, nofollow" : "index, follow";
    visitou a LP continua com o CSS/JS antigo depois de um deploy.
 
    >>> Subir o número ao editar lp-marketplace.css / .js / sd-forms.js. */
-const CSS_V = 37;
+const CSS_V = 49;
 const JS_V = 6;
 const FORMS_V = 1;
+// site-overrides.css é do site inteiro: manter igual ao ?v= usado em index.html.
+const SITE_CSS_V = 35;
 
 /* ------------------------------------------------------------ carrega ---- */
 
@@ -94,7 +96,7 @@ ${p.seo.ogImage ? `<meta name="twitter:image" content="${C.esc(g.brand.site + p.
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700&amp;display=swap"/></noscript>
 
 <link rel="stylesheet" href="/assets/css/saiddiazdigital.webflow.shared.899e1d6f1.min.css"/>
-<link rel="stylesheet" href="/assets/css/site-overrides.css"/>
+<link rel="stylesheet" href="/assets/css/site-overrides.css?v=${SITE_CSS_V}"/>
 <link rel="stylesheet" href="/assets/css/lp-marketplace.css?v=${CSS_V}"/>
 <link rel="shortcut icon" href="/assets/images/6433569aa31608f904c65bf5_Frame-124.svg" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/6433569ea50b9c74586c1456_Frame-125.svg"/>

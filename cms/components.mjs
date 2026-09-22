@@ -80,7 +80,9 @@ const ICONS = {
   truck: `<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>`,
   chart: `<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>`,
   users: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/>`,
-  clock: `<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>`
+  clock: `<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>`,
+  info: `<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>`,
+  target: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>`
 };
 
 // stroke-based (Lucide): fill="none", cor vem do stroke.
@@ -194,7 +196,10 @@ export function nav() {
    Os três painéis (heroShots) NÃO ficam mais aqui: são renderizados em
    #resultados, junto dos outros painéis de conta. */
 
-/* Cortina antes x depois: o print do painel entra no rodapé do cartão cinza,
+/* `hero.compare: false` no JSON tira a cortina da página (ex.: enquanto os
+   prints não tiverem origem e autorização comprovadas).
+
+   Cortina antes x depois: o print do painel entra no rodapé do cartão cinza,
    embutido nos 8px que sobram das bordas — a mesma vaga que o Beam dá ao
    dashboard (sem o fade branco que ele põe por cima).
    São dois prints do MESMO painel, empilhados; o de cima ("depois") é
@@ -236,14 +241,14 @@ export function hero(ctx) {
   const { page, globals } = ctx;
   const h = page.hero;
 
-  const trust = h.trust
+  const trust = (h.trust || [])
     .map(
       (t) =>
         `<div class="lp-trust-item">${CHECK_ICON}${esc(t)}</div>`
     )
     .join("");
 
-  return `<section class="lp-hero" id="topo">
+  return `<section class="lp-hero${h.compare === false ? " is-no-compare" : ""}" id="topo">
     <div class="lp-hero-main">
       <div class="lp-hero-inner">
         <div class="lp-eyebrow">
@@ -256,7 +261,8 @@ export function hero(ctx) {
           <a ${ctaAttrs(h.ctaPrimary, ctx, "hero")} class="lp-btn-mk">${ctaLabel(h.ctaPrimary)}</a>
           <a ${ctaAttrs(h.ctaSecondary, ctx, "hero")} class="lp-btn-ghost">${h.ctaSecondary.icon === "whatsapp" ? waIcon : ""}${ctaLabel(h.ctaSecondary)}</a>
         </div>
-        <div class="lp-trust">${trust}</div>
+        ${h.note ? `<p class="lp-hero-note">${esc(h.note)}</p>` : ""}
+        ${trust ? `<div class="lp-trust">${trust}</div>` : ""}
       </div>
 
       <div class="lp-hero-card lp-reveal">
@@ -266,7 +272,7 @@ export function hero(ctx) {
             <div class="lp-clients-track">${CLIENT_LOGOS}${CLIENT_LOGOS}</div>
           </div>
         </div>
-        ${compare()}
+        ${h.compare === false ? "" : compare()}
       </div>
     </div>
   </section>`;
@@ -276,6 +282,7 @@ export function hero(ctx) {
    #resultados — mesmo tipo de conteúdo dos painéis de conta. */
 export function heroShots(ctx) {
   const h = ctx.page.hero;
+  if (!h.shots || !h.shots.length) return "";
   const shots = h.shots
     .map((shot, i) => {
       const pos = ["is-left", "is-center", "is-right"][i] || "is-center";
@@ -298,6 +305,7 @@ export function kpis(ctx) {
   const fmt = (value, decimals = 0) =>
     value.toFixed(decimals).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
+  if (!ctx.page.kpis || !ctx.page.kpis.length) return "";
   const items = ctx.page.kpis
     .map(
       (k) => `<div class="lp-kpi">
@@ -429,11 +437,23 @@ export function band(ctx) {
 }
 
 /* ============================================================ PROOF ===== */
+
+/* Aviso de variação de resultados. Cada frase vira um <span>: no desktop
+   elas quebram linha no ponto final (ver CSS), então o texto nunca termina
+   com uma ou duas palavras sozinhas na última linha. */
+function proofNote(text) {
+  const sentences = String(text).match(/[^.!?]+[.!?]+/g) || [text];
+  const body = sentences.map((t) => `<span>${esc(t.trim())}</span>`).join(" ");
+  return `<div class="lp-proof-note lp-reveal"><span class="lp-proof-note-icon">${icon("info")}</span><p>${body}</p></div>`;
+}
 /* réplica de .gallery-card + .gallery-badge com os prints de painel         */
 
 export function proof(ctx) {
   const p = ctx.page.proof;
-  const panels = p.panels
+  // Sem painéis, a seção continua existindo (a âncora #resultados é usada nos
+  // anúncios) e mostra `points` (cards no mesmo formato dos entregáveis) e
+  // `note` (aviso de variação, numa faixa abaixo da grade).
+  const panels = (p.panels || [])
     .map((panel) =>
       panel.image
         ? `<figure class="lp-panel lp-reveal" style="margin:0"><div class="lp-badge">${esc(panel.badge || "")}</div><img src="${esc(panel.image)}" alt="${esc(panel.badge || "Painel de vendas")}" loading="lazy" decoding="async"/></figure>`
@@ -444,7 +464,17 @@ export function proof(ctx) {
   return `<section class="lp-section is-white" id="resultados">
     <div class="lp-wide">
       ${sectionHead({ caption: p.caption, title: esc(p.title), subtitle: p.subtitle })}
-      <div class="lp-panels lp-swipe" tabindex="0">${panels}</div>
+      ${panels ? `<div class="lp-panels lp-swipe" tabindex="0">${panels}</div>` : ""}
+      ${p.points && p.points.length ? `<div class="lp-grid-3 lp-swipe" tabindex="0">${p.points
+        .map(
+          (item) => `<article class="lp-card lp-reveal">
+          <div class="lp-card-icon">${icon(item.icon)}</div>
+          <h3>${esc(item.title)}</h3>
+          <p>${esc(item.text)}</p>
+        </article>`
+        )
+        .join("")}</div>` : ""}
+      ${p.note ? proofNote(p.note) : ""}
       ${heroShots(ctx)}
     </div>
   </section>`;
@@ -457,7 +487,9 @@ export function cases(ctx) {
   // JSON do marketplace (mesmo formato de globals.cases: caption, title,
   // subtitle, items[]). Sem isso, cai no case geral do site — que hoje é o
   // que toda LP mostra, mesmo a de Shopee não tendo nenhum case de Shopee.
+  // `cases: { "enabled": false }` na LP tira a seção (sem cair no global).
   const c = ctx.page.cases || ctx.globals.cases;
+  if (!c || c.enabled === false || !c.items || !c.items.length) return "";
   const items = c.items
     .map(
       (item) => `<article class="lp-case lp-reveal">
@@ -475,6 +507,7 @@ export function cases(ctx) {
     <div class="lp-wide">
       ${sectionHead({ caption: c.caption, title: esc(c.title), subtitle: c.subtitle })}
       <div class="lp-grid-2 lp-swipe" tabindex="0">${items}</div>
+      ${c.note ? proofNote(c.note) : ""}
     </div>
   </section>`;
 }
@@ -568,15 +601,26 @@ export function contact(ctx) {
   const waHref = wa(globals.contact.whatsappPhone, page.whatsapp.form);
 
   const option = (v) => `<option value="${esc(v)}">${esc(v)}</option>`;
+  // Campo de seleção obrigatório; some quando a LP não traz as opções.
+  const select = (name, label, options) =>
+    options && options.length
+      ? `<label for="${name}-${esc(page.slug)}" class="label">${esc(label)}</label>
+              <select class="text-field" name="${name}" id="${name}-${esc(page.slug)}" required>
+                <option value="">Selecione</option>
+                ${options.map(option).join("")}
+              </select>`
+      : "";
 
   return `<section id="form" class="contact-sec">
     <div class="container">
       <div class="page-padding">
         <div class="contact-wrapper">
-          <div class="form-left" style="place-self:center">
-            <div class="circular-logo">
-              <img src="/assets/images/6431a05b11af0d2d4e95c2c4_circular-text.svg" loading="lazy" alt="" class="coin lp-coin"/>
-              <div class="sd-div"><img src="/assets/images/6431a09192cceccb3d1b7ee9_Vector.svg" loading="lazy" alt="" class="sd"/></div>
+          <div class="form-left lp-coin-col">
+            <div class="lp-coin-sticky">
+              <div class="circular-logo">
+                <img src="/assets/images/6431a05b11af0d2d4e95c2c4_circular-text.svg" loading="lazy" alt="" class="coin lp-coin"/>
+                <div class="sd-div"><img src="/assets/images/6431a09192cceccb3d1b7ee9_Vector.svg" loading="lazy" alt="" class="sd"/></div>
+              </div>
             </div>
           </div>
           <div class="form-right">
@@ -591,7 +635,7 @@ export function contact(ctx) {
 
             <form class="lp-form" data-sd-form data-sd-event="generate_lead" id="lp-form-${esc(page.slug)}" method="POST"
                   action="${esc(f.endpoint || globals.form.endpoint)}"
-                  data-success-message="${esc(globals.form.successMessage)}">
+                  data-success-message="${esc(f.successMessage || globals.form.successMessage)}">
               <input type="hidden" name="_subject" value="${esc(f.subject)}"/>
               <input type="hidden" name="origem" value="LP ${esc(page.marketplace.name)}"/>
               <input type="hidden" name="marketplace" value="${esc(page.marketplace.name)}"/>
@@ -626,23 +670,23 @@ export function contact(ctx) {
                 </div>
               </div>
 
-              <label for="loja-${esc(page.slug)}" class="label">Link da sua loja ou conta ${esc(page.marketplace.preposition)}</label>
+              ${f.productLabel ? `<label for="produto-${esc(page.slug)}" class="label">${esc(f.productLabel)}</label>
+              <input class="text-field w-input" maxlength="160" name="produto" id="produto-${esc(page.slug)}" type="text"${f.productPlaceholder ? ` placeholder="${esc(f.productPlaceholder)}"` : ""} required/>` : ""}
+
+              ${select("fase", f.stageLabel, f.stageOptions)}
+
+              <label for="loja-${esc(page.slug)}" class="label">${esc(f.storeLabel || `Link da sua loja ou conta ${page.marketplace.preposition}`)}</label>
               <input class="text-field w-input" maxlength="300" name="loja" id="loja-${esc(page.slug)}" type="url" placeholder="https://..." autocomplete="off"/>
 
-              <label for="faturamento-${esc(page.slug)}" class="label">Faturamento ${esc(page.marketplace.preposition)}</label>
-              <select class="text-field" name="faturamento" id="faturamento-${esc(page.slug)}" required>
-                <option value="">Selecione</option>
-                ${f.revenueOptions.map(option).join("")}
-              </select>
+              ${select("faturamento", `Faturamento ${page.marketplace.preposition}`, f.revenueOptions)}
 
-              <label for="interesse-${esc(page.slug)}" class="label">O que você procura</label>
-              <select class="text-field" name="interesse" id="interesse-${esc(page.slug)}" required>
-                <option value="">Selecione</option>
-                ${f.interestOptions.map(option).join("")}
-              </select>
+              ${select("interesse", f.interestLabel || "O que você procura", f.interestOptions)}
+
+              ${select("investimento", f.budgetLabel, f.budgetOptions)}
+              ${f.budgetOptions && f.budgetOptions.length && f.budgetHelp ? `<p class="lp-form-help">${esc(f.budgetHelp)}</p>` : ""}
 
               <label for="mensagem-${esc(page.slug)}" class="label">Mensagem (opcional)</label>
-              <textarea id="mensagem-${esc(page.slug)}" name="mensagem" maxlength="2000" placeholder="Conte um pouco da sua operação..." class="text-field w-input"></textarea>
+              <textarea id="mensagem-${esc(page.slug)}" name="mensagem" maxlength="2000" placeholder="${esc(f.messagePlaceholder || "Conte um pouco da sua operação...")}" class="text-field w-input"></textarea>
 
               <button type="submit" class="lp-btn-mk">${esc(f.submitLabel)}</button>
               <p class="lp-form-legal">${esc(globals.form.legal)}</p>

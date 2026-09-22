@@ -405,6 +405,9 @@ textarea.text-field { min-height: 120px; padding-top: 12px; resize: vertical; }
    ========================================================================= */
 
 .text-14._60 { text-transform: none; letter-spacing: normal; }
+/* Copyright e disclaimer alinhados à esquerda, como o logo acima deles
+   (o Webflow centraliza no desktop e só alinha à esquerda no celular). */
+.copyright-div { text-align: left; }
 
 /* Vídeo de fundo em preto e branco: seção de contato na home, cases (TOPFIT)
    e as LPs de marketplace — todas usam .background-video. */
@@ -438,3 +441,22 @@ textarea.text-field { min-height: 120px; padding-top: 12px; resize: vertical; }
    só nessa variante — inconsistente com a versão desktop, que é arredondada
    (.hiw-arrow tem border-radius:8px). */
 .hiw-arrow.hide-tablet { border-radius: 8px; }
+
+/* ------------------------------------------------------------------------
+   Formulário da home: campos de qualificação (select) e nota abaixo deles.
+   Mesmo visual do .text-field do Webflow, com a seta desenhada aqui porque
+   o appearance nativo some ao herdar o estilo do campo de texto.
+   ------------------------------------------------------------------------ */
+.sd-form .sd-select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236b7280'%3E%3Cpath d='M8 11 3.5 6.5 4.6 5.4 8 8.8l3.4-3.4 1.1 1.1z'/%3E%3C/svg%3E");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 36px;
+  width: 100%;
+}
+.sd-form-help { margin: -6px 0 14px; font-size: 13px; line-height: 1.5; opacity: .6; }
+/* Aviso de variação de resultados junto aos cases. */
+.sd-results-note { margin-top: 12px; font-size: 14px; opacity: .75; }

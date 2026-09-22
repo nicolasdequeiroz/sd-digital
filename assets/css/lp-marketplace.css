@@ -78,13 +78,23 @@ html { scroll-behavior: smooth; }
 .lp-service-name,
 .lp-case-result,
 .lp-split-title,
+.lp-card h3,
+.lp-step h3,
 .lp-faq-q { text-wrap: balance; }
+/* Textos curtos em colunas estreitas (cards, passos, notas): `pretty` ainda
+   deixava duas ou três palavras sozinhas na última linha. `balance` divide o
+   texto em linhas de largura parecida — funciona bem até ~6 linhas, que é o
+   tamanho desses blocos. */
+.lp-card p,
+.lp-step p,
+.lp-hero-note,
+.lp-form-legal { text-wrap: balance; }
 
 .lp-hero-sub,
 .lp-head p,
 .lp-service-desc,
 .lp-case p,
-.lp-step p,
+.lp-form-help,
 .lp-kpi-label,
 .lp-body .paragraph { text-wrap: pretty; }
 /* A home roda .paragraph-16 em weight 300 com 0.5px de tracking; as LPs
@@ -366,6 +376,16 @@ html { scroll-behavior: smooth; }
    sai — quem dá a folga é .lp-hero-dash. */
 .lp-hero-card { padding-bottom: 0; }
 .lp-hero-logos { padding-bottom: 40px; }
+
+/* Sem a cortina antes x depois (hero.compare: false) o cartão cinza termina
+   nos logos e encostava no rodapé do cartão branco: a folga de baixo passa a
+   ser igual à de cima. E, sem a faixa de KPIs logo abaixo, a próxima seção
+   é branca: o fundo cinza da seção precisa aparecer embaixo do cartão, como
+   já aparece em cima e nas laterais, senão o cartão se funde com ela. */
+.lp-hero.is-no-compare { padding-bottom: 48px; }
+.lp-hero.is-no-compare .lp-hero-main { padding-bottom: 48px; }
+/* só com os logos, o cartão cinza pede menos respiro em cima */
+.lp-hero.is-no-compare .lp-hero-card { padding-top: 28px; }
 
 /* .hero_dashboard: 8px de folga em relação às bordas do cartão cinza */
 .lp-hero-dash { padding: 0 8px 8px; }
@@ -703,6 +723,16 @@ html { scroll-behavior: smooth; }
   display: flex;
 }
 .lp-trust-item svg { color: var(--mk); flex: none; width: 16px; height: 16px; }
+
+/* Texto de apoio do hero: condição comercial (serviço pago, verba à parte). */
+.lp-hero-note {
+  color: var(--lp-muted);
+  max-width: 560px;
+  margin: 20px auto 0;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
 
 /* Painéis (.lp-shots): agora vivem em #resultados, como segunda fileira
    abaixo dos painéis de conta. O leque (rotação + deslocamento vertical de
@@ -1397,6 +1427,26 @@ html { scroll-behavior: smooth; }
   .lp-form-legal { padding-right: 84px; }
 }
 .lp-form-legal a { color: var(--lp-muted); }
+/* Nota abaixo de um campo (ex.: faixas de investimento não são tabela de preço). */
+.lp-form-help { color: var(--lp-muted); margin: -4px 0 12px; font-size: 12px; line-height: 1.5; }
+
+/* Aviso de variação de resultados: faixa discreta logo abaixo da grade de
+   cards, na mesma largura dela (#resultados sem painéis, cases). */
+.lp-proof-note {
+  background-color: var(--lp-bg);
+  border-radius: var(--lp-radius);
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 20px 24px;
+  display: flex;
+}
+.lp-proof-note-icon { color: var(--lp-muted); flex: none; width: 20px; height: 20px; margin-top: 2px; }
+.lp-proof-note-icon svg { width: 20px; height: 20px; display: block; }
+.lp-proof-note p { color: var(--lp-muted); margin: 0; font-size: 15px; line-height: 1.6; text-wrap: pretty; }
+@media screen and (min-width: 992px) {
+  .lp-proof-note p > span { display: block; }
+}
 /* .sd-form-status: agora em site-overrides.css, é do site inteiro. */
 
 /* --------------------------------------------- upsell antes do rodapé ---- */
@@ -1543,6 +1593,34 @@ html { scroll-behavior: smooth; }
 .lp-body .lp-coin { animation: lp-spin 24s linear infinite; }
 @keyframes lp-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .lp-body .lp-coin { animation: none; } }
+/* Moeda ao lado do formulário: a coluna estica na altura do form e a moeda
+   fica presa (sticky) no centro da área visível abaixo do menu enquanto o
+   form rola; nas pontas, o sticky a mantém dentro da coluna.
+   - A moeda é quadrada e ocupa a largura da coluna, então metade da altura
+     dela é 50cqw (a coluna é um container de largura). O `top` põe o centro
+     dela no meio do espaço entre o menu e o pé da tela; o max() impede que
+     ela suba para trás do menu em telas baixas.
+   - `overflow: clip` na seção (no lugar do hidden do Webflow) é o que
+     permite o sticky: hidden transforma a seção num contêiner de rolagem e
+     o sticky passaria a grudar nela, que não rola.
+   Só a partir de 768px: abaixo disso a moeda some (ver bloco ≤767px). */
+.lp-body .lp-coin-col { place-self: center; }
+@media screen and (min-width: 768px) {
+  .lp-body .contact-sec { overflow: clip; }
+  .lp-body .lp-coin-col {
+    --lp-nav-h: 84px;
+    align-self: stretch;
+    justify-self: center;
+    /* largura explícita: com container-type a coluna não pode mais se medir
+       pelo conteúdo (ficaria com 0). 80% é a medida que a moeda já tinha. */
+    width: 80%;
+    container-type: inline-size;
+  }
+  .lp-body .lp-coin-sticky {
+    position: sticky;
+    top: max(calc(var(--lp-nav-h) + 16px), calc((100vh + var(--lp-nav-h)) / 2 - 50cqw));
+  }
+}
 
 .lp-btn-icon { align-items: center; display: inline-flex; }
 .lp-btn-icon svg { width: 20px; height: 20px; }
@@ -1590,6 +1668,9 @@ html { scroll-behavior: smooth; }
   .lp-hero-inner { margin-bottom: 32px; }
   .lp-hero-card { border-radius: 20px; padding: 28px 0 0; }
   .lp-hero-logos { padding-bottom: 28px; }
+  .lp-hero.is-no-compare { padding-bottom: 24px; }
+  .lp-hero.is-no-compare .lp-hero-main { padding-bottom: 20px; }
+  .lp-hero.is-no-compare .lp-hero-card { padding-top: 20px; }
   /* na largura do celular os 56px de respiro deixavam só duas marcas à vista;
      logo menor e intervalo menor mostram mais marcas por passada */
   .lp-client-logo { width: 84px; height: 21px; margin-right: 28px; }

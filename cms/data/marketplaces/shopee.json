@@ -2,7 +2,6 @@
   "slug": "shopee",
   "status": "published",
   "order": 1,
-
   "marketplace": {
     "name": "Shopee",
     "displayName": "Shopee",
@@ -23,42 +22,28 @@
       "aumentar vendas shopee"
     ]
   },
-
   "seo": {
     "title": "Consultoria e Assessoria Shopee | SD Digital",
-    "description": "Consultoria completa para vender mais na Shopee: Shopee Ads, SEO de títulos, imagens de produto e integração de ERP. Peça uma análise gratuita.",
+    "description": "Consultoria e gestão para lojistas e fabricantes na Shopee: catálogo, anúncios, Shopee Ads e indicadores. Serviço pago, com escopo e investimento definidos em proposta.",
     "ogImage": "/assets/images/6433580a545aff1b86f4e93c_Frame-37.png"
   },
-
   "hero": {
-    "eyebrow": "Especialistas em Shopee",
-    "h1": "Sua loja <span class=\"lp-em\">na Shopee</span> vendendo todo dia, sem você virar operador de marketplace.",
-    "sub": "Assumimos (ou ensinamos você a assumir) a operação inteira: anúncios, SEO, imagens, Shopee Ads, preço, reputação e ERP. Você cuida do produto e da logística.",
-    "ctaPrimary": { "label": "Quero minha análise gratuita",
-      "labelShort": "Análise gratuita", "href": "#form" },
-    "ctaSecondary": { "label": "Falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" },
-    "trust": [
-      "Análise gratuita da sua loja",
-      "Sem fidelidade contratual",
-      "Resposta em até 1 dia útil"
-    ],
-    "shots": [
-      {
-        "image": "",
-        "badge": "Vendas / mês",
-        "mock": { "title": "Vendas do mês", "value": "R$ 184.320", "delta": "+62% vs. mês anterior", "caption": "Painel do Seller Centre", "chart": [22, 30, 26, 41, 38, 52, 61, 74, 88], "footLeft": { "label": "Pedidos", "value": "2.417" }, "footRight": { "label": "Ticket médio", "value": "R$ 76,25" } }
-      },
-      {
-        "image": "",
-        "badge": "Shopee Ads",
-        "mock": { "title": "Shopee Ads: ROAS", "value": "7,4x", "delta": "+2,1x em 60 dias", "caption": "Campanhas de descoberta + busca", "chart": [18, 24, 21, 33, 45, 44, 58, 69, 81], "footLeft": { "label": "Investimento", "value": "R$ 9.860" }, "footRight": { "label": "Receita Ads", "value": "R$ 72.964" } }
-      },
-      {
-        "image": "",
-        "badge": "Reputação",
-        "mock": { "title": "Saúde da loja", "value": "4,9 ★", "delta": "Loja Preferida ativa", "caption": "Avaliação média dos últimos 90 dias", "chart": [40, 44, 48, 52, 58, 63, 70, 80, 92], "footLeft": { "label": "Envio no prazo", "value": "99,1%" }, "footRight": { "label": "Cancelamento", "value": "0,4%" } }
-      }
-    ],
+    "eyebrow": "Consultoria e assessoria Shopee",
+    "h1": "Consultoria e gestão para sua loja <span class=\"lp-em\">na Shopee</span>.",
+    "sub": "Para lojistas e fabricantes com produtos, estoque e estrutura de envio. A SD Digital orienta sua equipe ou assume as atividades digitais previstas no projeto, com acompanhamento de catálogo, anúncios e indicadores.",
+    "ctaPrimary": {
+      "label": "Solicitar proposta",
+      "href": "#form"
+    },
+    "ctaSecondary": {
+      "label": "Falar sobre minha operação",
+      "href": "whatsapp",
+      "icon": "whatsapp"
+    },
+    "note": "Consultoria e assessoria são serviços pagos. Escopo e investimento definidos conforme sua operação. Verba de anúncios à parte.",
+    "trust": [],
+    "compare": false,
+    "shots": [],
     "ticker": [
       "Shopee Ads",
       "SEO de títulos",
@@ -72,28 +57,20 @@
       "Gestão diária"
     ]
   },
-
-  "kpis": [
-    { "prefix": "+", "value": 10, "suffix": " anos", "label": "de operação em marketplaces no Brasil" },
-    { "prefix": "+", "value": 150, "suffix": "", "label": "sellers e e-commerces atendidos" },
-    { "prefix": "até ", "value": 10, "suffix": "x", "label": "de crescimento em 12 meses" },
-    { "prefix": "", "value": 4.9, "decimals": 1, "suffix": "/5", "label": "satisfação média dos nossos clientes" }
-  ],
-
+  "kpis": [],
   "intro": {
     "caption": "Por que sua loja trava",
     "title": "Vender na Shopee é fácil. Vender com margem, todo mês, é outra história.",
     "paragraphs": [
       "A maioria dos sellers chega com o mesmo diagnóstico: anúncio mal indexado, imagem fora do padrão, Shopee Ads queimando verba em palavra-chave errada e preço no achismo.",
       "O resultado é sempre o mesmo: a loja vende, mas depende de promoção e ninguém sabe qual produto dá lucro.",
-      "É aí que entramos: organizamos o catálogo, corrigimos a indexação, reconstruímos os anúncios com SEO e acompanhamos os números todo dia. Sem mágica: é o básico, extraordinariamente bem feito."
+      "É aí que entramos: organizamos o catálogo, corrigimos a indexação, reconstruímos os anúncios com SEO e acompanhamos os indicadores com frequência. Sem mágica: é o básico, extraordinariamente bem feito."
     ]
   },
-
   "services": {
     "caption": "Dois jeitos de trabalhar com a gente",
     "title": "Consultoria ou assessoria: você escolhe quem executa.",
-    "subtitle": "O método é o mesmo. Muda quem executa: sua equipe, com a gente ensinando, ou a nossa, fazendo tudo.",
+    "subtitle": "O método é o mesmo. Muda quem executa: sua equipe, com a nossa orientação, ou a nossa, dentro do escopo contratado.",
     "items": [
       {
         "featured": false,
@@ -102,7 +79,7 @@
         "name": "A gente ensina. Sua equipe executa.",
         "description": "Reuniões semanais ou quinzenais, com você ou com quem você designar. Cada encontro termina com um plano de ação claro, revisado no seguinte.",
         "items": [
-          "Diagnóstico completo da loja na Shopee",
+          "Diagnóstico da loja na Shopee no início do projeto",
           "Reuniões semanais ou quinzenais, no seu ritmo",
           "Plano de ação por escrito a cada encontro",
           "Treinamento do seu time no Seller Centre",
@@ -111,53 +88,95 @@
           "Acompanhamento dos indicadores entre as reuniões",
           "Canal direto com o consultor para dúvidas"
         ],
-        "cta": { "label": "Quero a consultoria", "href": "#form", "style": "ghost" },
+        "cta": {
+          "label": "Solicitar proposta de consultoria",
+          "href": "#form",
+          "style": "ghost"
+        },
         "note": "Ideal para quem já tem equipe e quer autonomia."
       },
       {
         "featured": true,
-        "tag": "Assessoria: nosso serviço premium",
+        "tag": "Assessoria: execução pela nossa equipe",
         "tagStyle": "light",
-        "name": "A gente faz absolutamente tudo.",
-        "description": "Nossa equipe assume a loja de ponta a ponta. Você não abre o Seller Centre: acompanha os resultados e cuida de compra, estoque, embalagem e nota fiscal.",
+        "name": "Nossa equipe executa as atividades digitais previstas no escopo.",
+        "description": "Assumimos a rotina digital da loja definida no projeto. Você acompanha os indicadores e cuida de estoque, logística, expedição, obrigações fiscais e decisões de investimento.",
         "items": [
           "Criação e otimização de todos os anúncios",
           "Títulos, descrição e ficha técnica com SEO",
           "Criação das imagens e fotos de produto",
-          "Gestão completa de Shopee Ads (verba, lances e palavras-chave)",
+          "Gestão de Shopee Ads: estrutura, lances e palavras-chave (verba de anúncios à parte, paga pela sua empresa)",
           "Cupons, combos, frete grátis e participação em campanhas da plataforma",
           "Precificação, margem e monitoramento da concorrência",
           "Integração e configuração do ERP, quando necessário",
           "Gestão de reputação, chat e indicadores de saúde da loja",
           "Relatório de performance e reunião de resultados"
         ],
-        "cta": { "label": "Quero a assessoria", "href": "#form", "style": "mk" },
-        "note": "Ideal para quem quer escalar sem montar time interno."
+        "cta": {
+          "label": "Solicitar proposta de assessoria",
+          "href": "#form",
+          "style": "mk"
+        },
+        "note": "Para quem quer delegar a execução sem montar time interno."
       }
     ]
   },
-
   "deliverables": {
     "caption": "O que entra na assessoria",
-    "title": "Tudo o que a sua loja precisa, feito pelo nosso time.",
-    "subtitle": "Cada item é executado por quem faz isso todo dia, não por um generalista dividindo atenção entre dez canais.",
+    "title": "O que pode entrar no escopo da assessoria.",
+    "subtitle": "A proposta define quais destas frentes entram no seu projeto, conforme a fase da operação.",
     "items": [
-      { "icon": "megaphone", "title": "Shopee Ads do jeito certo", "text": "Busca e descoberta separadas, lance por palavra-chave e verba realocada do que só gasta para o que converte." },
-      { "icon": "search", "title": "Títulos e SEO de anúncio", "text": "Título construído a partir do que o comprador pesquisa, com ficha técnica completa para a Shopee entender e ranquear o produto." },
-      { "icon": "image", "title": "Imagens e fotos de produto", "text": "Imagens no padrão da plataforma: capa que ganha o clique e sequência que elimina a dúvida que trava a compra." },
-      { "icon": "tag", "title": "Preço, margem e promoções", "text": "Precificação com comissão, frete grátis e cupom na conta. Você sabe quanto sobra antes de entrar na campanha." },
-      { "icon": "plug", "title": "Integração de ERP", "text": "Configuramos o ERP ou hub (Bling, Omie, Ideris, Magis5, Anymarket e outros) para estoque, preço e pedido rodarem sozinhos." },
-      { "icon": "shield", "title": "Reputação e saúde da loja", "text": "Avaliações, resposta no chat, envio no prazo e cancelamento: os indicadores que decidem se você vira Loja Preferida." },
-      { "icon": "box", "title": "Curadoria de catálogo", "text": "Curva ABC do catálogo: o que subir, o que pausar, o que virar kit e o que não deveria estar anunciado." },
-      { "icon": "chart", "title": "Relatórios e reunião de resultados", "text": "Relatório periódico com faturamento, ROAS, ticket médio e margem, e reunião para decidir o próximo passo com base em número." },
-      { "icon": "users", "title": "Um time, não um freelancer", "text": "Você fala com quem executa: gestor de conta, especialista em ads e designer. Sem intermediário." }
+      {
+        "icon": "megaphone",
+        "title": "Shopee Ads do jeito certo",
+        "text": "Busca e descoberta separadas, lance por palavra-chave e verba realocada do que só gasta para o que converte."
+      },
+      {
+        "icon": "search",
+        "title": "Títulos e SEO de anúncio",
+        "text": "Título construído a partir do que o comprador pesquisa, com ficha técnica completa para a Shopee entender e ranquear o produto."
+      },
+      {
+        "icon": "image",
+        "title": "Imagens e fotos de produto",
+        "text": "Imagens no padrão da plataforma: capa que ganha o clique e sequência que elimina a dúvida que trava a compra."
+      },
+      {
+        "icon": "tag",
+        "title": "Preço, margem e promoções",
+        "text": "Precificação com comissão, frete grátis e cupom na conta. Você sabe quanto sobra antes de entrar na campanha."
+      },
+      {
+        "icon": "plug",
+        "title": "Integração de ERP",
+        "text": "Apoiamos a configuração do ERP ou hub (Bling, Omie, Ideris, Magis5, Anymarket e outros) para integrar estoque, preço e pedidos."
+      },
+      {
+        "icon": "shield",
+        "title": "Reputação e saúde da loja",
+        "text": "Avaliações, resposta no chat, envio no prazo e cancelamento: acompanhamos os indicadores de saúde que a Shopee usa para avaliar a loja."
+      },
+      {
+        "icon": "box",
+        "title": "Curadoria de catálogo",
+        "text": "Curva ABC do catálogo: o que subir, o que pausar, o que virar kit e o que não deveria estar anunciado."
+      },
+      {
+        "icon": "chart",
+        "title": "Relatórios e reunião de resultados",
+        "text": "Relatório periódico com faturamento, ROAS, ticket médio e margem, e reunião para decidir o próximo passo com base em número."
+      },
+      {
+        "icon": "users",
+        "title": "Contato direto com quem executa",
+        "text": "Você fala com a equipe responsável pelo seu projeto, sem intermediário."
+      }
     ]
   },
-
   "split": {
     "caption": "Divisão de responsabilidades",
-    "title": "Deixa claro desde o primeiro dia quem faz o quê.",
-    "subtitle": "É a principal diferença da assessoria: o dia a dia sai da sua mesa por completo.",
+    "title": "Fica claro desde o primeiro dia quem faz o quê.",
+    "subtitle": "Na assessoria, a execução digital prevista no escopo passa para a nossa equipe. A operação física e as decisões de investimento continuam com você.",
     "you": {
       "title": "Você cuida de",
       "sub": "O que só faz sentido dentro da sua empresa.",
@@ -165,44 +184,76 @@
         "Compra e reposição de estoque",
         "Separação, embalagem e expedição",
         "Postagem e logística com a transportadora",
-        "Emissão de nota fiscal",
-        "Decisões de investimento e verba"
+        "Emissão de nota fiscal e obrigações fiscais",
+        "Decisões de investimento, incluindo a verba de anúncios"
       ]
     },
     "us": {
       "title": "A SD Digital cuida de",
-      "sub": "100% da operação digital, todos os dias.",
+      "sub": "As atividades digitais previstas no escopo contratado.",
       "items": [
         "Criação e otimização dos anúncios",
         "Títulos, descrições e SEO",
         "Imagens e fotos de produto",
-        "Shopee Ads e verba de mídia",
+        "Gestão de Shopee Ads (a verba é da sua empresa)",
         "Preço, cupons, combos e campanhas",
         "Integração e configuração do ERP",
         "Reputação, chat e saúde da loja",
-        "Relatórios e estratégia de crescimento"
+        "Relatórios e recomendações com base nos indicadores"
       ]
     }
   },
-
   "proof": {
-    "caption": "Prova de operação",
-    "title": "Painéis de contas que operamos.",
-    "subtitle": "Recortes reais de Seller Centre, com dados de identificação omitidos por confidencialidade.",
-    "panels": [
-      { "image": "", "badge": "Suplementos", "mock": { "title": "Faturamento: 12 meses", "value": "R$ 1,42 mi", "delta": "+318% no período", "caption": "Seller de suplementos, catálogo de 240 SKUs", "chart": [12, 18, 22, 20, 31, 38, 44, 51, 63, 72, 85, 98], "footLeft": { "label": "Pedidos", "value": "18.740" }, "footRight": { "label": "Ticket médio", "value": "R$ 75,80" } } },
-      { "image": "", "badge": "Auto peças", "mock": { "title": "Shopee Ads: ROAS", "value": "9,1x", "delta": "+4,3x após reestruturação", "caption": "Após separar campanhas de busca e descoberta", "chart": [20, 22, 19, 28, 34, 47, 55, 68, 79], "footLeft": { "label": "Investido", "value": "R$ 14.200" }, "footRight": { "label": "Receita", "value": "R$ 129.220" } } },
-      { "image": "", "badge": "Casa e cozinha", "mock": { "title": "Visitas ao anúncio", "value": "412 mil", "delta": "+240% em 90 dias", "caption": "Depois da reescrita de títulos e ficha técnica", "chart": [15, 17, 24, 29, 36, 48, 60, 74, 91], "footLeft": { "label": "Conversão", "value": "3,8%" }, "footRight": { "label": "Loja Preferida", "value": "Ativa" } } }
-    ]
+    "caption": "Resultados",
+    "title": "Como acompanhamos os resultados.",
+    "subtitle": "Cada projeto define no início os indicadores que serão acompanhados e a rotina de relatórios. Resultados dependem também de produto, preço, margem, estoque, concorrência e execução. Cada operação varia e não há garantia de vendas, faturamento ou retorno.",
+    "points": [
+      {
+        "icon": "chart",
+        "title": "Faturamento e pedidos",
+        "text": "Faturamento, número de pedidos e ticket médio no período, comparados com o ponto de partida do projeto."
+      },
+      {
+        "icon": "megaphone",
+        "title": "Shopee Ads por campanha",
+        "text": "Investimento, vendas atribuídas e retorno de cada campanha, para realocar a verba com base em dado."
+      },
+      {
+        "icon": "search",
+        "title": "Visitas e conversão",
+        "text": "Visitas, taxa de conversão e posição dos anúncios principais nas buscas da plataforma."
+      },
+      {
+        "icon": "tag",
+        "title": "Margem por produto",
+        "text": "Quanto sobra de cada venda, considerando comissão, frete, cupons e participação em campanhas."
+      },
+      {
+        "icon": "shield",
+        "title": "Saúde da loja",
+        "text": "Avaliações, tempo de resposta no chat, envio no prazo e cancelamento."
+      },
+      {
+        "icon": "clock",
+        "title": "Rotina de relatórios",
+        "text": "Relatório periódico e reunião para revisar os indicadores e definir os próximos passos."
+      }
+    ],
+    "panels": []
   },
-
   "band": {
-    "title": "A sua concorrência na Shopee não está esperando você aprender.",
-    "text": "Em até 1 dia útil devolvemos um diagnóstico do que está travando as suas vendas. Com ou sem contrato.",
-    "ctaPrimary": { "label": "Solicitar análise gratuita", "href": "#form" },
-    "ctaSecondary": { "label": "Falar no WhatsApp", "href": "whatsapp", "icon": "whatsapp" }
+    "title": "Quer saber se a consultoria ou a assessoria faz sentido para a sua operação?",
+    "text": "Conte sobre seu produto, a fase da empresa e o apoio que procura. Avaliamos a compatibilidade e, se fizer sentido, enviamos uma proposta com escopo e investimento.",
+    "ctaPrimary": {
+      "label": "Solicitar proposta",
+      "href": "#form"
+    },
+    "ctaSecondary": {
+      "label": "Falar sobre minha operação",
+      "href": "whatsapp",
+      "icon": "whatsapp"
+    }
   },
-
   "testimonials": {
     "_status": "PLACEHOLDER: substituir por depoimentos reais antes de publicar (ver cms/README.md).",
     "enabled": false,
@@ -232,85 +283,326 @@
       }
     ]
   },
-
   "process": {
-    "caption": "Como começa",
-    "title": "Do primeiro contato à loja rodando: 4 passos.",
-    "subtitle": "Sem proposta genérica. O escopo sai depois que olhamos a sua conta.",
+    "caption": "Como funciona",
+    "title": "Do primeiro contato ao início do trabalho: 4 passos.",
+    "subtitle": "Escopo e investimento são definidos na proposta, de acordo com a sua operação.",
     "steps": [
-      { "title": "Análise gratuita", "text": "Você preenche o formulário ou chama no WhatsApp. Olhamos a loja e devolvemos um diagnóstico." },
-      { "title": "Reunião de diagnóstico", "text": "Apresentamos o diagnóstico, entendemos margem, estoque e logística e definimos juntos o caminho." },
-      { "title": "Plano e escopo", "text": "Plano de trabalho com prioridades, prazos e responsáveis. Nada de contrato antes de você saber o que vai acontecer." },
-      { "title": "Execução e acompanhamento", "text": "A operação roda com relatórios periódicos e reunião de resultados para ajustar a rota." }
+      {
+        "title": "Informações da operação",
+        "text": "Você preenche o formulário ou fala pelo WhatsApp sobre seu produto, a fase da empresa e o apoio que procura."
+      },
+      {
+        "title": "Conversa de qualificação",
+        "text": "Entendemos a operação, o estoque, a estrutura de envio e os objetivos para avaliar se o serviço é compatível."
+      },
+      {
+        "title": "Proposta com escopo e investimento",
+        "text": "Enviamos a proposta com as atividades, responsabilidades, prazos e o investimento no serviço."
+      },
+      {
+        "title": "Início do trabalho",
+        "text": "Após a contratação, o projeto começa com o diagnóstico da loja e a rotina de acompanhamento combinada."
+      }
     ]
   },
-
   "faq": {
     "caption": "Perguntas frequentes",
     "title": "O que os sellers costumam perguntar antes de fechar.",
     "items": [
       {
+        "q": "A consultoria e a assessoria são pagas?",
+        "a": "Sim. Consultoria e assessoria são serviços pagos. O escopo e o investimento são definidos em proposta, conforme a sua operação. A verba de anúncios é separada do valor do serviço."
+      },
+      {
         "q": "Qual a diferença prática entre consultoria e assessoria?",
-        "a": "Na consultoria nós ensinamos e a sua equipe executa, em reuniões com plano de ação e acompanhamento. Na assessoria a nossa equipe faz tudo: anúncios, imagens, SEO, Shopee Ads, ERP e gestão diária. Você cuida de compra, estoque, embalagem, logística e nota fiscal."
+        "a": "Na consultoria orientamos e a sua equipe executa, em reuniões com plano de ação e acompanhamento. Na assessoria a nossa equipe executa as atividades digitais previstas no escopo, como anúncios, imagens, SEO e Shopee Ads. Você cuida de estoque, logística, expedição, obrigações fiscais e decisões de investimento."
       },
       {
         "q": "Vocês cuidam da logística e do envio dos pedidos?",
-        "a": "Não. Logística, embalagem, postagem e nota fiscal continuam com você. Toda a operação digital do dia a dia é nossa."
+        "a": "Não. Estoque, embalagem, postagem, logística e nota fiscal continuam com a sua empresa. A nossa parte são as atividades digitais previstas no escopo."
       },
       {
         "q": "Preciso já vender na Shopee para contratar?",
-        "a": "Não. Atendemos quem vai abrir do zero — cadastro, catálogo e primeiras campanhas — e quem já vende e quer escalar."
+        "a": "Não. Atendemos lojistas e fabricantes que já têm produto, estoque e estrutura de envio, vendam ou não na Shopee hoje. Para quem vai começar no canal, o projeto inclui cadastro, catálogo e primeiras campanhas."
       },
       {
         "q": "Vocês trabalham com qual ERP ou hub?",
-        "a": "Os principais do mercado: Bling, Omie, Tiny, Ideris, Magis5, Anymarket e outros. Se você ainda não tem, ajudamos a escolher e integramos."
+        "a": "Trabalhamos com os principais do mercado, como Bling, Omie, Tiny, Ideris, Magis5 e Anymarket. Se você ainda não tem um, ajudamos a avaliar a opção adequada para a operação."
       },
       {
-        "q": "A verba de Shopee Ads está incluída?",
-        "a": "Não. A verba é investida direto na sua conta da Shopee e é sua. Nós fazemos a gestão: verba, estrutura de campanha, lances e palavras-chave."
+        "q": "A verba de anúncios está incluída no valor do serviço?",
+        "a": "Não. A verba de Shopee Ads é separada do valor da consultoria ou assessoria e é paga pela sua empresa diretamente à Shopee. Quando a gestão de anúncios faz parte do escopo, cuidamos da estrutura das campanhas, lances e palavras-chave."
       },
       {
-        "q": "Existe fidelidade ou multa por cancelamento?",
-        "a": "Sem fidelidade. A relação se mantém porque faz sentido para os dois lados."
+        "q": "Como funcionam prazo de contrato e cancelamento?",
+        "a": "Prazo, condições de cancelamento e rotina de atendimento são definidos na proposta e no contrato de cada projeto, de acordo com o escopo."
       },
       {
         "q": "E se eu vender em mais de um marketplace?",
-        "a": "A gente atende a operação inteira. Esta página é focada em Shopee, mas também estruturamos Mercado Livre, Amazon e o e-commerce próprio. Fale com a gente e montamos o escopo do conjunto."
+        "a": "Esta página é focada em Shopee, mas também atendemos Mercado Livre, Amazon e e-commerce próprio. Conte sobre os canais na solicitação e montamos a proposta para o conjunto."
       },
       {
         "q": "Quanto tempo até aparecer resultado?",
-        "a": "Depende do estado da conta. Título, ficha técnica e imagem costumam mexer no ranqueamento nas primeiras semanas. Ads e margem consistente são um trabalho de 60 a 90 dias."
+        "a": "Não há prazo garantido. O tempo depende do estado da conta, do produto, do preço, da margem, do estoque e da concorrência. Na proposta definimos os indicadores acompanhados e a rotina de relatórios."
       }
     ]
   },
-
   "form": {
     "_comment": "endpoint: form PRÓPRIO desta LP no Formspree (um por canal, para separar os leads de cada campanha). Sem esta chave, cai no endpoint compartilhado de _globals.json.",
     "endpoint": "https://formspree.io/f/xppzpwww",
-    "caption": "Análise gratuita",
-    "title": "Vamos olhar a sua loja na Shopee.",
-    "text": "Preencha o formulário e nossa equipe entra em contato em até 1 dia útil.",
-    "submitLabel": "Solicitar análise gratuita",
-    "subject": "[LP Shopee] Nova solicitação de análise gratuita",
-    "revenueOptions": [
-      "Ainda não vendo na Shopee",
-      "Até R$ 20 mil / mês",
-      "R$ 20 mil a R$ 100 mil / mês",
-      "R$ 100 mil a R$ 500 mil / mês",
-      "Acima de R$ 500 mil / mês"
-    ],
+    "caption": "Solicitar proposta",
+    "title": "Conte sobre sua operação.",
+    "text": "Informe seu produto, a fase da empresa e o apoio que procura. Nossa equipe avaliará a compatibilidade do serviço e os próximos passos para uma proposta.",
+    "submitLabel": "Solicitar proposta",
+    "subject": "[LP Shopee] Nova solicitação de proposta",
     "interestOptions": [
-      "Assessoria (vocês fazem tudo)",
       "Consultoria / mentoria (minha equipe executa)",
-      "Ainda não sei, quero entender"
-    ]
+      "Assessoria com execução pela equipe da SD Digital",
+      "Quero avaliar o escopo"
+    ],
+    "successMessage": "Recebemos suas informações! Nossa equipe vai avaliar a compatibilidade do serviço e entrar em contato pelo WhatsApp ou e-mail informado.",
+    "productLabel": "Produto ou categoria",
+    "productPlaceholder": "Ex.: suplementos, peças automotivas, utilidades domésticas",
+    "stageLabel": "Fase da operação",
+    "stageOptions": [
+      "Já vendo online",
+      "Tenho negócio/produtos e vou iniciar online",
+      "Ainda estou avaliando o que vender"
+    ],
+    "storeLabel": "Link da loja (opcional)",
+    "interestLabel": "Serviço procurado",
+    "budgetLabel": "Investimento mensal disponível para o serviço (sem incluir verba de anúncios)",
+    "budgetOptions": [
+      "Até R$ 1.499",
+      "R$ 1.500 a R$ 2.499",
+      "R$ 2.500 ou mais",
+      "Preciso entender o escopo"
+    ],
+    "budgetHelp": "As faixas ajudam a entender o escopo possível. Não são tabela de preços.",
+    "messagePlaceholder": "Canais em que vende, volume de estoque, principais dúvidas..."
   },
-
   "whatsapp": {
-    "nav": "Olá! Vim pela página de Shopee da SD Digital e quero falar com um especialista.",
-    "hero": "Olá! Vim pela página de Shopee da SD Digital e quero uma análise gratuita da minha loja na Shopee.",
-    "band": "Olá! Vim pela página de Shopee da SD Digital e quero entender melhor a assessoria de Shopee.",
-    "form": "Olá! Vim pela página de Shopee da SD Digital, prefiro falar por aqui.",
-    "float": "Olá! Vim pela página de Shopee da SD Digital e quero saber mais."
+    "nav": "Olá! Vim pela página de Shopee da SD Digital e quero conhecer a consultoria ou assessoria para minha empresa. Meu produto é: ___. Link da loja, se já tiver: ___.",
+    "hero": "Olá! Vim pela página de Shopee da SD Digital e quero conhecer a consultoria ou assessoria para minha empresa. Meu produto é: ___. Link da loja, se já tiver: ___.",
+    "band": "Olá! Vim pela página de Shopee da SD Digital e quero conhecer a consultoria ou assessoria para minha empresa. Meu produto é: ___. Link da loja, se já tiver: ___.",
+    "form": "Olá! Vim pela página de Shopee da SD Digital e quero conhecer a consultoria ou assessoria para minha empresa. Meu produto é: ___. Link da loja, se já tiver: ___.",
+    "float": "Olá! Vim pela página de Shopee da SD Digital e quero conhecer a consultoria ou assessoria para minha empresa. Meu produto é: ___. Link da loja, se já tiver: ___."
+  },
+  "cases": {
+    "enabled": false,
+    "_comment": "Cases gerais (_globals.json) fora desta LP até Lucas validar origem, período, contexto e autorização de cada um. Para voltar, apague esta chave."
+  },
+  "_removidoAteValidar": {
+    "_comment": "Retirados em 21/09/2026 até comprovação (documento de origem, período, contexto e autorização). NÃO são renderizados. Só voltam para a página com a comprovação em mãos e com contexto; os mocks (painéis desenhados) não voltam como 'resultado real'.",
+    "kpis": [
+      {
+        "prefix": "+",
+        "value": 10,
+        "suffix": " anos",
+        "label": "de operação em marketplaces no Brasil"
+      },
+      {
+        "prefix": "+",
+        "value": 150,
+        "suffix": "",
+        "label": "sellers e e-commerces atendidos"
+      },
+      {
+        "prefix": "até ",
+        "value": 10,
+        "suffix": "x",
+        "label": "de crescimento em 12 meses"
+      },
+      {
+        "prefix": "",
+        "value": 4.9,
+        "decimals": 1,
+        "suffix": "/5",
+        "label": "satisfação média dos nossos clientes"
+      }
+    ],
+    "heroShots": [
+      {
+        "image": "",
+        "badge": "Vendas / mês",
+        "mock": {
+          "title": "Vendas do mês",
+          "value": "R$ 184.320",
+          "delta": "+62% vs. mês anterior",
+          "caption": "Painel do Seller Centre",
+          "chart": [
+            22,
+            30,
+            26,
+            41,
+            38,
+            52,
+            61,
+            74,
+            88
+          ],
+          "footLeft": {
+            "label": "Pedidos",
+            "value": "2.417"
+          },
+          "footRight": {
+            "label": "Ticket médio",
+            "value": "R$ 76,25"
+          }
+        }
+      },
+      {
+        "image": "",
+        "badge": "Shopee Ads",
+        "mock": {
+          "title": "Shopee Ads: ROAS",
+          "value": "7,4x",
+          "delta": "+2,1x em 60 dias",
+          "caption": "Campanhas de descoberta + busca",
+          "chart": [
+            18,
+            24,
+            21,
+            33,
+            45,
+            44,
+            58,
+            69,
+            81
+          ],
+          "footLeft": {
+            "label": "Investimento",
+            "value": "R$ 9.860"
+          },
+          "footRight": {
+            "label": "Receita Ads",
+            "value": "R$ 72.964"
+          }
+        }
+      },
+      {
+        "image": "",
+        "badge": "Reputação",
+        "mock": {
+          "title": "Saúde da loja",
+          "value": "4,9 ★",
+          "delta": "Loja Preferida ativa",
+          "caption": "Avaliação média dos últimos 90 dias",
+          "chart": [
+            40,
+            44,
+            48,
+            52,
+            58,
+            63,
+            70,
+            80,
+            92
+          ],
+          "footLeft": {
+            "label": "Envio no prazo",
+            "value": "99,1%"
+          },
+          "footRight": {
+            "label": "Cancelamento",
+            "value": "0,4%"
+          }
+        }
+      }
+    ],
+    "proofPanels": [
+      {
+        "image": "",
+        "badge": "Suplementos",
+        "mock": {
+          "title": "Faturamento: 12 meses",
+          "value": "R$ 1,42 mi",
+          "delta": "+318% no período",
+          "caption": "Seller de suplementos, catálogo de 240 SKUs",
+          "chart": [
+            12,
+            18,
+            22,
+            20,
+            31,
+            38,
+            44,
+            51,
+            63,
+            72,
+            85,
+            98
+          ],
+          "footLeft": {
+            "label": "Pedidos",
+            "value": "18.740"
+          },
+          "footRight": {
+            "label": "Ticket médio",
+            "value": "R$ 75,80"
+          }
+        }
+      },
+      {
+        "image": "",
+        "badge": "Auto peças",
+        "mock": {
+          "title": "Shopee Ads: ROAS",
+          "value": "9,1x",
+          "delta": "+4,3x após reestruturação",
+          "caption": "Após separar campanhas de busca e descoberta",
+          "chart": [
+            20,
+            22,
+            19,
+            28,
+            34,
+            47,
+            55,
+            68,
+            79
+          ],
+          "footLeft": {
+            "label": "Investido",
+            "value": "R$ 14.200"
+          },
+          "footRight": {
+            "label": "Receita",
+            "value": "R$ 129.220"
+          }
+        }
+      },
+      {
+        "image": "",
+        "badge": "Casa e cozinha",
+        "mock": {
+          "title": "Visitas ao anúncio",
+          "value": "412 mil",
+          "delta": "+240% em 90 dias",
+          "caption": "Depois da reescrita de títulos e ficha técnica",
+          "chart": [
+            15,
+            17,
+            24,
+            29,
+            36,
+            48,
+            60,
+            74,
+            91
+          ],
+          "footLeft": {
+            "label": "Conversão",
+            "value": "3,8%"
+          },
+          "footRight": {
+            "label": "Loja Preferida",
+            "value": "Ativa"
+          }
+        }
+      }
+    ],
+    "heroCompare": "Cortina antes/depois do Seller Centre (lp-dashboard-antes.png / lp-dashboard-depois.png, R$ 96 mil -> R$ 660 mil). Reativar com hero.compare = true."
   }
 }
